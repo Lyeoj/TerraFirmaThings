@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "SBS",
+    "LLL"
+  ],
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "clothHighQuality"
+    },
+    "B": {
+      "item": "minecraft:leather_boots"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "tfcthings:snow_shoes"
+  }
+}
