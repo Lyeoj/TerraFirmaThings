@@ -1,6 +1,7 @@
 package lyeoj.tfcthings.main;
 
 import lyeoj.tfcthings.init.TFCThingsEntities;
+import net.dries007.tfc.TerraFirmaCraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid=TFCThings.MODID, name=TFCThings.NAME, version=TFCThings.VERSION)
+@Mod(modid=TFCThings.MODID, name=TFCThings.NAME, version=TFCThings.VERSION, dependencies = TFCThings.DEPENDENCIES)
 public class TFCThings {
 	
 	public static final String MODID = "tfcthings";
@@ -21,7 +22,8 @@ public class TFCThings {
 	public static final String VERSION = "0.1.0";
 	public static final String CLIENT_PROXY = "lyeoj.tfcthings.proxy.ClientProxy";
 	public static final String COMMON_PROXY = "lyeoj.tfcthings.proxy.CommonProxy";
-	
+	public static final String DEPENDENCIES = "required-after:" + TerraFirmaCraft.MOD_ID;
+
 	@SidedProxy(clientSide = CLIENT_PROXY, serverSide = COMMON_PROXY)
 	public static CommonProxy proxy;
 	
