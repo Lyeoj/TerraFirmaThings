@@ -35,11 +35,6 @@ public class TFCThings {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		LOGGER.info("TFC Things: Starting Pre-Init...");
-		for(TFCThingsEntities.NonMobEntityInfo info : TFCThingsEntities.NON_MOB_ENTITY_INFOS) {
-			EntityRegistry.registerModEntity(new ResourceLocation(TFCThings.MODID, info.name),
-					info.entityClass, info.name, info.id, TFCThings.instance, info.trackingRange,
-					info.updateFrequency, info.sendsVelocityUpdates);
-		}
 		proxy.preInit(event);
 	}
 	
