@@ -17,12 +17,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		for(TFCThingsEntities.NonMobEntityInfo info : TFCThingsEntities.NON_MOB_ENTITY_INFOS) {
-			EntityRegistry.registerModEntity(new ResourceLocation(TFCThings.MODID, info.name),
-					info.entityClass, info.name, info.id, TFCThings.instance, info.trackingRange,
-					info.updateFrequency, info.sendsVelocityUpdates);
-			RenderingRegistry.registerEntityRenderingHandler(info.entityClass, info.factory);
-		}
+		TFCThingsEntities.registerEntityModels();
 	}
 	
 	@Override
