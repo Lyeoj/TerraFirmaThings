@@ -75,7 +75,7 @@ public class ItemSnowShoes extends ItemArmor implements IItemSize, IDamageResist
                         {
                             blockpos$pooledmutableblockpos2.setPos(i, j, k);
                             IBlockState iblockstate = player.world.getBlockState(blockpos$pooledmutableblockpos2);
-                            if(!world.isRemote && iblockstate.getBlock() instanceof BlockSnowTFC) {
+                            if(iblockstate.getBlock() instanceof BlockSnowTFC) {
                                 player.motionX /= ConfigTFC.General.MISC.snowMovementModifier;
                                 player.motionZ /= ConfigTFC.General.MISC.snowMovementModifier;
                             }
