@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.items;
 
+import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.api.capability.damage.IDamageResistance;
 import net.dries007.tfc.api.capability.size.IItemSize;
@@ -74,9 +75,9 @@ public class ItemSnowShoes extends ItemArmor implements IItemSize, IDamageResist
                         {
                             blockpos$pooledmutableblockpos2.setPos(i, j, k);
                             IBlockState iblockstate = player.world.getBlockState(blockpos$pooledmutableblockpos2);
-                            if(iblockstate.getBlock() instanceof BlockSnowTFC) {
-                                player.motionX /= ConfigTFC.GENERAL.snowMovementModifier;
-                                player.motionZ /= ConfigTFC.GENERAL.snowMovementModifier;
+                            if(!world.isRemote && iblockstate.getBlock() instanceof BlockSnowTFC) {
+                                player.motionX /= ConfigTFC.General.MISC.snowMovementModifier;
+                                player.motionZ /= ConfigTFC.General.MISC.snowMovementModifier;
                             }
                         }
                     }
