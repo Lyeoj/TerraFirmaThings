@@ -28,7 +28,7 @@ public class ItemSling extends Item implements IItemSize {
     public ItemSling() {
         this.setTranslationKey("sling");
         this.setRegistryName("sling");
-        this.setMaxDamage(100);
+        this.setMaxDamage(64);
         this.setNoRepair();
         this.setMaxStackSize(1);
         this.setCreativeTab(CreativeTabsTFC.CT_MISC);
@@ -82,9 +82,9 @@ public class ItemSling extends Item implements IItemSize {
             boolean flag = entityplayer.isCreative();
             ItemStack itemStack = this.findAmmo(entityplayer);
 
-            int power = Math.min((this.getMaxItemUseDuration(stack) - timeLeft) / 8, 10);
-            float velocity = 1.6F * (power / 10.0F);
-            float inaccuracy = 0.5F * (10.0F - power);
+            int power = Math.min((this.getMaxItemUseDuration(stack) - timeLeft) / 16, 8);
+            float velocity = 1.6F * (power / 8.0F);
+            float inaccuracy = 0.5F * (8.0F - power);
             //System.out.println(power);
 
             if(!itemStack.isEmpty() && !flag) {
