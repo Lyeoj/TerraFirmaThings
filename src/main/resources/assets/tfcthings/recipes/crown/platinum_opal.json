@@ -1,0 +1,19 @@
+{
+  "type": "tfc:damage_item_shapeless",
+  "ingredients": [
+    {
+      "item": "tfcthings:crown/platinum_empty"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "hammer"
+    },
+    {
+      "item": "tfc:gem/opal",
+      "data": 4
+    }
+  ],
+  "result": {
+    "item": "tfcthings:crown/platinum_opal"
+  }
+}
