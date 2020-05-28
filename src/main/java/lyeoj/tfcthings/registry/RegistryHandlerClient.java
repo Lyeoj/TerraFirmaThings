@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.registry;
 
+import lyeoj.tfcthings.init.TFCThingsBlocks;
 import lyeoj.tfcthings.init.TFCThingsItems;
 import lyeoj.tfcthings.main.TFCThings;
 import net.minecraft.block.Block;
@@ -18,6 +19,10 @@ public class RegistryHandlerClient {
     public static void registerModels(ModelRegistryEvent event) {
         for(int i = 0; i < TFCThingsItems.ITEMLIST.length; i++) {
             registerItemModel(TFCThingsItems.ITEMLIST[i]);
+        }
+
+        for(int i = 0; i < TFCThingsBlocks.BLOCKLIST.length; i++) {
+            registerBlockModel(TFCThingsBlocks.BLOCKLIST[i]);
         }
     }
 

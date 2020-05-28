@@ -1,9 +1,6 @@
 package lyeoj.tfcthings.init;
 
-import lyeoj.tfcthings.items.ItemCrown;
-import lyeoj.tfcthings.items.ItemSling;
-import lyeoj.tfcthings.items.ItemSnowShoes;
-import lyeoj.tfcthings.items.ItemWhetstone;
+import lyeoj.tfcthings.items.*;
 import net.dries007.tfc.api.types.IArmorMaterialTFC;
 import net.dries007.tfc.objects.ArmorMaterialTFC;
 import net.minecraft.init.SoundEvents;
@@ -18,6 +15,7 @@ public class TFCThingsItems {
     public static final IArmorMaterialTFC SNOW_SHOES_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("snow_shoes", "tfcthings:snow_shoes", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
     public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
     public static final Item ITEM_SLING = new ItemSling();
+    public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
 
     public static final Item ITEM_GOLD_CROWN_EMPTY = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Empty");
     public static final Item ITEM_GOLD_CROWN_AGATE = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Agate");
@@ -53,6 +51,7 @@ public class TFCThingsItems {
             ITEM_WHETSTONE,
             ITEM_SNOWSHOES,
             ITEM_SLING,
+            ITEM_BEAR_TRAP_HALF,
             ITEM_GOLD_CROWN_EMPTY,
             ITEM_GOLD_CROWN_AGATE,
             ITEM_GOLD_CROWN_AMETHYST,
@@ -80,6 +79,8 @@ public class TFCThingsItems {
             ITEM_PLATINUM_CROWN_RUBY,
             ITEM_PLATINUM_CROWN_SAPPHIRE,
             ITEM_PLATINUM_CROWN_TOPAZ,
-            ITEM_PLATINUM_CROWN_TOURMALINE
+            ITEM_PLATINUM_CROWN_TOURMALINE,
+
+            TFCThingsBlocks.BEAR_TRAP_ITEM
     };
 }
