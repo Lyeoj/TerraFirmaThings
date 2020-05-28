@@ -4,7 +4,10 @@ import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.api.types.IPredator;
+import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.CreativeTabsTFC;
+import net.dries007.tfc.objects.items.metal.ItemMetalTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -18,11 +21,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +40,8 @@ import javax.annotation.Nullable;
 public class BlockBearTrap extends Block implements IItemSize {
 
     protected static final AxisAlignedBB TRAP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D);
-    public static final PropertyBool OPEN = PropertyBool.create("open");
+    public static final PropertyBool CLOSED = PropertyBool.create("closed");
+    public static final PropertyBool BURIED = PropertyBool.create("buried");
 
     public BlockBearTrap() {
         super(Material.IRON);
@@ -45,7 +51,7 @@ public class BlockBearTrap extends Block implements IItemSize {
         this.setHardness(10.0F);
         this.setResistance(10.0F);
         this.setHarvestLevel("pickaxe", 0);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(OPEN, Boolean.valueOf(true)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BURIED, Boolean.valueOf(false)).withProperty(CLOSED, Boolean.valueOf(false)));
     }
 
     @Override
@@ -72,21 +78,24 @@ public class BlockBearTrap extends Block implements IItemSize {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {OPEN});
+        return new BlockStateContainer(this, new IProperty[] {BURIED, CLOSED});
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(OPEN, meta == 0 ? Boolean.valueOf(true) : Boolean.valueOf(false));
+        return this.getDefaultState().withProperty(BURIED, (meta == 1 || meta == 3)).withProperty(CLOSED, (meta == 2 || meta == 3));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(OPEN) ? 0 : 1;
-    }
-
-    public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_) {
-        return p_193383_4_ == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+        int flag = 0;
+        if(state.getValue(BURIED)) {
+            flag |= 1;
+        }
+        if(state.getValue(CLOSED)) {
+            flag |= 2;
+        }
+        return flag;
     }
 
     @Nullable
@@ -117,6 +126,7 @@ public class BlockBearTrap extends Block implements IItemSize {
     public boolean isFullCube(IBlockState state) {
         return false;
     }
+
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
         TileEntityBearTrap trap = (TileEntityBearTrap)te;
         if(!trap.isOpen()) {
@@ -130,6 +140,18 @@ public class BlockBearTrap extends Block implements IItemSize {
         }
     }
 
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if(playerIn.getHeldItem(hand).getItem() instanceof ItemSpade ||
+                (playerIn.getHeldItem(hand).getItem() instanceof ItemMetalTool &&
+                        ((ItemMetalTool)playerIn.getHeldItem(hand).getItem()).getType().equals(Metal.ItemType.SHOVEL))) {
+            playerIn.getHeldItem(hand).damageItem(1, playerIn);
+            state = state.cycleProperty(BURIED);
+            worldIn.setBlockState(pos, state, 2);
+            worldIn.playSound(playerIn, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        }
+        return true;
+    }
+
     @Override
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if(entityIn instanceof EntityLivingBase) {
@@ -138,15 +160,23 @@ public class BlockBearTrap extends Block implements IItemSize {
             if(trap.isOpen()) {
                 entityLiving.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1000));
                 entityLiving.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 1000));
-                entityLiving.attackEntityFrom(DamageSource.CACTUS, entityLiving.getHealth() / 2.0F);
+                entityLiving.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 1000));
+                entityLiving.attackEntityFrom(DamageSource.CACTUS, entityLiving.getHealth() / 3.0F);
                 trap.setCapturedEntity(entityLiving);
                 entityIn.setPositionAndUpdate(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                 trap.setOpen(false);
-                state = state.withProperty(OPEN, Boolean.valueOf(trap.isOpen()));
+                state = state.withProperty(CLOSED, Boolean.valueOf(true));
                 worldIn.setBlockState(pos, state, 2);
                 entityLiving.playSound(SoundEvents.ENTITY_ITEM_BREAK, 2.0F, 0.4F);
             } else if(trap.getCapturedEntity() != null && trap.getCapturedEntity().equals(entityLiving)) {
                 entityLiving.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+                if(entityLiving instanceof IPredator && Math.random() < 0.001) {
+                    worldIn.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0f, 0.8f);
+                    if(Math.random() < 0.8) {
+                        this.dropBlockAsItem(worldIn, pos, state, 0);
+                    }
+                    worldIn.setBlockState(pos, net.minecraft.init.Blocks.AIR.getDefaultState(), worldIn.isRemote ? 11 : 3);
+                }
             }
         }
     }
