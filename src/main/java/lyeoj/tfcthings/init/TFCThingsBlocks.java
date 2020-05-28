@@ -9,7 +9,7 @@ import net.minecraft.item.ItemBlock;
 public class TFCThingsBlocks {
 
     public static final Block BEAR_TRAP = new BlockBearTrap();
-    public static final Item BEAR_TRAP_ITEM = new ItemBlock(BEAR_TRAP).setRegistryName(BEAR_TRAP.getRegistryName());
+    public static final Item BEAR_TRAP_ITEM = new ItemBlock(BEAR_TRAP).setRegistryName(BEAR_TRAP.getRegistryName()).setMaxStackSize(2);
 
     public static final Block[] BLOCKLIST = {
             BEAR_TRAP

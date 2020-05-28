@@ -1,6 +1,9 @@
 package lyeoj.tfcthings.blocks;
 
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
+import net.dries007.tfc.api.capability.size.IItemSize;
+import net.dries007.tfc.api.capability.size.Size;
+import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.CreativeTabsTFC;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -26,10 +29,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Random;
 
-public class BlockBearTrap extends Block {
+public class BlockBearTrap extends Block implements IItemSize {
 
     protected static final AxisAlignedBB TRAP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D);
     public static final PropertyBool OPEN = PropertyBool.create("open");
@@ -148,4 +151,15 @@ public class BlockBearTrap extends Block {
         }
     }
 
+    @Nonnull
+    @Override
+    public Size getSize(@Nonnull ItemStack itemStack) {
+        return Size.LARGE;
+    }
+
+    @Nonnull
+    @Override
+    public Weight getWeight(@Nonnull ItemStack itemStack) {
+        return Weight.HEAVY;
+    }
 }

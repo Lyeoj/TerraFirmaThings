@@ -1,6 +1,6 @@
 package lyeoj.tfcthings.items;
 
-import net.dries007.tfc.api.capability.heat.ItemHeatHandler;
+import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.CreativeTabsTFC;
@@ -32,7 +32,7 @@ public class ItemBearTrapHalf extends ItemTFC {
 
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        return new ItemHeatHandler(nbt, 0.35F, 1540.0F);
+        return new ForgeableHeatableHandler(nbt, 0.35F, 1540.0F);
     }
 
 }

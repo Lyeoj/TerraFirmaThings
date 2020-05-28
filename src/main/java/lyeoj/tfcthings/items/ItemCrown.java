@@ -62,6 +62,10 @@ public class ItemCrown extends ItemArmor implements IItemSize, IDamageResistance
         return 0;
     }
 
+    public boolean isDamageable() {
+        return false;
+    }
+
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add("Gem: " + gem);

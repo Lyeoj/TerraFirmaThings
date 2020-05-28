@@ -1,9 +1,6 @@
 package lyeoj.tfcthings.main;
 
-import lyeoj.tfcthings.init.TFCThingsEntities;
 import net.dries007.tfc.TerraFirmaCraft;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
