@@ -34,14 +34,14 @@ public class EntitySlingStone extends EntityThrowable {
     @Override
     protected void onImpact(RayTraceResult result) {
         if (result.entityHit != null) {
-            int i = power;
+            float i = power;
 
             if (result.entityHit instanceof IPredator)
             {
-                i *= 3;
+                i *= 2;
             }
 
-            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)i);
+            result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), i);
         }
 
         if (!this.world.isRemote) {

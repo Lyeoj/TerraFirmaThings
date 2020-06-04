@@ -16,6 +16,7 @@ public class TFCThingsItems {
     public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
     public static final Item ITEM_SLING = new ItemSling();
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
+    public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot();
 
     public static final Item ITEM_GOLD_CROWN_EMPTY = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Empty");
     public static final Item ITEM_GOLD_CROWN_AGATE = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Agate");
@@ -52,6 +53,7 @@ public class TFCThingsItems {
             ITEM_SNOWSHOES,
             ITEM_SLING,
             ITEM_BEAR_TRAP_HALF,
+            ITEM_PIG_IRON_CARROT,
             ITEM_GOLD_CROWN_EMPTY,
             ITEM_GOLD_CROWN_AGATE,
             ITEM_GOLD_CROWN_AMETHYST,
@@ -81,6 +83,7 @@ public class TFCThingsItems {
             ITEM_PLATINUM_CROWN_TOPAZ,
             ITEM_PLATINUM_CROWN_TOURMALINE,
 
-            TFCThingsBlocks.BEAR_TRAP_ITEM
+            TFCThingsBlocks.BEAR_TRAP_ITEM,
+            TFCThingsBlocks.PIGVIL_ITEM
     };
 }
