@@ -1,5 +1,7 @@
 item.snow_shoes.name=Snow Shoes
-item.whetstone.name=Whetstone[WIP]
+item.whetstone.name=Whetstone
+item.honing_steel.name=Honing Steel
+item.honing_steel_head.name=Honing Steel Head
 item.sling.name=Sling
 item.gold_crown.name=Gold Crown
 item.platinum_crown.name=Platinum Crown
@@ -10,4 +12,6 @@ tile.bear_trap.name=Bear Trap
 tile.pigvil.name=Pigvil
 
 entity.pigvil.name=Pigvil
+
+tfcthings.tooltip.maximum_sharpness=This item can't get any sharper right now
 

@@ -1,6 +1,5 @@
 package lyeoj.tfcthings.items;
 
-import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.api.capability.damage.IDamageResistance;
 import net.dries007.tfc.api.capability.size.IItemSize;

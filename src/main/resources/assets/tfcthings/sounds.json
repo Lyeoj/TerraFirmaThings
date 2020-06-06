@@ -1,0 +1,7 @@
+{
+  "whetstone.sharpen": {
+    "category": "ambient",
+    "subtitle": "subtitle.sharpen",
+    "sounds": ["tfcthings:sharpen_1", "tfcthings:sharpen_2", "tfcthings:sharpen_3", "tfcthings:sharpen_4", "tfcthings:sharpen_5"]
+  }
+}
