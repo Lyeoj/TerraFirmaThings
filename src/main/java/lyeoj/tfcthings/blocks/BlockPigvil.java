@@ -4,8 +4,6 @@ import lyeoj.tfcthings.entity.living.EntityPigvil;
 import lyeoj.tfcthings.init.TFCThingsBlocks;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.blocks.metal.BlockAnvilTFC;
-import net.dries007.tfc.objects.items.metal.ItemAnvil;
-import net.dries007.tfc.types.DefaultMetals;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

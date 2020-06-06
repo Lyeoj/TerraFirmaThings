@@ -1,7 +1,6 @@
 package lyeoj.tfcthings.init;
 
 import lyeoj.tfcthings.blocks.BlockBearTrap;
-
 import lyeoj.tfcthings.blocks.BlockPigvil;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

@@ -1,15 +1,7 @@
 package lyeoj.tfcthings.proxy;
 
 import lyeoj.tfcthings.init.TFCThingsEntities;
-import lyeoj.tfcthings.main.TFCThings;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.event.*;
 
 public class ClientProxy extends CommonProxy {
 

@@ -2,13 +2,8 @@ package lyeoj.tfcthings.entity.projectile;
 
 import net.dries007.tfc.api.types.IPredator;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
