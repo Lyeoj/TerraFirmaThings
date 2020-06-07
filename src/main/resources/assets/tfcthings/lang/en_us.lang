@@ -1,7 +1,10 @@
 item.snow_shoes.name=Snow Shoes
 item.whetstone.name=Whetstone
 item.honing_steel.name=Honing Steel
+item.honing_steel_diamond.name=Diamond Grit Honing Steel
 item.honing_steel_head.name=Honing Steel Head
+item.honing_steel_head_diamond.name=Diamond Grit Honing Steel Head
+item.diamond_grit.name=Diamond Grit
 item.sling.name=Sling
 item.gold_crown.name=Gold Crown
 item.platinum_crown.name=Platinum Crown

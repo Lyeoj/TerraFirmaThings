@@ -97,6 +97,8 @@ public class ItemWhetstone extends Item implements IItemSize {
         switch(tier) {
             case 2:
                 return 256;
+            case 3:
+                return 384;
             default:
                 return 64;
         }

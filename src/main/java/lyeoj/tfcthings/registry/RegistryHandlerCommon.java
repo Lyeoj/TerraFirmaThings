@@ -87,6 +87,7 @@ public class RegistryHandlerCommon {
     @SubscribeEvent
     public static void registerWeldingRecipes(RegistryEvent.Register<WeldingRecipe> event) {
         event.getRegistry().register(new WeldingRecipe(new ResourceLocation(TFCThings.MODID, "bear_trap"), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_BEAR_TRAP_HALF)), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_BEAR_TRAP_HALF)), new ItemStack(TFCThingsBlocks.BEAR_TRAP), Metal.STEEL.getTier()));
+        event.getRegistry().register(new WeldingRecipe(new ResourceLocation(TFCThings.MODID, "honing_steel_head_diamond"), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD)), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_DIAMOND_GRIT)), new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD_DIAMOND), Metal.Tier.TIER_V));
     }
 
     @SubscribeEvent

@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.items;
 
+import net.dries007.tfc.api.capability.forge.ForgeableHandler;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -12,27 +13,27 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ItemHoningSteelHead extends ItemTFC {
+public class ItemDiamondGrit extends ItemTFC {
 
-    public ItemHoningSteelHead() {
-        setCreativeTab(CreativeTabsTFC.CT_METAL);
+    public ItemDiamondGrit() {
+        this.setRegistryName("diamond_grit");
+        this.setTranslationKey("diamond_grit");
+        this.setCreativeTab(CreativeTabsTFC.CT_MISC);
     }
-
     @Nonnull
     @Override
     public Size getSize(@Nonnull ItemStack itemStack) {
-        return Size.SMALL;
+        return Size.VERY_SMALL;
     }
 
     @Nonnull
     @Override
     public Weight getWeight(@Nonnull ItemStack itemStack) {
-        return Weight.LIGHT;
+        return Weight.VERY_LIGHT;
     }
 
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        return new ForgeableHeatableHandler(nbt, 0.35F, 1540.0F);
+        return new ForgeableHandler(nbt);
     }
-
 }
