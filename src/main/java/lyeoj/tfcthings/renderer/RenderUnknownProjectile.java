@@ -1,7 +1,7 @@
 package lyeoj.tfcthings.renderer;
 
-import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
-import lyeoj.tfcthings.model.ModelSlingStone;
+import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
+import lyeoj.tfcthings.model.ModelUnknownProjectile;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -10,14 +10,13 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderSlingStone extends Render<EntitySlingStone> {
+public class RenderUnknownProjectile extends Render<EntityUnknownProjectile> {
+    private static final ResourceLocation UNKNOWN_INGOT_TEXTURE = new ResourceLocation("tfc:textures/blocks/metal/unknown.png");
+    private final ModelUnknownProjectile unknownModel = new ModelUnknownProjectile();
 
-    private static final ResourceLocation SLING_STONE_TEXTURE = new ResourceLocation("tfcthings:textures/entity/slingstone.png");
-    private final ModelSlingStone slingStoneModel = new ModelSlingStone();
+    public static final UnknownProjectileFactory FACTORY = new UnknownProjectileFactory();
 
-    public static final SlingStoneFactory FACTORY = new SlingStoneFactory();
-
-    protected RenderSlingStone(RenderManager renderManager) {
+    protected RenderUnknownProjectile(RenderManager renderManager) {
         super(renderManager);
     }
 
@@ -35,7 +34,7 @@ public class RenderSlingStone extends Render<EntitySlingStone> {
         return p_82400_1_ + p_82400_3_ * f;
     }
 
-    public void doRender(EntitySlingStone entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityUnknownProjectile entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
         GlStateManager.disableCull();
@@ -53,7 +52,7 @@ public class RenderSlingStone extends Render<EntitySlingStone> {
             GlStateManager.enableColorMaterial();
             GlStateManager.enableOutlineMode(this.getTeamColor(entity));
         }
-        this.slingStoneModel.render(entity, 0.0F, 0.0F, 0.0F, f, f1, 0.0625F);
+        this.unknownModel.render(entity, 0.0F, 0.0F, 0.0F, f, f1, 0.0625F);
 
         if (this.renderOutlines) {
             GlStateManager.disableOutlineMode();
@@ -66,14 +65,15 @@ public class RenderSlingStone extends Render<EntitySlingStone> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntitySlingStone entity) {
-        return SLING_STONE_TEXTURE;
+    protected ResourceLocation getEntityTexture(EntityUnknownProjectile entity) {
+        return UNKNOWN_INGOT_TEXTURE;
     }
 
-    public static class SlingStoneFactory implements IRenderFactory<EntitySlingStone> {
+    public static class UnknownProjectileFactory implements IRenderFactory<EntityUnknownProjectile> {
         @Override
-        public Render<? super EntitySlingStone> createRenderFor(RenderManager manager) {
-            return new RenderSlingStone(manager);
+        public Render<? super EntityUnknownProjectile> createRenderFor(RenderManager manager) {
+            return new RenderUnknownProjectile(manager);
         }
     }
+
 }

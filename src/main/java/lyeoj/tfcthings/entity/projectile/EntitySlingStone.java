@@ -2,6 +2,7 @@ package lyeoj.tfcthings.entity.projectile;
 
 import net.dries007.tfc.api.types.IPredator;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -47,4 +48,5 @@ public class EntitySlingStone extends EntityThrowable {
             }
         }
     }
+
 }

@@ -2,9 +2,11 @@ package lyeoj.tfcthings.init;
 
 import lyeoj.tfcthings.entity.living.EntityPigvil;
 import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
+import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
 import lyeoj.tfcthings.main.TFCThings;
 import lyeoj.tfcthings.renderer.RenderPigvil;
 import lyeoj.tfcthings.renderer.RenderSlingStone;
+import lyeoj.tfcthings.renderer.RenderUnknownProjectile;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -16,7 +18,8 @@ public class TFCThingsEntities {
     };
 
     public static final NonMobEntityInfo[] NON_MOB_ENTITY_INFOS = {
-            new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 2, true)
+            new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 2, true),
+            new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 2, true)
     };
 
     public static class MobInfo {
@@ -77,6 +80,7 @@ public class TFCThingsEntities {
     public static void registerEntityModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntitySlingStone.class, RenderSlingStone.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigvil.class, RenderPigvil.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityUnknownProjectile.class, RenderUnknownProjectile.FACTORY);
     }
 
 }

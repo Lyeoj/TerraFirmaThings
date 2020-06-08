@@ -1,10 +1,13 @@
 package lyeoj.tfcthings.items;
 
 import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
+import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.CreativeTabsTFC;
+import net.dries007.tfc.objects.items.metal.ItemIngot;
 import net.dries007.tfc.objects.items.rock.ItemRock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -85,13 +88,11 @@ public class ItemSling extends Item implements IItemSize {
             int power = Math.min((this.getMaxItemUseDuration(stack) - timeLeft) / 16, 8);
             float velocity = 1.6F * (power / 8.0F);
             float inaccuracy = 0.5F * (8.0F - power);
-            //System.out.println(power);
 
             if(!itemStack.isEmpty() && !flag) {
+
                 if (!worldIn.isRemote) {
-                    EntitySlingStone entitySlingStone = new EntitySlingStone(worldIn, entityLiving, power);
-                    entitySlingStone.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0F, velocity, inaccuracy);
-                    worldIn.spawnEntity(entitySlingStone);
+                    shoot(worldIn, entityLiving, power, velocity, inaccuracy, itemStack);
                 }
                 worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
@@ -103,13 +104,24 @@ public class ItemSling extends Item implements IItemSize {
 
             } else if(flag) {
                 if (!worldIn.isRemote) {
-                    EntitySlingStone entitySlingStone = new EntitySlingStone(worldIn, entityLiving, power);
-                    entitySlingStone.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0F, velocity, inaccuracy);
-                    worldIn.spawnEntity(entitySlingStone);
+                    shoot(worldIn, entityLiving, power, velocity, inaccuracy, itemStack);
                 }
                 worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             }
         }
+    }
+
+    private void shoot(World worldIn, EntityLivingBase entityLiving, int power, float velocity, float inaccuracy, ItemStack itemStack) {
+
+        EntitySlingStone entitySlingStone;
+
+        if(itemStack.getItem() instanceof ItemIngot) {
+            entitySlingStone = new EntityUnknownProjectile(worldIn, entityLiving, power);
+        } else {
+            entitySlingStone = new EntitySlingStone(worldIn, entityLiving, power);
+        }
+        entitySlingStone.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0F, velocity, inaccuracy);
+        worldIn.spawnEntity(entitySlingStone);
     }
 
     private ItemStack findAmmo(EntityPlayer player) {
@@ -133,7 +145,15 @@ public class ItemSling extends Item implements IItemSize {
     }
 
     protected boolean isStone(ItemStack stack) {
-        return stack.getItem() instanceof ItemRock;
+        if(stack.getItem() instanceof ItemRock) {
+            return true;
+        } else if(stack.getItem() instanceof ItemIngot) {
+            ItemIngot ingot = (ItemIngot)stack.getItem();
+            if(ingot.getMetal(stack) == Metal.UNKNOWN) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getMaxItemUseDuration(ItemStack stack) {
