@@ -17,13 +17,13 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public class TFCThingsEntities {
 
     public static final MobInfo[] MOB_ENTITY_INFOS = {
-            new MobInfo("pigvil", EntityPigvil.class, 1, 64, 3, true, 0XF1AAAA, 0X555555, RenderPigvil::new)
+            new MobInfo("pigvil", EntityPigvil.class, 1, 64, 3, true, 0XF1AAAA, 0X555555)
     };
 
     public static final NonMobEntityInfo[] NON_MOB_ENTITY_INFOS = {
-            new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 2, true, RenderSlingStone::new),
-            new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 2, true, RenderUnknownProjectile::new),
-            new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true, RenderThrownJavelin::new)
+            new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 2, true),
+            new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 2, true),
+            new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true)
     };
 
     public static class MobInfo {
@@ -35,9 +35,8 @@ public class TFCThingsEntities {
         public boolean sendsVelocityUpdates;
         public int eggP;
         public int eggS;
-        IRenderFactory factory;
 
-        public MobInfo(String name, Class entityClass, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggP, int eggS, IRenderFactory factory) {
+        public MobInfo(String name, Class entityClass, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int eggP, int eggS) {
             this.name = name;
             this.entityClass = entityClass;
             this.id = id;
@@ -46,7 +45,6 @@ public class TFCThingsEntities {
             this.sendsVelocityUpdates = sendsVelocityUpdates;
             this.eggP = eggP;
             this.eggS = eggS;
-            this.factory = factory;
         }
     }
 
@@ -58,17 +56,15 @@ public class TFCThingsEntities {
         public int trackingRange;
         public int updateFrequency;
         public boolean sendsVelocityUpdates;
-        IRenderFactory factory;
 
         @SuppressWarnings("rawtypes")
-        public NonMobEntityInfo(String name, Class entityClass, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, IRenderFactory factory) {
+        public NonMobEntityInfo(String name, Class entityClass, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
             this.name = name;
             this.entityClass = entityClass;
             this.id = id;
             this.trackingRange = trackingRange;
             this.updateFrequency = updateFrequency;
             this.sendsVelocityUpdates = sendsVelocityUpdates;
-            this.factory = factory;
         }
     }
 
@@ -77,14 +73,19 @@ public class TFCThingsEntities {
             EntityRegistry.registerModEntity(new ResourceLocation(TFCThings.MODID, info.name),
                     info.entityClass, info.name, info.id, TFCThings.instance, info.trackingRange,
                     info.updateFrequency, info.sendsVelocityUpdates, info.eggP, info.eggS);
-            RenderingRegistry.registerEntityRenderingHandler(info.entityClass, info.factory);
         }
         for(NonMobEntityInfo info : NON_MOB_ENTITY_INFOS) {
             EntityRegistry.registerModEntity(new ResourceLocation(TFCThings.MODID, info.name),
                     info.entityClass, info.name, info.id, TFCThings.instance, info.trackingRange,
                     info.updateFrequency, info.sendsVelocityUpdates);
-            RenderingRegistry.registerEntityRenderingHandler(info.entityClass, info.factory);
         }
+    }
+
+    public static void registerEntityModels() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityPigvil.class, RenderPigvil::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySlingStone.class, RenderSlingStone::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityUnknownProjectile.class, RenderUnknownProjectile::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityThrownRopeJavelin.class, RenderThrownJavelin::new);
     }
 
 }
