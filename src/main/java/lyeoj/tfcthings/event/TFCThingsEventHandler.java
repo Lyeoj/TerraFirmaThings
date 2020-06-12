@@ -19,6 +19,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 @Mod.EventBusSubscriber(modid = TFCThings.MODID)
 public class TFCThingsEventHandler {
 
@@ -26,8 +28,8 @@ public class TFCThingsEventHandler {
     @SideOnly(Side.CLIENT)
     public static void applyTooltip(ItemTooltipEvent event) {
         if(event.getItemStack().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
-            ISharpness capability = event.getItemStack().getCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null);
-            if(capability.getCharges() > 0) {
+            ISharpness capability = getSharpnessCapability(event.getItemStack());
+            if(capability != null && capability.getCharges() > 0) {
                 event.getToolTip().add("Sharp for " + capability.getCharges() + " uses");
             }
         }
@@ -36,8 +38,8 @@ public class TFCThingsEventHandler {
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if(event.getPlayer().getHeldItemMainhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
-            ISharpness capability = event.getPlayer().getHeldItemMainhand().getCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null);
-            if(capability.getCharges() > 0) {
+            ISharpness capability = getSharpnessCapability(event.getPlayer().getHeldItemMainhand());
+            if(capability != null && capability.getCharges() > 0) {
                 capability.removeCharge();
             }
         }
@@ -56,8 +58,8 @@ public class TFCThingsEventHandler {
                     weapon = player.getHeldItemMainhand();
                 }
                 if(weapon.hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
-                    ISharpness capability = weapon.getCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null);
-                    if(capability.getCharges() > 0) {
+                    ISharpness capability = getSharpnessCapability(weapon);
+                    if(capability != null && capability.getCharges() > 0) {
                         event.getEntityLiving().setHealth(event.getEntityLiving().getHealth() - 2.0f);
                         capability.removeCharge();
                     }
@@ -69,9 +71,9 @@ public class TFCThingsEventHandler {
     @SubscribeEvent
     public static void modifyBreakSpeed(PlayerEvent.BreakSpeed event) {
         if(event.getEntityPlayer().getHeldItemMainhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
-            ISharpness capability = event.getEntityPlayer().getHeldItemMainhand().getCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null);
+            ISharpness capability = getSharpnessCapability(event.getEntityPlayer().getHeldItemMainhand());
             Item item = event.getEntityPlayer().getHeldItemMainhand().getItem();
-            if(capability.getCharges() > 0) {
+            if(capability != null && capability.getCharges() > 0) {
                 if(item.canHarvestBlock(event.getState())) {
                     if(event.getState().getBlock() instanceof BlockLogTFC && !event.getState().getValue(BlockLogTFC.PLACED)) {
                         return;
@@ -80,6 +82,16 @@ public class TFCThingsEventHandler {
                 }
             }
         }
+    }
+
+    @Nullable
+    public static ISharpness getSharpnessCapability(ItemStack itemStack) {
+        Object capability = itemStack.getCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null);
+        if(capability instanceof ISharpness) {
+            ISharpness sharpness = (ISharpness)capability;
+            return sharpness;
+        }
+        return null;
     }
 
 }

@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
@@ -14,9 +13,7 @@ public class RenderUnknownProjectile extends Render<EntityUnknownProjectile> {
     private static final ResourceLocation UNKNOWN_INGOT_TEXTURE = new ResourceLocation("tfc:textures/blocks/metal/unknown.png");
     private final ModelUnknownProjectile unknownModel = new ModelUnknownProjectile();
 
-    public static final UnknownProjectileFactory FACTORY = new UnknownProjectileFactory();
-
-    protected RenderUnknownProjectile(RenderManager renderManager) {
+    public RenderUnknownProjectile(RenderManager renderManager) {
         super(renderManager);
     }
 
@@ -67,13 +64,6 @@ public class RenderUnknownProjectile extends Render<EntityUnknownProjectile> {
     @Override
     protected ResourceLocation getEntityTexture(EntityUnknownProjectile entity) {
         return UNKNOWN_INGOT_TEXTURE;
-    }
-
-    public static class UnknownProjectileFactory implements IRenderFactory<EntityUnknownProjectile> {
-        @Override
-        public Render<? super EntityUnknownProjectile> createRenderFor(RenderManager manager) {
-            return new RenderUnknownProjectile(manager);
-        }
     }
 
 }

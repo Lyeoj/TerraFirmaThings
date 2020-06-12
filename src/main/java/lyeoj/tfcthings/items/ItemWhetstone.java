@@ -2,6 +2,7 @@ package lyeoj.tfcthings.items;
 
 import lyeoj.tfcthings.capability.CapabilitySharpness;
 import lyeoj.tfcthings.capability.ISharpness;
+import lyeoj.tfcthings.event.TFCThingsEventHandler;
 import lyeoj.tfcthings.init.TFCThingsSoundEvents;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -74,8 +75,8 @@ public class ItemWhetstone extends Item implements IItemSize {
             EntityPlayer playerIn = (EntityPlayer)entityLiving;
             if(timeLeft < 980 && playerIn.getHeldItemOffhand() != null && playerIn.getHeldItemOffhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
                 ItemStack item = playerIn.getHeldItemOffhand();
-                ISharpness capability = item.getCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null);
-                if(capability.getCharges() < getMaxCharges()) {
+                ISharpness capability = TFCThingsEventHandler.getSharpnessCapability(item);
+                if(capability != null && capability.getCharges() < getMaxCharges()) {
                     for(int i = 0; i < tier; i++) {
                         if(capability.getCharges() >= getMaxCharges())
                             break;

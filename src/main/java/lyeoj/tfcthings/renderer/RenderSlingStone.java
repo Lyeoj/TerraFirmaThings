@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
@@ -15,9 +14,7 @@ public class RenderSlingStone extends Render<EntitySlingStone> {
     private static final ResourceLocation SLING_STONE_TEXTURE = new ResourceLocation("tfcthings:textures/entity/slingstone.png");
     private final ModelSlingStone slingStoneModel = new ModelSlingStone();
 
-    public static final SlingStoneFactory FACTORY = new SlingStoneFactory();
-
-    protected RenderSlingStone(RenderManager renderManager) {
+    public RenderSlingStone(RenderManager renderManager) {
         super(renderManager);
     }
 
@@ -70,10 +67,4 @@ public class RenderSlingStone extends Render<EntitySlingStone> {
         return SLING_STONE_TEXTURE;
     }
 
-    public static class SlingStoneFactory implements IRenderFactory<EntitySlingStone> {
-        @Override
-        public Render<? super EntitySlingStone> createRenderFor(RenderManager manager) {
-            return new RenderSlingStone(manager);
-        }
-    }
 }
