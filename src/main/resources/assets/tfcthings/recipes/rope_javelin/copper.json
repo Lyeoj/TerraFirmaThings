@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RJR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "tfc:crop/product/jute_fiber"
+    },
+    "J": {
+      "item": "tfc:metal/javelin/copper"
+    }
+  },
+  "result": {
+    "item": "tfcthings:rope_javelin/copper"
+  }
+}

@@ -1,9 +1,11 @@
 package lyeoj.tfcthings.init;
 
 import lyeoj.tfcthings.items.*;
+import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.IArmorMaterialTFC;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.ArmorMaterialTFC;
+import net.dries007.tfc.types.DefaultMetals;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -23,7 +25,15 @@ public class TFCThingsItems {
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
     public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot();
 
+    public static final Item ITEM_ROPE_JAVELIN_BISMUTH_BRONZE = new ItemRopeJavelin(Metal.BISMUTH_BRONZE, "bismuth_bronze");
+    public static final Item ITEM_ROPE_JAVELIN_BLACK_BRONZE = new ItemRopeJavelin(Metal.BLACK_BRONZE, "black_bronze");
+    public static final Item ITEM_ROPE_JAVELIN_BLACK_STEEL = new ItemRopeJavelin(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), "black_steel");
+    public static final Item ITEM_ROPE_JAVELIN_BLUE_STEEL = new ItemRopeJavelin(Metal.BLUE_STEEL, "blue_steel");
+    public static final Item ITEM_ROPE_JAVELIN_BRONZE = new ItemRopeJavelin(Metal.BRONZE, "bronze");
+    public static final Item ITEM_ROPE_JAVELIN_COPPER = new ItemRopeJavelin(TFCRegistries.METALS.getValue(DefaultMetals.COPPER), "copper");
+    public static final Item ITEM_ROPE_JAVELIN_RED_STEEL = new ItemRopeJavelin(Metal.RED_STEEL, "red_steel");
     public static final Item ITEM_ROPE_JAVELIN_STEEL = new ItemRopeJavelin(Metal.STEEL, "steel");
+    public static final Item ITEM_ROPE_JAVELIN_WROUGHT_IRON = new ItemRopeJavelin(Metal.WROUGHT_IRON, "wrought_iron");
 
     public static final Item ITEM_GOLD_CROWN_EMPTY = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Empty");
     public static final Item ITEM_GOLD_CROWN_AGATE = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Agate");
@@ -66,7 +76,15 @@ public class TFCThingsItems {
             ITEM_SLING,
             ITEM_BEAR_TRAP_HALF,
             ITEM_PIG_IRON_CARROT,
+            ITEM_ROPE_JAVELIN_BISMUTH_BRONZE,
+            ITEM_ROPE_JAVELIN_BLACK_BRONZE,
+            ITEM_ROPE_JAVELIN_BLACK_STEEL,
+            ITEM_ROPE_JAVELIN_BLUE_STEEL,
+            ITEM_ROPE_JAVELIN_BRONZE,
+            ITEM_ROPE_JAVELIN_COPPER,
+            ITEM_ROPE_JAVELIN_RED_STEEL,
             ITEM_ROPE_JAVELIN_STEEL,
+            ITEM_ROPE_JAVELIN_WROUGHT_IRON,
             ITEM_GOLD_CROWN_EMPTY,
             ITEM_GOLD_CROWN_AGATE,
             ITEM_GOLD_CROWN_AMETHYST,

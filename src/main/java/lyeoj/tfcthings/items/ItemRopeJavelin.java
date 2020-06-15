@@ -2,35 +2,35 @@ package lyeoj.tfcthings.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
 import net.dries007.tfc.Constants;
-import net.dries007.tfc.api.capability.damage.DamageType;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.objects.CreativeTabsTFC;
-import net.dries007.tfc.objects.entity.projectile.EntityThrownJavelin;
-import net.dries007.tfc.objects.items.ItemQuiver;
 import net.dries007.tfc.objects.items.ItemTFC;
-import net.dries007.tfc.util.OreDictionaryHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
 
@@ -39,16 +39,40 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
     private final double attackDamage;
     private final float attackSpeed;
 
+    private static final String THROWN_NBT_KEY = "Thrown";
+    private static final String JAVELIN_NBT_KEY = "JavelinID";
+    private static final String CAPTURED_NBT_KEY = "CapturedID";
+
     public ItemRopeJavelin(Metal metal, String name) {
         this.metal = metal;
         this.material = metal.getToolMetal();
         setCreativeTab(CreativeTabsTFC.CT_METAL);
-        this.setMaxDamage((int)((double)material.getMaxUses() * 0.4D));
+        this.setMaxDamage((int)((double)material.getMaxUses() * 0.1D));
         this.attackDamage = (double)(0.7 * this.material.getAttackDamage());
         this.attackSpeed = -1.8F;
         this.setTranslationKey("rope_javelin_" + name);
         this.setRegistryName("rope_javelin/" + name);
+        this.setMaxStackSize(1);
         //OreDictionaryHelper.registerDamageType(this, DamageType.PIERCING);
+        this.addPropertyOverride(new ResourceLocation("thrown"), new IItemPropertyGetter() {
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
+            {
+                if (entityIn == null) {
+                    return 0.0F;
+                }
+                else {
+
+                    boolean flag = entityIn.getHeldItemMainhand() == stack;
+                    boolean flag1 = entityIn.getHeldItemOffhand() == stack;
+
+                    if (entityIn.getHeldItemMainhand().getItem() instanceof ItemRopeJavelin) {
+                        flag1 = false;
+                    }
+                    return (flag || flag1) && entityIn instanceof EntityPlayer && isThrown(stack) ? 1.0F : 0.0F;
+                }
+            }
+        });
     }
 
     @Nullable
@@ -76,7 +100,7 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
 
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-        if (slot == EntityEquipmentSlot.MAINHAND) {
+        if (slot == EntityEquipmentSlot.MAINHAND && !isThrown(stack)) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", this.attackDamage, 0));
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)this.attackSpeed, 0));
         }
@@ -87,13 +111,33 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
     @Nonnull
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, @Nonnull EnumHand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        playerIn.setActiveHand(handIn);
+        if(isThrown(itemstack)) {
+            EntityThrownRopeJavelin javelin = getJavelin(itemstack, worldIn);
+            if(javelin != null) {
+                if(getCapturedEntity(itemstack, worldIn) != null) {
+                    Entity entity = getCapturedEntity(itemstack, worldIn);
+                    if(entity.isRiding()) {
+                        entity.dismountRidingEntity();
+                    }
+                    double d0 = playerIn.posX - javelin.posX;
+                    double d1 = playerIn.posY - javelin.posY;
+                    double d2 = playerIn.posZ - javelin.posZ;
+                    double d3 = 0.15D;
+                    entity.motionX += d0 * d3;
+                    entity.motionY += d1 * d3;
+                    entity.motionZ += d2 * d3;
+                }
+            }
+            retractJavelin(itemstack, worldIn);
+        } else {
+            playerIn.setActiveHand(handIn);
+        }
         return new ActionResult(EnumActionResult.SUCCESS, itemstack);
     }
 
     @Nonnull
     public EnumAction getItemUseAction(ItemStack stack) {
-        return EnumAction.BOW;
+        return isThrown(stack) ? EnumAction.NONE : EnumAction.BOW;
     }
 
     public int getMaxItemUseDuration(ItemStack stack) {
@@ -107,20 +151,93 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
             if (charge > 5) {
                 float f = ItemBow.getArrowVelocity(charge);
                 if (!worldIn.isRemote) {
-                    EntityThrownJavelin javelin = new EntityThrownJavelin(worldIn, player);
+                    setThrown(stack, true);
+                    EntityThrownRopeJavelin javelin = new EntityThrownRopeJavelin(worldIn, player);
                     javelin.setDamage(this.attackDamage);
                     javelin.setWeapon(stack);
                     javelin.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, f * 1.5F, 0.5F);
+                    setJavelin(stack, javelin);
+                    getJavelin(stack, worldIn);
                     worldIn.spawnEntity(javelin);
-                    worldIn.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, TFCSounds.ITEM_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (Constants.RNG.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-                }
-
-                if (!((EntityPlayer)entityLiving).isCreative()) {
-                    player.inventory.deleteStack(stack);
+                    worldIn.playSound(null, player.posX, player.posY, player.posZ, TFCSounds.ITEM_THROW, SoundCategory.PLAYERS, 1.0F, 1.0F / (Constants.RNG.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
                 }
             }
         }
 
+    }
+
+    public boolean isThrown(ItemStack stack) {
+        if(!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        if(!stack.getTagCompound().hasKey(THROWN_NBT_KEY)) {
+            return false;
+        }
+        return stack.getTagCompound().getBoolean(THROWN_NBT_KEY);
+    }
+
+    public void setThrown(ItemStack stack, boolean thrown) {
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        stack.getTagCompound().setBoolean(THROWN_NBT_KEY, thrown);
+    }
+
+    public EntityThrownRopeJavelin getJavelin(ItemStack stack, World world) {
+        if(!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        UUID javelinID = stack.getTagCompound().getUniqueId(JAVELIN_NBT_KEY);
+        if(javelinID != null && world instanceof WorldServer) {
+            Entity entity = ((WorldServer)world).getEntityFromUuid(javelinID);
+            if(entity instanceof EntityThrownRopeJavelin) {
+                return (EntityThrownRopeJavelin)entity;
+            }
+        }
+        return null;
+    }
+
+    public void setJavelin(ItemStack stack, EntityThrownRopeJavelin javelin) {
+        if(!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        if(javelin != null) {
+            stack.getTagCompound().setUniqueId(JAVELIN_NBT_KEY, javelin.getUniqueID());
+        } else {
+            stack.getTagCompound().setUniqueId(JAVELIN_NBT_KEY, UUID.randomUUID());
+        }
+    }
+
+    public Entity getCapturedEntity(ItemStack stack, World world) {
+        if(!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        UUID capturedID = stack.getTagCompound().getUniqueId(CAPTURED_NBT_KEY);
+        if(capturedID != null && world instanceof WorldServer) {
+            return ((WorldServer)world).getEntityFromUuid(capturedID);
+
+        }
+        return null;
+    }
+
+    public void setCapturedEntity(ItemStack stack, Entity entity) {
+        if(!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        if(entity != null) {
+            stack.getTagCompound().setUniqueId(CAPTURED_NBT_KEY, entity.getUniqueID());
+        } else {
+            stack.getTagCompound().setUniqueId(CAPTURED_NBT_KEY, UUID.randomUUID());
+        }
+    }
+
+    public void retractJavelin(ItemStack stack, World world) {
+        setThrown(stack, false);
+        setCapturedEntity(stack, null);
+        if(getJavelin(stack, world) != null) {
+            getJavelin(stack, world).setDead();
+            setJavelin(stack, null);
+        }
     }
 
 }

@@ -34,8 +34,7 @@ public class SharpnessHandler implements ISharpness {
     }
 
     public void setCharges(int charges) {
-        if (!container.hasTagCompound())
-        {
+        if (!container.hasTagCompound()) {
             container.setTagCompound(new NBTTagCompound());
         }
         container.getTagCompound().setInteger(SHARPNESS_NBT_KEY, charges);

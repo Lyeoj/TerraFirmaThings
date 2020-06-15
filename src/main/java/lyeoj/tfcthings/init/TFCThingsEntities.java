@@ -7,10 +7,9 @@ import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
 import lyeoj.tfcthings.main.TFCThings;
 import lyeoj.tfcthings.renderer.RenderPigvil;
 import lyeoj.tfcthings.renderer.RenderSlingStone;
+import lyeoj.tfcthings.renderer.RenderThrownRopeJavelin;
 import lyeoj.tfcthings.renderer.RenderUnknownProjectile;
-import net.dries007.tfc.client.render.projectile.RenderThrownJavelin;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
@@ -85,7 +84,7 @@ public class TFCThingsEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityPigvil.class, RenderPigvil::new);
         RenderingRegistry.registerEntityRenderingHandler(EntitySlingStone.class, RenderSlingStone::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityUnknownProjectile.class, RenderUnknownProjectile::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityThrownRopeJavelin.class, RenderThrownJavelin::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityThrownRopeJavelin.class, RenderThrownRopeJavelin::new);
     }
 
 }

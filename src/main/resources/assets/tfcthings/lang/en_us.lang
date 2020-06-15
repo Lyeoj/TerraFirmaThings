@@ -11,7 +11,15 @@ item.platinum_crown.name=Platinum Crown
 item.bear_trap_half.name=Bear Trap Half
 item.pig_iron_carrot.name=Pig Iron Carrot
 
-item.rope_javelin_steel.name=Rope Javelin [WIP]
+item.rope_javelin_bismuth_bronze.name=Bismuth Bronze Rope Javelin
+item.rope_javelin_black_bronze.name=Black Bronze Rope Javelin
+item.rope_javelin_black_steel.name=Black Steel Rope Javelin
+item.rope_javelin_blue_steel.name=Blue Steel Rope Javelin
+item.rope_javelin_bronze.name=Bronze Rope Javelin
+item.rope_javelin_copper.name=Copper Rope Javelin
+item.rope_javelin_red_steel.name=Red Steel Rope Javelin
+item.rope_javelin_steel.name=Steel Rope Javelin
+item.rope_javelin_wrought_iron.name=Wrought Iron Rope Javelin
 
 tile.bear_trap.name=Bear Trap
 tile.pigvil.name=Pigvil

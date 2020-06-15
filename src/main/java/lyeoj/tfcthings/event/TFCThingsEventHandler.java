@@ -2,15 +2,20 @@ package lyeoj.tfcthings.event;
 
 import lyeoj.tfcthings.capability.CapabilitySharpness;
 import lyeoj.tfcthings.capability.ISharpness;
+import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
+import lyeoj.tfcthings.items.ItemRopeJavelin;
 import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.entity.projectile.EntityThrownWeapon;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -52,8 +57,10 @@ public class TFCThingsEventHandler {
             if(source.getTrueSource() instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer)source.getTrueSource();
                 ItemStack weapon;
-                if(source instanceof EntityDamageSourceIndirect && ((EntityDamageSourceIndirect)source).getImmediateSource() instanceof EntityThrownWeapon) {
+                if(source instanceof EntityDamageSourceIndirect && source.getImmediateSource() instanceof EntityThrownWeapon) {
                     weapon = ((EntityThrownWeapon)source.getImmediateSource()).getWeapon();
+                } else if(source instanceof EntityDamageSourceIndirect && (source.getImmediateSource() instanceof EntityThrownWeapon)) {
+                    weapon = ((EntityThrownRopeJavelin)source.getImmediateSource()).getWeapon();
                 } else {
                     weapon = player.getHeldItemMainhand();
                 }
@@ -92,6 +99,14 @@ public class TFCThingsEventHandler {
             return sharpness;
         }
         return null;
+    }
+
+    @SubscribeEvent
+    public static void onItemToss(ItemTossEvent event) {
+        if(event.getEntityItem().getItem().getItem() instanceof ItemRopeJavelin) {
+            ItemRopeJavelin javelin = (ItemRopeJavelin)event.getEntityItem().getItem().getItem();
+            javelin.retractJavelin(event.getEntityItem().getItem(), event.getEntity().getEntityWorld());
+        }
     }
 
 }

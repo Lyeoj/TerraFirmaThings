@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.capability;
 
+import lyeoj.tfcthings.items.ItemRopeJavelin;
 import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.items.metal.ItemMetalSword;
 import net.dries007.tfc.objects.items.metal.ItemMetalTool;
@@ -13,7 +14,7 @@ public class TFCThingsCapabilityHandler {
 
     @SubscribeEvent
     public void attachCapability(AttachCapabilitiesEvent<ItemStack> event) {
-        if(event.getObject().getItem() instanceof ItemMetalTool || event.getObject().getItem() instanceof ItemMetalSword) {
+        if(event.getObject().getItem() instanceof ItemMetalTool || event.getObject().getItem() instanceof ItemMetalSword || event.getObject().getItem() instanceof ItemRopeJavelin) {
             event.addCapability(SHARPNESS_CAPABILITY, new SharpnessHandler(event.getObject()));
         }
     }

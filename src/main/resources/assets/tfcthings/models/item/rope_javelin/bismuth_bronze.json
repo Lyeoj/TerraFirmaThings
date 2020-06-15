@@ -1,7 +1,7 @@
 {
   "parent": "tfc:item/handheld_flipped",
   "textures": {
-    "layer0": "tfcthings:items/rope_javelin/steel"
+    "layer0": "tfcthings:items/rope_javelin/bismuth_bronze"
   },
   "overrides": [
     {
