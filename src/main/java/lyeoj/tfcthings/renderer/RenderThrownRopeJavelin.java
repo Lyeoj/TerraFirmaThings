@@ -102,7 +102,6 @@ public class RenderThrownRopeJavelin extends Render<EntityThrownRopeJavelin> {
             double d0 = (double)MathHelper.sin(f9);
             double d1 = (double)MathHelper.cos(f9);
             double d2 = (double)k * 0.35D;
-            double d3 = 0.8D;
             double d4;
             double d5;
             double d6;

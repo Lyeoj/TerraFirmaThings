@@ -5,13 +5,15 @@ import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 import javax.annotation.Nullable;
 
 public class CapabilitySharpness {
 
-    public static Capability<ISharpness> SHARPNESS_CAPABILITY = null;
+    @CapabilityInject(ISharpness.class)
+    public static Capability<ISharpness> SHARPNESS_CAPABILITY;
 
     public static void setup() {
         CapabilityManager.INSTANCE.register(ISharpness.class, new CapabilitySharpnessStorage(), SharpnessHandler::new);
