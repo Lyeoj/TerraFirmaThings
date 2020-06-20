@@ -4,6 +4,7 @@ import lyeoj.tfcthings.capability.CapabilitySharpness;
 import lyeoj.tfcthings.capability.ISharpness;
 import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
 import lyeoj.tfcthings.items.ItemRopeJavelin;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.entity.projectile.EntityThrownWeapon;
@@ -13,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -49,7 +50,7 @@ public class TFCThingsEventHandler {
     }
 
     @SubscribeEvent
-    public static void onLivingAttack(LivingAttackEvent event) {
+    public static void onLivingAttack(LivingDamageEvent event) {
         if(event.getSource() instanceof EntityDamageSource) {
             EntityDamageSource source = (EntityDamageSource)event.getSource();
             if(source.getTrueSource() instanceof EntityPlayer) {
@@ -64,8 +65,8 @@ public class TFCThingsEventHandler {
                 }
                 if(weapon.hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
                     ISharpness capability = getSharpnessCapability(weapon);
-                    if(capability != null && capability.getCharges() > 0) {
-                        event.getEntityLiving().setHealth(event.getEntityLiving().getHealth() - 2.0f);
+                    if(capability != null && capability.getCharges() > 0 && event.getAmount() > 2.0f) {
+                        event.setAmount(event.getAmount() + ConfigTFCThings.Items.WHETSTONE.damageBoost);
                         capability.removeCharge();
                     }
                 }
@@ -83,7 +84,7 @@ public class TFCThingsEventHandler {
                     if(event.getState().getBlock() instanceof BlockLogTFC && !event.getState().getValue(BlockLogTFC.PLACED)) {
                         return;
                     }
-                    event.setNewSpeed(event.getNewSpeed() + 4);
+                    event.setNewSpeed(event.getNewSpeed() + ConfigTFCThings.Items.WHETSTONE.bonusSpeed);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package lyeoj.tfcthings.items;
 
 import lyeoj.tfcthings.entity.living.EntityPigvil;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.types.IAnimalTFC;
@@ -42,7 +43,7 @@ public class ItemPigIronCarrot extends ItemTFC {
                     if(!player.isCreative()) {
                         itemstack.shrink(1);
                     }
-                    if(Math.random() < 0.3) {
+                    if(Math.random() < ConfigTFCThings.Misc.PIGVIL.convertChance) {
                         EntityPigvil pigvil = new EntityPigvil(entity.world);
                         pigvil.copyLocationAndAnglesFrom(piggy);
                         entity.world.spawnEntity(pigvil);

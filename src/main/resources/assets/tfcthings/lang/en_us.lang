@@ -28,3 +28,29 @@ entity.pigvil.name=Pigvil
 
 tfcthings.tooltip.maximum_sharpness=This item can't get any sharper right now
 
+config.tfcthings.items=Item Settings
+config.tfcthings.items.tooltip=Configure Settings For TFCThings Items
+config.tfcthings.misc=Misc Settings
+config.tfcthings.misc.tooltip=Miscellaneous TFCThings Settings
+
+config.tfcthings.items.sling=Sling
+config.tfcthings.items.predatorMultiplier=Predator Damage Multiplier
+config.tfcthings.items.maxPower=Maximum Charge Power
+config.tfcthings.items.chargeSpeed=Charge Speed
+
+config.tfcthings.items.beartrap=Bear Trap
+config.tfcthings.items.breakChance=Trap Break Chance
+config.tfcthings.items.breakoutChance=Predator Escape Chance
+config.tfcthings.items.debuffDuration=Trap Debuff Duration
+config.tfcthings.items.healthCut=Health Cut Factor
+
+config.tfcthings.items.whetstone=Whetstones
+config.tfcthings.items.canSharpen=Additional Sharpen-able Items
+config.tfcthings.items.bonusSpeed=Sharpened Harvest Speed Boost
+config.tfcthings.items.damageBoost=Sharpened Attack Boost
+
+config.tfcthings.misc.birthdays=Birthdays
+config.tfcthings.misc.daylist=Custom Birthday/Special Day List
+
+config.tfcthings.misc.pigvil=Pigvil
+config.tfcthings.misc.convertChance=Pigvil Conversion Chance

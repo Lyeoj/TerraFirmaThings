@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.entity.projectile;
 
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.types.IPredator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -34,7 +35,8 @@ public class EntitySlingStone extends EntityThrowable {
 
             if (result.entityHit instanceof IPredator)
             {
-                i *= 2;
+                double predatorMultiplier = ConfigTFCThings.Items.SLING.predatorMultiplier;
+                i *= predatorMultiplier;
             }
 
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), i);

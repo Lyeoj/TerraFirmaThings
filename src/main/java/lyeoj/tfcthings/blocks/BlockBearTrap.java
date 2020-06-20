@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.blocks;
 
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -130,7 +131,7 @@ public class BlockBearTrap extends Block implements IItemSize {
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
         TileEntityBearTrap trap = (TileEntityBearTrap)te;
         if(!trap.isOpen()) {
-            if(Math.random() < .1) {
+            if(Math.random() < ConfigTFCThings.Items.BEAR_TRAP.breakChance) {
                 worldIn.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0f, 0.8f);
             } else {
                 super.harvestBlock(worldIn, player, pos, state, te, stack);
@@ -158,10 +159,14 @@ public class BlockBearTrap extends Block implements IItemSize {
             TileEntityBearTrap trap = getTileEntity(worldIn, pos);
             EntityLivingBase entityLiving = (EntityLivingBase)entityIn;
             if(trap.isOpen()) {
-                entityLiving.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1000));
-                entityLiving.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 1000));
-                entityLiving.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 1000));
-                entityLiving.attackEntityFrom(DamageSource.CACTUS, entityLiving.getHealth() / 3.0F);
+                int debuffDuration = ConfigTFCThings.Items.BEAR_TRAP.debuffDuration;
+                double healthCut = ConfigTFCThings.Items.BEAR_TRAP.healthCut;
+                entityLiving.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, debuffDuration));
+                entityLiving.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, debuffDuration));
+                entityLiving.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, debuffDuration));
+                if(healthCut > 0) {
+                    entityLiving.attackEntityFrom(DamageSource.CACTUS, entityLiving.getHealth() / (float)healthCut);
+                }
                 trap.setCapturedEntity(entityLiving);
                 entityIn.setPositionAndUpdate(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
                 trap.setOpen(false);
@@ -170,9 +175,9 @@ public class BlockBearTrap extends Block implements IItemSize {
                 entityLiving.playSound(SoundEvents.ENTITY_ITEM_BREAK, 2.0F, 0.4F);
             } else if(trap.getCapturedEntity() != null && trap.getCapturedEntity().equals(entityLiving)) {
                 entityLiving.setPosition(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                if(entityLiving instanceof IPredator && Math.random() < 0.001) {
+                if(entityLiving instanceof IPredator && Math.random() < ConfigTFCThings.Items.BEAR_TRAP.breakoutChance) {
                     worldIn.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0f, 0.8f);
-                    if(Math.random() < 0.8) {
+                    if(Math.random() > 2 * ConfigTFCThings.Items.BEAR_TRAP.breakChance) {
                         this.dropBlockAsItem(worldIn, pos, state, 0);
                     }
                     worldIn.setBlockState(pos, net.minecraft.init.Blocks.AIR.getDefaultState(), worldIn.isRemote ? 11 : 3);

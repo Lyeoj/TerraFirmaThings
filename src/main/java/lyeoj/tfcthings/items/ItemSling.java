@@ -2,6 +2,7 @@ package lyeoj.tfcthings.items;
 
 import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
 import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -85,8 +86,11 @@ public class ItemSling extends Item implements IItemSize {
             boolean flag = entityplayer.isCreative();
             ItemStack itemStack = this.findAmmo(entityplayer);
 
-            int power = Math.min((this.getMaxItemUseDuration(stack) - timeLeft) / 16, 8);
-            float velocity = 1.6F * (power / 8.0F);
+            int maxPower = ConfigTFCThings.Items.SLING.maxPower;
+            int chargeSpeed = ConfigTFCThings.Items.SLING.chargeSpeed;
+
+            int power = Math.min((this.getMaxItemUseDuration(stack) - timeLeft) / chargeSpeed, maxPower);
+            float velocity = 1.6F * (power / (float)maxPower);
             float inaccuracy = 0.5F * (8.0F - power);
 
             if(!itemStack.isEmpty() && !flag) {

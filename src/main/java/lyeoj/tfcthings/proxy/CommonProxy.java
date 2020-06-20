@@ -3,6 +3,7 @@ package lyeoj.tfcthings.proxy;
 import lyeoj.tfcthings.capability.CapabilitySharpness;
 import lyeoj.tfcthings.capability.TFCThingsCapabilityHandler;
 import lyeoj.tfcthings.init.TFCThingsEntities;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.util.calendar.CalendarTFC;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.*;
@@ -14,6 +15,9 @@ public class CommonProxy {
 		CapabilitySharpness.setup();
 		TFCThingsEntities.registerEntities();
 		CalendarTFC.BIRTHDAYS.put("OCTOBER4", "Lyeoj's Birthday");
+		for(int i = 0; i < ConfigTFCThings.Misc.BIRTHDAYS.dayList.length; i++) {
+			ConfigTFCThings.addBirthday(ConfigTFCThings.Misc.BIRTHDAYS.dayList[i]);
+		}
 	}
 	public void init(FMLInitializationEvent event) {}
 
