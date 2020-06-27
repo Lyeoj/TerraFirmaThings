@@ -49,6 +49,10 @@ config.tfcthings.items.canSharpen=Additional Sharpen-able Items
 config.tfcthings.items.bonusSpeed=Sharpened Harvest Speed Boost
 config.tfcthings.items.damageBoost=Sharpened Attack Boost
 
+config.tfcthings.items.snow_shoes=Snow Shoes
+config.tfcthings.items.damageTicks=Damage Ticks
+config.tfcthings.items.shoePower=Shoe Effectiveness
+
 config.tfcthings.misc.birthdays=Birthdays
 config.tfcthings.misc.daylist=Custom Birthday/Special Day List
 

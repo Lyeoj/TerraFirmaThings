@@ -39,6 +39,9 @@ public class ConfigTFCThings {
         @Config.Comment({"Whetstone Settings"})
         @Config.LangKey("config.tfcthings.items.whetstone")
         public static final WhetstoneCFG WHETSTONE = new WhetstoneCFG();
+        @Config.Comment({"Snow Shoes Settings"})
+        @Config.LangKey("config.tfcthings.items.snow_shoes")
+        public static final SnowShoesCFG SNOW_SHOES = new SnowShoesCFG();
 
         public static final class SlingCFG {
             @Config.Comment({"Damage multiplier against predator animals.", "Predator damage = sling damage * multiplier"})
@@ -109,12 +112,29 @@ public class ConfigTFCThings {
             @Config.LangKey("config.tfcthings.items.bonusSpeed")
             public int bonusSpeed = 4;
 
-            @Config.Comment("The amount of extra damage a weapon does when sharpened. This damage ignores armor.")
+            @Config.Comment("The amount of extra damage a weapon does when sharpened.")
             @Config.RangeInt (
                     min = 0
             )
             @Config.LangKey("config.tfcthings.items.damageBoost")
             public int damageBoost = 2;
+        }
+
+        public static final class SnowShoesCFG {
+            @Config.Comment({"The number of ticks of walking through snow required to apply one damage to the shoes", "0 = snow shoes won't get damaged by walking through snow"})
+            @Config.RangeInt (
+                    min = 0
+            )
+            @Config.LangKey("config.tfcthings.items.damageTicks")
+            public int damageTicks = 500;
+
+            @Config.Comment({"The percentage of the TFC slowdown effect that the snow shoes will negate", "1 = no slowdown when walking through snow", "0 = the shoes are useless D:"})
+            @Config.RangeDouble (
+                    min = 0,
+                    max = 1
+            )
+            @Config.LangKey("config.tfcthings.items.shoePower")
+            public double shoePower = 1;
 
         }
 
