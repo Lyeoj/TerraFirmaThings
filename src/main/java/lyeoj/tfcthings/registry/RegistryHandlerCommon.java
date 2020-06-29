@@ -38,6 +38,7 @@ import static net.dries007.tfc.api.types.Metal.ItemType.INGOT;
 import static net.dries007.tfc.api.types.Metal.ItemType.SHEET;
 import static net.dries007.tfc.util.forge.ForgeRule.*;
 import static net.dries007.tfc.util.skills.SmithingSkill.Type.GENERAL;
+import static net.dries007.tfc.util.skills.SmithingSkill.Type.TOOLS;
 
 @Mod.EventBusSubscriber(modid = TFCThings.MODID)
 public class RegistryHandlerCommon {
@@ -90,23 +91,23 @@ public class RegistryHandlerCommon {
                 SHRINK_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
 
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_bismuth_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BISMUTH_BRONZE,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE), Metal.BISMUTH_BRONZE.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE), Metal.BISMUTH_BRONZE.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_black_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BLACK_BRONZE,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_BRONZE), Metal.BLACK_BRONZE.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_BRONZE), Metal.BLACK_BRONZE.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_black_steel"), IIngredient.of(new ItemStack(ItemMetal.get(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL),INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_STEEL), TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL).getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_STEEL), TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL).getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_blue_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BLUE_STEEL,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BLUE_STEEL), Metal.BLUE_STEEL.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BLUE_STEEL), Metal.BLUE_STEEL.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BRONZE,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BRONZE), Metal.BRONZE.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BRONZE), Metal.BRONZE.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_copper"), IIngredient.of(new ItemStack(ItemMetal.get(TFCRegistries.METALS.getValue(DefaultMetals.COPPER),INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_COPPER), TFCRegistries.METALS.getValue(DefaultMetals.COPPER).getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_COPPER), TFCRegistries.METALS.getValue(DefaultMetals.COPPER).getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_red_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.RED_STEEL,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_RED_STEEL), Metal.RED_STEEL.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_RED_STEEL), Metal.RED_STEEL.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.STEEL,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_STEEL), Metal.STEEL.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_STEEL), Metal.STEEL.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_wrought_iron"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.WROUGHT_IRON,INGOT))),
-                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON), Metal.WROUGHT_IRON.getTier(), GENERAL, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+                new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON), Metal.WROUGHT_IRON.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
 
     }
 

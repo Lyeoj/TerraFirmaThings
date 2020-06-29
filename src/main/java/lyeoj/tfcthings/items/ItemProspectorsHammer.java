@@ -2,6 +2,7 @@ package lyeoj.tfcthings.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.player.CapabilityPlayerData;
@@ -14,6 +15,7 @@ import net.dries007.tfc.util.ICollapsableBlock;
 import net.dries007.tfc.util.IFallingBlock;
 import net.dries007.tfc.util.skills.ProspectingSkill;
 import net.dries007.tfc.util.skills.SkillType;
+import net.dries007.tfc.util.skills.SmithingSkill;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -136,7 +138,14 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem {
                         playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_unsafe_fall", new Object[0]));
                         break;
                 }
-                playerIn.getHeldItem(handIn).damageItem(1, playerIn);
+                float skillModifier = SmithingSkill.getSkillBonus(itemstack, SmithingSkill.Type.TOOLS) / 2.0F;
+                boolean flag = true;
+                if (skillModifier > 0.0F && Constants.RNG.nextFloat() < skillModifier) {
+                    flag = false;
+                }
+                if(flag) {
+                    playerIn.getHeldItem(handIn).damageItem(1, playerIn);
+                }
             }
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
         }

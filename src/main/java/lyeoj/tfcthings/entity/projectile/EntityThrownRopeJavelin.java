@@ -2,6 +2,8 @@ package lyeoj.tfcthings.entity.projectile;
 
 import io.netty.buffer.ByteBuf;
 import lyeoj.tfcthings.items.ItemRopeJavelin;
+import net.dries007.tfc.Constants;
+import net.dries007.tfc.util.skills.SmithingSkill;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -106,7 +108,11 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
             Entity entity = raytraceResultIn.entityHit;
             if (this.getThrower() instanceof EntityLivingBase && javelin.getCapturedEntity(getWeapon(), getEntityWorld()) == null) {
                 EntityLivingBase thrower = (EntityLivingBase)this.getThrower();
+                float skillModifier = SmithingSkill.getSkillBonus(getWeapon(), SmithingSkill.Type.WEAPONS) / 2.0F;
                 int damageAmount = 1;
+                if (skillModifier > 0.0F && Constants.RNG.nextFloat() < skillModifier) {
+                    damageAmount -= 1;
+                }
                 if (entity != null) {
                     damageAmount += 1;
                 }
