@@ -1,36 +1,56 @@
 {
-  "parent": "item/generated",
+  "parent": "item/handheld",
   "textures": {
     "layer0": "tfcthings:items/sling"
-  },
-  "display": {
-    "thirdperson_righthand": {
-      "rotation": [ -80, 270, -40 ],
-      "translation": [ 0, 4, 3 ],
-      "scale": [ 0.6, 0.6, 0.6]
-    },
-    "thirdperson_lefthand": {
-      "rotation": [ -80, -270, 40 ],
-      "translation": [ 0, 4, 3 ],
-      "scale": [ 0.6, 0.6, 0.6 ]
-    },
-    "firstperson_righthand": {
-      "rotation": [ 0, 90, 0 ],
-      "translation": [ 1.13, 3.2, 1.13],
-      "scale": [ 0.6, 0.6, 0.6 ]
-    },
-    "firstperson_lefthand": {
-      "rotation": [ 0, -90, 0 ],
-      "translation": [ 1.13, 3.2, 1.13],
-      "scale": [ 0.6, 0.6, 0.6 ]
-    }
   },
   "overrides": [
     {
       "predicate": {
         "spinning": 1
       },
-      "model": "tfcthings:item/sling_spinning"
+      "model": "tfcthings:item/sling/sling_1"
+    },
+    {
+      "predicate": {
+        "spinning": 2
+      },
+      "model": "tfcthings:item/sling/sling_2"
+    },
+    {
+      "predicate": {
+        "spinning": 3
+      },
+      "model": "tfcthings:item/sling/sling_3"
+    },
+    {
+      "predicate": {
+        "spinning": 4
+      },
+      "model": "tfcthings:item/sling/sling_4"
+    },
+    {
+      "predicate": {
+        "spinning": 5
+      },
+      "model": "tfcthings:item/sling/sling_5"
+    },
+    {
+      "predicate": {
+        "spinning": 6
+      },
+      "model": "tfcthings:item/sling/sling_6"
+    },
+    {
+      "predicate": {
+        "spinning": 7
+      },
+      "model": "tfcthings:item/sling/sling_7"
+    },
+    {
+      "predicate": {
+        "spinning": 8
+      },
+      "model": "tfcthings:item/sling/sling_8"
     }
   ]
 }

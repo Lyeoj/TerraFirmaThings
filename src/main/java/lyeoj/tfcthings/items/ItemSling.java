@@ -19,6 +19,7 @@ import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,8 +41,15 @@ public class ItemSling extends Item implements IItemSize {
             {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
-                {
-                return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
+            {
+                if(entityIn.getItemInUseMaxCount() > 0) {
+                    int maxPower = ConfigTFCThings.Items.SLING.maxPower;
+                    int chargeSpeed = ConfigTFCThings.Items.SLING.chargeSpeed;
+                    float powerRatio = Math.min((float)entityIn.getItemInUseMaxCount() / (float)chargeSpeed, maxPower) / (float)maxPower;
+                    float f = MathHelper.floor(((entityIn.getItemInUseMaxCount() * powerRatio) % 8) + 1);
+                    return f;
+                }
+                return 0.0F;
             }
         });
     }

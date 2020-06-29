@@ -1,0 +1,28 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "tfcthings:items/sling_stone"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ 0, 270, 0 ],
+      "translation": [ 0, 4, 6 ],
+      "scale": [ 0.8, 0.8, 0.8 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, -270, 0 ],
+      "translation": [ 0, 4, 6 ],
+      "scale": [ 0.8, 0.8, 0.8 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, 90, 0 ],
+      "translation": [ 0, 3.2, -6],
+      "scale": [ 0.8, 0.8, 0.8 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, -90, 0 ],
+      "translation": [ 0, 3.2, -6],
+      "scale": [ 0.8, 0.8, 0.8 ]
+    }
+  }
+}
