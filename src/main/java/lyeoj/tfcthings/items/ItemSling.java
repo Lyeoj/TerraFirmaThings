@@ -42,7 +42,7 @@ public class ItemSling extends Item implements IItemSize {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                if(entityIn.getItemInUseMaxCount() > 0) {
+                if(entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack && entityIn.getItemInUseMaxCount() > 0) {
                     int maxPower = ConfigTFCThings.Items.SLING.maxPower;
                     int chargeSpeed = ConfigTFCThings.Items.SLING.chargeSpeed;
                     float powerRatio = Math.min((float)entityIn.getItemInUseMaxCount() / (float)chargeSpeed, maxPower) / (float)maxPower;
