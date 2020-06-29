@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tfcthings:items/mold/prohammer_head_bismuth_bronze"
+  }
+}

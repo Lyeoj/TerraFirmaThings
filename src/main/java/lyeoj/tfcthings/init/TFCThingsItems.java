@@ -5,25 +5,54 @@ import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.IArmorMaterialTFC;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.ArmorMaterialTFC;
+import net.dries007.tfc.objects.items.ceramics.ItemPottery;
 import net.dries007.tfc.types.DefaultMetals;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TFCThingsItems {
+
+    public static final Map<String, Map<Metal, Item>> TOOLS_HEADS_BY_METAL = new HashMap<>();
 
     public static final Item ITEM_WHETSTONE = new ItemWhetstone(1, 64).setRegistryName("whetstone").setTranslationKey("whetstone");
     public static final Item ITEM_HONING_STEEL = new ItemWhetstone(2, 4200).setRegistryName("honing_steel").setTranslationKey("honing_steel");
     public static final Item ITEM_HONING_STEEL_DIAMOND = new ItemWhetstone(3, 4500).setRegistryName("honing_steel_diamond").setTranslationKey("honing_steel_diamond");
-    public static final Item ITEM_HONING_STEEL_HEAD = new ItemHoningSteelHead().setTranslationKey("honing_steel_head").setRegistryName("honing_steel_head");
-    public static final Item ITEM_HONING_STEEL_HEAD_DIAMOND = new ItemHoningSteelHead().setTranslationKey("honing_steel_head_diamond").setRegistryName("honing_steel_head_diamond");
+    public static final Item ITEM_HONING_STEEL_HEAD = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "honing_steel_head");
+    public static final Item ITEM_HONING_STEEL_HEAD_DIAMOND = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "honing_steel_head_diamond");
     public static final Item ITEM_DIAMOND_GRIT = new ItemDiamondGrit();
     public static final IArmorMaterialTFC SNOW_SHOES_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("snow_shoes", "tfcthings:snow_shoes", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
     public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
     public static final Item ITEM_SLING = new ItemSling();
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
     public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot();
+
+    public static final Item ITEM_PROSPECTORS_HAMMER_MOLD_UNFIRED = new ItemPottery().setRegistryName("mold/unfired/prospectors_hammer_head").setTranslationKey("mold.unfired.prospectors_hammer_head");
+    public static final Item ITEM_PROSPECTORS_HAMMER_MOLD_FIRED = new ItemTFCThingsMold("prospectors_hammer_head");
+
+    public static final Item ITEM_PROSPECTORS_HAMMER_BISMUTH_BRONZE = new ItemProspectorsHammer(Metal.BISMUTH_BRONZE, "bismuth_bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_BLACK_BRONZE = new ItemProspectorsHammer(Metal.BLACK_BRONZE, "black_bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_BLACK_STEEL = new ItemProspectorsHammer(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), "black_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_BLUE_STEEL = new ItemProspectorsHammer(Metal.BLUE_STEEL, "blue_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_BRONZE = new ItemProspectorsHammer(Metal.BRONZE, "bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_COPPER = new ItemProspectorsHammer(TFCRegistries.METALS.getValue(DefaultMetals.COPPER), "copper");
+    public static final Item ITEM_PROSPECTORS_HAMMER_RED_STEEL = new ItemProspectorsHammer(Metal.RED_STEEL, "red_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_STEEL = new ItemProspectorsHammer(Metal.STEEL, "steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_WROUGHT_IRON = new ItemProspectorsHammer(Metal.WROUGHT_IRON, "wrought_iron");
+
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE = new ItemTFCThingsToolHead(Metal.BISMUTH_BRONZE, 100, "prospectors_hammer_head", "bismuth_bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_BRONZE = new ItemTFCThingsToolHead(Metal.BLACK_BRONZE, 100, "prospectors_hammer_head", "black_bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_STEEL = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 100, "prospectors_hammer_head", "black_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLUE_STEEL = new ItemTFCThingsToolHead(Metal.BLUE_STEEL, 100, "prospectors_hammer_head", "blue_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BRONZE = new ItemTFCThingsToolHead(Metal.BRONZE, 100, "prospectors_hammer_head", "bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_COPPER = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.COPPER), 100, "prospectors_hammer_head", "copper");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_RED_STEEL = new ItemTFCThingsToolHead(Metal.RED_STEEL, 100, "prospectors_hammer_head", "red_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_STEEL = new ItemTFCThingsToolHead(Metal.STEEL, 100, "prospectors_hammer_head", "steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON = new ItemTFCThingsToolHead(Metal.WROUGHT_IRON, 100, "prospectors_hammer_head", "wrought_iron");
 
     public static final Item ITEM_ROPE_JAVELIN_BISMUTH_BRONZE = new ItemRopeJavelin(Metal.BISMUTH_BRONZE, "bismuth_bronze");
     public static final Item ITEM_ROPE_JAVELIN_BLACK_BRONZE = new ItemRopeJavelin(Metal.BLACK_BRONZE, "black_bronze");
@@ -76,6 +105,25 @@ public class TFCThingsItems {
             ITEM_SLING,
             ITEM_BEAR_TRAP_HALF,
             ITEM_PIG_IRON_CARROT,
+            ITEM_PROSPECTORS_HAMMER_MOLD_UNFIRED,
+            ITEM_PROSPECTORS_HAMMER_BISMUTH_BRONZE,
+            ITEM_PROSPECTORS_HAMMER_BLACK_BRONZE,
+            ITEM_PROSPECTORS_HAMMER_BLACK_STEEL,
+            ITEM_PROSPECTORS_HAMMER_BLUE_STEEL,
+            ITEM_PROSPECTORS_HAMMER_BRONZE,
+            ITEM_PROSPECTORS_HAMMER_COPPER,
+            ITEM_PROSPECTORS_HAMMER_RED_STEEL,
+            ITEM_PROSPECTORS_HAMMER_STEEL,
+            ITEM_PROSPECTORS_HAMMER_WROUGHT_IRON,
+            ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE,
+            ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_BRONZE,
+            ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_STEEL,
+            ITEM_PROSPECTORS_HAMMER_HEAD_BLUE_STEEL,
+            ITEM_PROSPECTORS_HAMMER_HEAD_BRONZE,
+            ITEM_PROSPECTORS_HAMMER_HEAD_COPPER,
+            ITEM_PROSPECTORS_HAMMER_HEAD_RED_STEEL,
+            ITEM_PROSPECTORS_HAMMER_HEAD_STEEL,
+            ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON,
             ITEM_ROPE_JAVELIN_BISMUTH_BRONZE,
             ITEM_ROPE_JAVELIN_BLACK_BRONZE,
             ITEM_ROPE_JAVELIN_BLACK_STEEL,

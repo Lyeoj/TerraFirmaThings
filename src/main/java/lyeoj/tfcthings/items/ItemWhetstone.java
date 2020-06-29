@@ -4,9 +4,14 @@ import lyeoj.tfcthings.capability.CapabilitySharpness;
 import lyeoj.tfcthings.capability.ISharpness;
 import lyeoj.tfcthings.event.TFCThingsEventHandler;
 import lyeoj.tfcthings.init.TFCThingsSoundEvents;
+import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
+import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
+import net.dries007.tfc.api.registries.TFCRegistries;
+import net.dries007.tfc.api.types.Metal;
+import net.dries007.tfc.types.DefaultMetals;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,11 +19,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,7 +34,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemWhetstone extends Item implements IItemSize {
+public class ItemWhetstone extends Item implements IItemSize, IMetalItem {
 
 
     private int tier;
@@ -49,6 +57,11 @@ public class ItemWhetstone extends Item implements IItemSize {
     @Override
     public Weight getWeight(@Nonnull ItemStack itemStack) {
         return Weight.MEDIUM;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D() {
+        return true;
     }
 
     public int getMaxItemUseDuration(ItemStack stack) {
@@ -109,6 +122,35 @@ public class ItemWhetstone extends Item implements IItemSize {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add("Use with a metal tool in your off-hand");
         super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Nullable
+    @Override
+    public Metal getMetal(ItemStack itemStack) {
+        return tier > 1 ? TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL) : null;
+    }
+
+    @Override
+    public int getSmeltAmount(ItemStack itemStack) {
+        if(tier > 1) {
+            if (this.isDamageable() && itemStack.isItemDamaged()) {
+                double d = (double)(itemStack.getMaxDamage() - itemStack.getItemDamage()) / (double)itemStack.getMaxDamage() - 0.1D;
+                return d < 0.0D ? 0 : MathHelper.floor((double)200 * d);
+            } else {
+                return 200;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean canMelt(ItemStack stack) {
+        return tier > 1 ? true : false;
+    }
+
+    @Nullable
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+        return tier > 1 ? new ForgeableHeatableHandler(nbt, 0.35F, 1540.0F) : null;
     }
 
 }

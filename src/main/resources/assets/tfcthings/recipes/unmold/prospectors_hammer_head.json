@@ -1,0 +1,10 @@
+
+{
+  "type": "tfcthings:unmold_recipe",
+  "ingredients": [
+    {
+      "item": "tfcthings:mold/prospectors_hammer_head"
+    }
+  ],
+  "result": "prospectors_hammer_head"
+}

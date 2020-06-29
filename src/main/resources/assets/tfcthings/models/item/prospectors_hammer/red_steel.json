@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "tfcthings:items/prospectors_hammer/bronze"
+  }
+}

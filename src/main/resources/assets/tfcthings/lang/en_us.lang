@@ -21,12 +21,46 @@ item.rope_javelin_red_steel.name=Red Steel Rope Javelin
 item.rope_javelin_steel.name=Steel Rope Javelin
 item.rope_javelin_wrought_iron.name=Wrought Iron Rope Javelin
 
+item.prospectors_hammer_bismuth_bronze.name=Bismuth Bronze Prospectors Hammer
+item.prospectors_hammer_black_bronze.name=Black Bronze Prospectors Hammer
+item.prospectors_hammer_black_steel.name=Black Steel Prospectors Hammer
+item.prospectors_hammer_blue_steel.name=Blue Steel Prospector's Hammer
+item.prospectors_hammer_bronze.name=Bronze Prospectors Hammer
+item.prospectors_hammer_copper.name=Copper Prospectors Hammer
+item.prospectors_hammer_red_steel.name=Red Steel Prospectors Hammer
+item.prospectors_hammer_steel.name=Steel Prospectors Hammer
+item.prospectors_hammer_wrought_iron.name=Wrought Iron Prospectors Hammer
+
+item.mold.unfired.prospectors_hammer_head.name=Unfired Prospectors Hammer Head Mold
+item.mold_prospectors_hammer_head.name=Prospectors Hammer Head Mold
+item.tfcthings.mold.prospectors_hammer_head.bismuth_bronze=Bismuth Bronze Prospectors Hammer Mold
+item.tfcthings.mold.prospectors_hammer_head.black_bronze=Black Bronze Prospectors Hammer Mold
+item.tfcthings.mold.prospectors_hammer_head.bronze=Bronze Prospectors Hammer Mold
+item.tfcthings.mold.prospectors_hammer_head.copper=Copper Prospectors Hammer Mold
+
+item.prospectors_hammer_head_bismuth_bronze.name=Bismuth Bronze Prospectors Hammer Head
+item.prospectors_hammer_head_black_bronze.name=Black Bronze Prospectors Hammer Head
+item.prospectors_hammer_head_black_steel.name=Black Steel Prospectors Hammer Head
+item.prospectors_hammer_head_blue_steel.name=Blue Steel Prospectors Hammer Head
+item.prospectors_hammer_head_bronze.name=Bronze Prospectors Hammer Head
+item.prospectors_hammer_head_copper.name=Copper Prospectors Hammer Head
+item.prospectors_hammer_head_red_steel.name=Red Steel Prospectors Hammer Head
+item.prospectors_hammer_head_steel.name=Steel Prospectors Hammer Head
+item.prospectors_hammer_head_wrought_iron.name=Wrought Iron Prospectors Hammer Head
+
 tile.bear_trap.name=Bear Trap
 tile.pigvil.name=Pigvil
 
 entity.pigvil.name=Pigvil
 
 tfcthings.tooltip.maximum_sharpness=This item can't get any sharper right now
+
+tfcthings.tooltip.prohammer_safe=This block seems safe to mine
+tfcthings.tooltip.prohammer_unsafe=This block seems somewhat unstable...
+tfcthings.tooltip.prohammer_na=This block cannot cause a cave-in
+tfcthings.tooltip.prohammer_safe_fall=This block seems safe to mine, but it is supporting loose rubble
+tfcthings.tooltip.prohammer_unsafe_fall=This block seems somewhat unstable, it is also supporting loose rubble
+tfcthings.tooltip.prohammer_na_fall=This block cannot cause a cave-in, but it is supporting loose rubble
 
 config.tfcthings.items=Item Settings
 config.tfcthings.items.tooltip=Configure Settings For TFCThings Items
