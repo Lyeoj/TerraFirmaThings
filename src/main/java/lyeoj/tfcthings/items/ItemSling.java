@@ -23,12 +23,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemSling extends Item implements IItemSize {
+public class ItemSling extends Item implements IItemSize, ItemOreDict {
 
     public ItemSling() {
         this.setTranslationKey("sling");
@@ -181,4 +182,10 @@ public class ItemSling extends Item implements IItemSize {
         tooltip.add("The bigger they are...");
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
+
+    @Override
+    public void initOreDict() {
+        OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));;
+    }
+
 }

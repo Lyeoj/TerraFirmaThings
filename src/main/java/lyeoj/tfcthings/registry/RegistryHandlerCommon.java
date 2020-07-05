@@ -3,9 +3,9 @@ package lyeoj.tfcthings.registry;
 import lyeoj.tfcthings.init.TFCThingsBlocks;
 import lyeoj.tfcthings.init.TFCThingsItems;
 import lyeoj.tfcthings.init.TFCThingsSoundEvents;
+import lyeoj.tfcthings.items.ItemOreDict;
 import lyeoj.tfcthings.main.TFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
-import net.dries007.tfc.api.capability.damage.DamageType;
 import net.dries007.tfc.api.recipes.WeldingRecipe;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
@@ -47,6 +47,11 @@ public class RegistryHandlerCommon {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(TFCThingsItems.ITEMLIST);
         event.getRegistry().register(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_MOLD_FIRED);
+        for(int i = 0; i < TFCThingsItems.ITEMLIST.length; i++) {
+            if(TFCThingsItems.ITEMLIST[i] instanceof ItemOreDict) {
+                ((ItemOreDict)TFCThingsItems.ITEMLIST[i]).initOreDict();
+            }
+        }
     }
 
     @SubscribeEvent
@@ -87,7 +92,7 @@ public class RegistryHandlerCommon {
         event.getRegistry().register(new AnvilRecipe(
                 new ResourceLocation(TFCThings.MODID + ":honing_steel_head"),
                 IIngredient.of(OreDictionaryHelper.toString(new Object[]{"ingot", "double", DefaultMetals.BLACK_STEEL.getPath()})),
-                new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD), Metal.Tier.TIER_V, SmithingSkill.Type.TOOLS,
+                new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD), Metal.Tier.TIER_V, GENERAL,
                 SHRINK_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
 
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_bismuth_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BISMUTH_BRONZE,INGOT))),

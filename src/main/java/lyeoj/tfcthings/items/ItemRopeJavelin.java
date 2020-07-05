@@ -4,7 +4,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
 import net.dries007.tfc.Constants;
-import net.dries007.tfc.api.capability.damage.DamageType;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -12,7 +11,7 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.objects.CreativeTabsTFC;
 import net.dries007.tfc.objects.items.ItemTFC;
-import net.dries007.tfc.util.OreDictionaryHelper;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -25,16 +24,18 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
+public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict {
 
     private final Metal metal;
     public final ToolMaterial material;
@@ -55,7 +56,6 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
         this.setTranslationKey("rope_javelin_" + name);
         this.setRegistryName("rope_javelin/" + name);
         this.setMaxStackSize(1);
-        //OreDictionaryHelper.registerDamageType(this, DamageType.PIERCING);
         this.addPropertyOverride(new ResourceLocation("thrown"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
@@ -247,4 +247,8 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem {
         }
     }
 
+    @Override
+    public void initOreDict() {
+        OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
+    }
 }

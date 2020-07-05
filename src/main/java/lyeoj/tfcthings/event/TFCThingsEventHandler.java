@@ -7,7 +7,9 @@ import lyeoj.tfcthings.items.ItemRopeJavelin;
 import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
+import net.dries007.tfc.objects.blocks.wood.BlockToolRack;
 import net.dries007.tfc.objects.entity.projectile.EntityThrownWeapon;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,6 +19,7 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -105,6 +108,15 @@ public class TFCThingsEventHandler {
         if(event.getEntityItem().getItem().getItem() instanceof ItemRopeJavelin) {
             ItemRopeJavelin javelin = (ItemRopeJavelin)event.getEntityItem().getItem().getItem();
             javelin.retractJavelin(event.getEntityItem().getItem(), event.getEntity().getEntityWorld());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerInteract(PlayerInteractEvent event) {
+        if(event.getItemStack().getItem() instanceof ItemRopeJavelin) {
+            if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockToolRack) {
+                ((ItemRopeJavelin)event.getItemStack().getItem()).retractJavelin(event.getItemStack(), event.getWorld());
+            }
         }
     }
 

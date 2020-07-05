@@ -3,8 +3,8 @@ package lyeoj.tfcthings.entity.projectile;
 import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.types.IPredator;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
@@ -33,7 +33,7 @@ public class EntitySlingStone extends EntityThrowable {
         if (result.entityHit != null) {
             float i = power;
 
-            if (result.entityHit instanceof IPredator)
+            if (result.entityHit instanceof IPredator || result.entityHit instanceof AbstractSkeleton)
             {
                 double predatorMultiplier = ConfigTFCThings.Items.SLING.predatorMultiplier;
                 i *= predatorMultiplier;

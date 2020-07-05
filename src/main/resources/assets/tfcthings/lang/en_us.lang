@@ -68,7 +68,7 @@ config.tfcthings.misc=Misc Settings
 config.tfcthings.misc.tooltip=Miscellaneous TFCThings Settings
 
 config.tfcthings.items.sling=Sling
-config.tfcthings.items.predatorMultiplier=Predator Damage Multiplier
+config.tfcthings.items.predatorMultiplier=Predator/Skeleton Damage Multiplier
 config.tfcthings.items.maxPower=Maximum Charge Power
 config.tfcthings.items.chargeSpeed=Charge Speed
 

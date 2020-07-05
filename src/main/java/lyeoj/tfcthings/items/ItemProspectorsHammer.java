@@ -2,6 +2,7 @@ package lyeoj.tfcthings.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
@@ -36,11 +37,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ItemProspectorsHammer extends ItemTFC implements IMetalItem {
+public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOreDict {
 
     private final Metal metal;
     public final ToolMaterial material;
@@ -120,22 +122,22 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem {
                 }
                 switch(messageType) {
                     case 0:
-                        playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_na", new Object[0]));
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_na", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
                         break;
                     case 1:
-                        playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_safe", new Object[0]));
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_safe", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
                         break;
                     case 2:
-                        playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_unsafe", new Object[0]));
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_unsafe", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
                         break;
                     case 3:
-                        playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_na_fall", new Object[0]));
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_na_fall", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
                         break;
                     case 4:
-                        playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_safe_fall", new Object[0]));
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_safe_fall", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
                         break;
                     case 5:
-                        playerIn.sendMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_unsafe_fall", new Object[0]));
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_unsafe_fall", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
                         break;
                 }
                 float skillModifier = SmithingSkill.getSkillBonus(itemstack, SmithingSkill.Type.TOOLS) / 2.0F;
@@ -146,6 +148,7 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem {
                 if(flag) {
                     playerIn.getHeldItem(handIn).damageItem(1, playerIn);
                 }
+                playerIn.getCooldownTracker().setCooldown(this, 10);
             }
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
         }
@@ -218,6 +221,11 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem {
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
         return new ForgeableHeatableHandler(nbt, metal.getSpecificHeat(), metal.getMeltTemp());
+    }
+
+    @Override
+    public void initOreDict() {
+        OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
     }
 
 }

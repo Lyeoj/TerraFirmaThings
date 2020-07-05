@@ -29,12 +29,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemWhetstone extends Item implements IItemSize, IMetalItem {
+public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOreDict {
 
 
     private int tier;
@@ -153,4 +154,10 @@ public class ItemWhetstone extends Item implements IItemSize, IMetalItem {
         return tier > 1 ? new ForgeableHeatableHandler(nbt, 0.35F, 1540.0F) : null;
     }
 
+    @Override
+    public void initOreDict() {
+        if(tier > 1) {
+            OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
+        }
+    }
 }

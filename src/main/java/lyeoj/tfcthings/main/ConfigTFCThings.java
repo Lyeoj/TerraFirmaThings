@@ -44,7 +44,7 @@ public class ConfigTFCThings {
         public static final SnowShoesCFG SNOW_SHOES = new SnowShoesCFG();
 
         public static final class SlingCFG {
-            @Config.Comment({"Damage multiplier against predator animals.", "Predator damage = sling damage * multiplier"})
+            @Config.Comment({"Damage multiplier against predator animals and skeletons.", "New damage = sling damage * multiplier"})
             @Config.RangeDouble (
                     min = 1.0D,
                     max = 10.0D
