@@ -10,6 +10,7 @@ import net.dries007.tfc.api.capability.player.CapabilityPlayerData;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.types.Metal;
+import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.objects.blocks.wood.BlockSupport;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.dries007.tfc.util.ICollapsableBlock;
@@ -41,6 +42,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Iterator;
 
 public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOreDict {
 
@@ -103,7 +105,7 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOr
                 ProspectingSkill skill = (ProspectingSkill) CapabilityPlayerData.getSkill(playerIn, SkillType.PROSPECTING);
                 int messageType = 0;
                 if(block instanceof ICollapsableBlock) {
-                    boolean result = areNeighborsSupported(worldIn, blockpos);
+                    boolean result = isThisBlockSafe(worldIn, blockpos);
                     float falsePositiveChance = 0.3F;
                     if (skill != null) {
                         falsePositiveChance = 0.3F - 0.1F * (float)skill.getTier().ordinal();
@@ -154,38 +156,22 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOr
         }
     }
 
-    private boolean areNeighborsSupported(World worldIn, BlockPos pos) {
-        if(canThisBlockCollapse(worldIn, pos.down(), false)) {
-            return false;
-        }
-        if(canThisBlockCollapse(worldIn, pos.up(), true)) {
-            return false;
-        }
-        if(canThisBlockCollapse(worldIn, pos.north(), false)) {
-            return false;
-        }
-        if(canThisBlockCollapse(worldIn, pos.south(), false)) {
-            return false;
-        }
-        if(canThisBlockCollapse(worldIn, pos.east(), false)) {
-            return false;
-        }
-        if(canThisBlockCollapse(worldIn, pos.west(), false)) {
-            return false;
+    private boolean isThisBlockSafe(World worldIn, BlockPos pos) {
+        int radX = (Constants.RNG.nextInt(5) + 4) / 2;
+        int radY = (Constants.RNG.nextInt(3) + 2) / 2;
+        int radZ = (Constants.RNG.nextInt(5) + 4) / 2;
+        Iterator var6 = BlockSupport.getAllUnsupportedBlocksIn(worldIn, pos.add(-radX, -radY, -radZ), pos.add(radX, radY, radZ)).iterator();
+
+        while(var6.hasNext()) {
+            BlockPos checking = (BlockPos)var6.next();
+            if (worldIn.getBlockState(checking).getBlock() instanceof ICollapsableBlock) {
+                ICollapsableBlock block = (ICollapsableBlock)worldIn.getBlockState(checking).getBlock();
+                if (block.canCollapse(worldIn, checking)) {
+                    return false;
+                }
+            }
         }
         return true;
-    }
-
-    private boolean canThisBlockCollapse(World worldIn, BlockPos pos, boolean above) {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        if(iblockstate.getBlock() instanceof ICollapsableBlock) {
-            ICollapsableBlock collapsableBlock = (ICollapsableBlock)iblockstate.getBlock();
-            if(!above) {
-                return !BlockSupport.isBeingSupported(worldIn, pos) && collapsableBlock.canCollapse(worldIn, pos);
-            }
-            return !BlockSupport.isBeingSupported(worldIn, pos);
-        }
-        return false;
     }
 
     private boolean supportingFallable(World worldIn, BlockPos pos) {

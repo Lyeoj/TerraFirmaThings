@@ -170,6 +170,14 @@ public class ConfigTFCThings {
             )
             @Config.LangKey("config.tfcthings.misc.convertChance")
             public double convertChance = 0.25D;
+
+            @Config.Comment({"The level of familiarity required for a male pig to be eligible for conversion into a Pigvil.", "The default value, 0.35 is the adult familiarity cap", "Levels higher than 0.35 require raising a baby pig", "Set to 0 to require no familiarity"})
+            @Config.RangeDouble (
+                    min = 0.0D,
+                    max = 1.0D
+            )
+            @Config.LangKey("config.tfcthings.misc.familiarityLevel")
+            public double familiarityLevel = 0.35D;
         }
 
     }

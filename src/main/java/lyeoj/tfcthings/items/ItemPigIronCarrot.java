@@ -37,7 +37,8 @@ public class ItemPigIronCarrot extends ItemTFC {
     public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity, EnumHand hand) {
         if(entity instanceof EntityPigTFC) {
             EntityPigTFC piggy = (EntityPigTFC)entity;
-            if(piggy.getGender().equals(IAnimalTFC.Gender.MALE) && !piggy.isChild()) {
+            float requiredFamiliarity = (float)ConfigTFCThings.Misc.PIGVIL.familiarityLevel;
+            if(piggy.getGender().equals(IAnimalTFC.Gender.MALE) && piggy.getAge() == IAnimalTFC.Age.ADULT && piggy.getFamiliarity() >= requiredFamiliarity) {
                 player.world.playSound(player, piggy.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.NEUTRAL, 1.0f, 1.0f);
                 if(!player.world.isRemote) {
                     if(!player.isCreative()) {
