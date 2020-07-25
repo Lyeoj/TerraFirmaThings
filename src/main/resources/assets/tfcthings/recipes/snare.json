@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "LRL",
+    "LRL"
+  ],
+  "key": {
+    "R": {
+      "item": "tfc:crop/product/jute_fiber"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "tfcthings:snare"
+  }
+}

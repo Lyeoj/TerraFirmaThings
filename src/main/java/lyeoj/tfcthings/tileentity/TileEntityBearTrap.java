@@ -51,11 +51,10 @@ public class TileEntityBearTrap extends TileEntity {
     public void readFromNBT(NBTTagCompound compound) {
         this.open = compound.getBoolean("open");
         this.capturedId = compound.getUniqueId("capturedId");
-        readCapturedEntity();
         super.readFromNBT(compound);
     }
 
-    private void sendUpdates() {
+    protected void sendUpdates() {
         this.world.markBlockRangeForRenderUpdate(pos, pos);
         this.world.notifyBlockUpdate(pos, this.world.getBlockState(pos), this.world.getBlockState(pos), 3);
         this.world.scheduleBlockUpdate(pos,this.getBlockType(),0,0);
@@ -63,10 +62,15 @@ public class TileEntityBearTrap extends TileEntity {
     }
 
     private void readCapturedEntity() {
-        if(this.capturedId != null && this.world instanceof WorldServer) {
-            Entity entity = ((WorldServer)this.world).getEntityFromUuid(this.capturedId);
-            if(entity instanceof EntityLivingBase) {
-                this.capturedEntity = (EntityLivingBase)entity;
+        if(this.capturedId != null) {
+            if(this.world.getPlayerEntityByUUID(capturedId) != null) {
+                EntityLivingBase entity = this.world.getPlayerEntityByUUID(capturedId);
+                this.capturedEntity = entity;
+            } else if(this.world instanceof WorldServer) {
+                Entity entity = ((WorldServer)this.world).getEntityFromUuid(this.capturedId);
+                if(entity instanceof EntityLivingBase) {
+                    this.capturedEntity = (EntityLivingBase)entity;
+                }
             }
         }
     }
@@ -81,6 +85,7 @@ public class TileEntityBearTrap extends TileEntity {
     }
 
     public EntityLivingBase getCapturedEntity() {
+        readCapturedEntity();
         return this.capturedEntity;
     }
 

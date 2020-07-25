@@ -5,7 +5,6 @@ import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.IArmorMaterialTFC;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.ArmorMaterialTFC;
-import net.dries007.tfc.objects.items.ItemTFC;
 import net.dries007.tfc.objects.items.ceramics.ItemPottery;
 import net.dries007.tfc.types.DefaultMetals;
 import net.minecraft.init.SoundEvents;
@@ -167,6 +166,7 @@ public class TFCThingsItems {
 
             TFCThingsBlocks.BEAR_TRAP_ITEM,
             TFCThingsBlocks.PIGVIL_ITEM,
-            TFCThingsBlocks.METAL_SUPPORT_ITEM
+            TFCThingsBlocks.METAL_SUPPORT_ITEM,
+            TFCThingsBlocks.SNARE_ITEM
     };
 }

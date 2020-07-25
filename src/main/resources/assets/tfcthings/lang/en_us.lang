@@ -52,6 +52,7 @@ item.prospectors_hammer_head_wrought_iron.name=Wrought Iron Prospectors Hammer H
 tile.bear_trap.name=Bear Trap
 tile.pigvil.name=Pigvil
 tile.metal_support.name=Reinforced Support Beam
+tile.snare.name=Snare
 
 entity.pigvil.name=Pigvil
 
@@ -63,6 +64,10 @@ tfcthings.tooltip.prohammer_na=This block cannot cause a cave-in
 tfcthings.tooltip.prohammer_safe_fall=This block seems safe to mine, but it is supporting loose rubble
 tfcthings.tooltip.prohammer_unsafe_fall=This block seems somewhat unstable, it is also supporting loose rubble
 tfcthings.tooltip.prohammer_na_fall=This block cannot cause a cave-in, but it is supporting loose rubble
+tfcthings.tooltip.prohammer_no_rocks=I'm not detecting any rock types in this area. I should try somewhere else...
+tfcthings.tooltip.prohammer_1_rock_found=The rock types in this region seem to include: %s
+tfcthings.tooltip.prohammer_2_rocks_found=The rock types in this region seem to include: %s and %s
+tfcthings.tooltip.prohammer_3_rocks_found=The rock types in this region seem to include: %s, %s and %s
 
 config.tfcthings.items=Item Settings
 config.tfcthings.items.tooltip=Configure Settings For TFCThings Items
@@ -80,6 +85,10 @@ config.tfcthings.items.breakoutChance=Predator Escape Chance
 config.tfcthings.items.debuffDuration=Trap Debuff Duration
 config.tfcthings.items.healthCut=Health Cut Factor
 
+config.tfcthings.items.snare=Snare
+config.tfcthings.items.baitCaptureChance=Bait Capture Chance
+config.tfcthings.items.baitExpireChance=Bait Expiriation Chance
+
 config.tfcthings.items.whetstone=Whetstones
 config.tfcthings.items.canSharpen=Additional Sharpen-able Items
 config.tfcthings.items.bonusSpeed=Sharpened Harvest Speed Boost
@@ -94,3 +103,4 @@ config.tfcthings.misc.daylist=Custom Birthday/Special Day List
 
 config.tfcthings.misc.pigvil=Pigvil
 config.tfcthings.misc.convertChance=Pigvil Conversion Chance
+config.tfcthings.misc.familiarityLevel=Required Familiarity Level

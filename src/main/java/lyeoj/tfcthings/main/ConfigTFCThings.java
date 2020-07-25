@@ -36,6 +36,9 @@ public class ConfigTFCThings {
         @Config.Comment({"Bear Trap Settings"})
         @Config.LangKey("config.tfcthings.items.beartrap")
         public static final BearTrapCFG BEAR_TRAP = new BearTrapCFG();
+        @Config.Comment({"Snare Settings"})
+        @Config.LangKey("config.tfcthings.items.snare")
+        public static final SnareCFG SNARE = new SnareCFG();
         @Config.Comment({"Whetstone Settings"})
         @Config.LangKey("config.tfcthings.items.whetstone")
         public static final WhetstoneCFG WHETSTONE = new WhetstoneCFG();
@@ -98,6 +101,32 @@ public class ConfigTFCThings {
             )
             @Config.LangKey("config.tfcthings.items.healthCut")
             public double healthCut = 3.0D;
+        }
+
+        public static final class SnareCFG {
+            @Config.Comment("Percent chance for a snare to break when harvested after being tripped.")
+            @Config.RangeDouble (
+                    min = 0.0D,
+                    max = 1.0D
+            )
+            @Config.LangKey("config.tfcthings.items.breakChance")
+            public double breakChance = 0.2D;
+
+            @Config.Comment({"The chance for a snare to capture a random small animal when loaded with bait. Happens on random block ticks."})
+            @Config.RangeDouble (
+                    min = 0.0D,
+                    max = 1.0D
+            )
+            @Config.LangKey("config.tfcthings.items.baitCaptureChance")
+            public double baitCaptureChance = 0.05D;
+
+            @Config.Comment({"The chance for a piece of bait in a snare to be consumed if the snare fails to capture a random animal."})
+            @Config.RangeDouble (
+                    min = 0.0D,
+                    max = 1.0D
+            )
+            @Config.LangKey("config.tfcthings.items.baitExpireChance")
+            public double baitExpireChance = 0.05D;
         }
 
         public static final class WhetstoneCFG {

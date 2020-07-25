@@ -10,7 +10,8 @@ import net.dries007.tfc.api.capability.player.CapabilityPlayerData;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.types.Metal;
-import net.dries007.tfc.client.TFCSounds;
+import net.dries007.tfc.api.types.Rock;
+import net.dries007.tfc.objects.blocks.stone.BlockRockVariant;
 import net.dries007.tfc.objects.blocks.wood.BlockSupport;
 import net.dries007.tfc.objects.items.ItemTFC;
 import net.dries007.tfc.util.ICollapsableBlock;
@@ -42,7 +43,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOreDict {
 
@@ -103,6 +106,21 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOr
             Block block = iblockstate.getBlock();
             if(!worldIn.isRemote) {
                 ProspectingSkill skill = (ProspectingSkill) CapabilityPlayerData.getSkill(playerIn, SkillType.PROSPECTING);
+                if(playerIn.isSneaking()) {
+                    checkRockLayers(playerIn, worldIn, blockpos, skill);
+                    playerIn.getCooldownTracker().setCooldown(this, 10);
+                    float skillModifier = SmithingSkill.getSkillBonus(itemstack, SmithingSkill.Type.TOOLS) / 2.0F;
+                    boolean flag = true;
+                    if (skillModifier > 0.0F && Constants.RNG.nextFloat() < skillModifier) {
+                        flag = false;
+                    }
+                    if(flag) {
+                        playerIn.getHeldItem(handIn).damageItem(20, playerIn);
+                    } else {
+                        playerIn.getHeldItem(handIn).damageItem(10, playerIn);
+                    }
+                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+                }
                 int messageType = 0;
                 if(block instanceof ICollapsableBlock) {
                     boolean result = isThisBlockSafe(worldIn, blockpos);
@@ -212,6 +230,44 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOr
     @Override
     public void initOreDict() {
         OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
+    }
+
+    private void checkRockLayers(EntityPlayer playerIn, World worldIn, BlockPos pos, ProspectingSkill skill) {
+        int skillTier = 0;
+        if(skill != null) {
+            skillTier = skill.getTier().ordinal();
+        }
+        ArrayList<Rock> rocks = new ArrayList<>();
+        BlockPos pos1 = pos;
+        BlockPos pos2 = pos.up(10);
+        BlockPos pos3 = pos.down(10);
+        for(int i = 0; i < skillTier + 1; i++) {
+            addRock(pos1, rocks, worldIn);
+            addRock(pos2, rocks, worldIn);
+            addRock(pos3, rocks, worldIn);
+            pos1 = pos1.down(30);
+            pos2 = pos2.down(30);
+            pos3 = pos3.down(30);
+        }
+        if(rocks.isEmpty()) {
+            playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_no_rocks", new Object[0]), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
+        } else if(rocks.size() == 1) {
+            playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_1_rock_found", new Object[]{rocks.get(0).toString()}), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
+
+        } else if(rocks.size() == 2) {
+            playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_2_rocks_found", new Object[]{rocks.get(0).toString(), rocks.get(1).toString()}), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
+        } else if(rocks.size() >= 3){
+            playerIn.sendStatusMessage(new TextComponentTranslation("tfcthings.tooltip.prohammer_3_rocks_found", new Object[]{rocks.get(0).toString(), rocks.get(1).toString(), rocks.get(2).toString()}), ConfigTFC.Client.TOOLTIP.propickOutputToActionBar);
+        }
+    }
+
+    private void addRock(BlockPos pos, List<Rock> rocks, World worldIn) {
+        if(worldIn.getBlockState(pos).getBlock() instanceof BlockRockVariant) {
+            Rock rock = ((BlockRockVariant) worldIn.getBlockState(pos).getBlock()).getRock();
+            if(!rocks.contains(rock)) {
+                rocks.add(rock);
+            }
+        }
     }
 
 }

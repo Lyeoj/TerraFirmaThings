@@ -29,7 +29,7 @@ public class BlockPigvil extends BlockAnvilTFC {
 
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
         EntityPigvil pigvil = new EntityPigvil(worldIn);
-        pigvil.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+        pigvil.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), state.getValue(AXIS).getHorizontalAngle(), 0);
         worldIn.spawnEntity(pigvil);
     }
 

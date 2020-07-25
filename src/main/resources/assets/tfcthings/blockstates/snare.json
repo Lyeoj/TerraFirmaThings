@@ -1,0 +1,68 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "baited=false,closed=false,facing=south": {
+      "model": "tfcthings:snare"
+    },
+    "baited=true,closed=false,facing=south": {
+      "model": "tfcthings:snare_baited"
+    },
+    "baited=true,closed=true,facing=south": {
+      "model": "tfcthings:snare_triggered"
+    },
+    "baited=false,closed=true,facing=south": {
+      "model": "tfcthings:snare_triggered"
+    },
+    "baited=false,closed=false,facing=west": {
+      "model": "tfcthings:snare",
+      "y": 90
+    },
+    "baited=true,closed=false,facing=west": {
+      "model": "tfcthings:snare_baited",
+      "y": 90
+    },
+    "baited=true,closed=true,facing=west": {
+      "model": "tfcthings:snare_triggered",
+      "y": 90
+    },
+    "baited=false,closed=true,facing=west": {
+      "model": "tfcthings:snare_triggered",
+      "y": 90
+    },
+    "baited=false,closed=false,facing=north": {
+      "model": "tfcthings:snare",
+      "y": 180
+    },
+    "baited=true,closed=false,facing=north": {
+      "model": "tfcthings:snare_baited",
+      "y": 180
+    },
+    "baited=true,closed=true,facing=north": {
+      "model": "tfcthings:snare_triggered",
+      "y": 180
+    },
+    "baited=false,closed=true,facing=north": {
+      "model": "tfcthings:snare_triggered",
+      "y": 180
+    },
+    "baited=false,closed=false,facing=east": {
+      "model": "tfcthings:snare",
+      "y": 270
+    },
+    "baited=true,closed=false,facing=east": {
+      "model": "tfcthings:snare_baited",
+      "y": 270
+    },
+    "baited=true,closed=true,facing=east": {
+      "model": "tfcthings:snare_triggered",
+      "y": 270
+    },
+    "baited=false,closed=true,facing=east": {
+      "model": "tfcthings:snare_triggered",
+      "y": 270
+    },
+    "inventory": {
+      "model": "tfcthings:snare_inventory"
+    }
+  }
+}

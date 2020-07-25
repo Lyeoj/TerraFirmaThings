@@ -1,20 +1,68 @@
 {
   "forge_marker": 1,
   "variants": {
-    "buried=false,closed=false": {
+    "buried=false,closed=false,facing=south": {
       "model": "tfcthings:bear_trap"
     },
-    "buried=true,closed=false": {
+    "buried=true,closed=false,facing=south": {
       "model": "tfcthings:bear_trap_buried"
     },
-    "buried=true,closed=true": {
+    "buried=true,closed=true,facing=south": {
       "model": "tfcthings:bear_trap_shut"
     },
-    "buried=false,closed=true": {
+    "buried=false,closed=true,facing=south": {
       "model": "tfcthings:bear_trap_shut"
+    },
+    "buried=false,closed=false,facing=west": {
+      "model": "tfcthings:bear_trap",
+      "y": 90
+    },
+    "buried=true,closed=false,facing=west": {
+      "model": "tfcthings:bear_trap_buried",
+      "y": 90
+    },
+    "buried=true,closed=true,facing=west": {
+      "model": "tfcthings:bear_trap_shut",
+      "y": 90
+    },
+    "buried=false,closed=true,facing=west": {
+      "model": "tfcthings:bear_trap_shut",
+      "y": 90
+    },
+    "buried=false,closed=false,facing=north": {
+      "model": "tfcthings:bear_trap",
+      "y": 180
+    },
+    "buried=true,closed=false,facing=north": {
+      "model": "tfcthings:bear_trap_buried",
+      "y": 180
+    },
+    "buried=true,closed=true,facing=north": {
+      "model": "tfcthings:bear_trap_shut",
+      "y": 180
+    },
+    "buried=false,closed=true,facing=north": {
+      "model": "tfcthings:bear_trap_shut",
+      "y": 180
+    },
+    "buried=false,closed=false,facing=east": {
+      "model": "tfcthings:bear_trap",
+      "y": 270
+    },
+    "buried=true,closed=false,facing=east": {
+      "model": "tfcthings:bear_trap_buried",
+      "y": 270
+    },
+    "buried=true,closed=true,facing=east": {
+      "model": "tfcthings:bear_trap_shut",
+      "y": 270
+    },
+    "buried=false,closed=true,facing=east": {
+      "model": "tfcthings:bear_trap_shut",
+      "y": 270
     },
     "inventory": {
-      "model": "tfcthings:bear_trap"
+      "model": "tfcthings:bear_trap_inventory"
     }
   }
 }
