@@ -27,7 +27,8 @@ public class TFCThingsItems {
     public static final Item ITEM_DIAMOND_GRIT = new ItemDiamondGrit();
     public static final IArmorMaterialTFC SNOW_SHOES_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("snow_shoes", "tfcthings:snow_shoes", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
     public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
-    public static final Item ITEM_SLING = new ItemSling();
+    public static final Item ITEM_SLING = new ItemSling(0).setTranslationKey("sling").setRegistryName("sling");;
+    public static final Item ITEM_SLING_METAL = new ItemSling(1).setTranslationKey("sling_metal").setRegistryName("sling_metal");
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
     public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot();
     public static final Item ITEM_METAL_BRACING = new ItemMetalBracing();
@@ -104,6 +105,7 @@ public class TFCThingsItems {
             ITEM_DIAMOND_GRIT,
             ITEM_SNOWSHOES,
             ITEM_SLING,
+            ITEM_SLING_METAL,
             ITEM_BEAR_TRAP_HALF,
             ITEM_PIG_IRON_CARROT,
             ITEM_METAL_BRACING,

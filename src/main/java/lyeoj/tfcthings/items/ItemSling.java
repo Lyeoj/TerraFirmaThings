@@ -31,10 +31,12 @@ import java.util.List;
 
 public class ItemSling extends Item implements IItemSize, ItemOreDict {
 
-    public ItemSling() {
-        this.setTranslationKey("sling");
-        this.setRegistryName("sling");
-        this.setMaxDamage(64);
+    public ItemSling(int tier) {
+        if(tier < 1) {
+            this.setMaxDamage(64);
+        } else {
+            this.setMaxDamage(256);
+        }
         this.setNoRepair();
         this.setMaxStackSize(1);
         this.setCreativeTab(CreativeTabsTFC.CT_MISC);

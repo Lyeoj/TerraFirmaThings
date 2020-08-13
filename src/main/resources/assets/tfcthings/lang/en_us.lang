@@ -6,11 +6,12 @@ item.honing_steel_head.name=Honing Steel Head
 item.honing_steel_head_diamond.name=Diamond Grit Honing Steel Head
 item.diamond_grit.name=Diamond Grit
 item.sling.name=Sling
+item.sling_metal.name=Reinforced Sling
 item.gold_crown.name=Gold Crown
 item.platinum_crown.name=Platinum Crown
 item.bear_trap_half.name=Bear Trap Half
 item.pig_iron_carrot.name=Pig Iron Carrot
-item.metal_bracing.name=Metal Bracing [Unused]
+item.metal_bracing.name=Metal Bracing
 
 item.rope_javelin_bismuth_bronze.name=Bismuth Bronze Rope Javelin
 item.rope_javelin_black_bronze.name=Black Bronze Rope Javelin

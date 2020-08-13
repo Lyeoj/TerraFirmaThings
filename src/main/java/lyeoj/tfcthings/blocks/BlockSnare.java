@@ -6,10 +6,7 @@ import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.CreativeTabsTFC;
-import net.dries007.tfc.objects.entity.animal.EntityAnimalTFC;
-import net.dries007.tfc.objects.entity.animal.EntityDuckTFC;
-import net.dries007.tfc.objects.entity.animal.EntityPheasantTFC;
-import net.dries007.tfc.objects.entity.animal.EntityRabbitTFC;
+import net.dries007.tfc.objects.entity.animal.*;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -155,7 +152,7 @@ public class BlockSnare extends Block implements IItemSize {
 
     @Override
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        if(entityIn instanceof EntityRabbitTFC || entityIn instanceof EntityPheasantTFC || entityIn instanceof EntityDuckTFC) {
+        if(entityIn instanceof EntityRabbitTFC || entityIn instanceof EntityPheasantTFC || entityIn instanceof EntityDuckTFC || entityIn instanceof EntityChickenTFC) {
             TileEntityBearTrap trap = getTileEntity(worldIn, pos);
             EntityLivingBase entityLiving = (EntityLivingBase) entityIn;
             if(trap.isOpen()) {

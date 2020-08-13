@@ -94,12 +94,10 @@ public class RegistryHandlerCommon {
                 IIngredient.of(OreDictionaryHelper.toString(new Object[]{"ingot", "double", DefaultMetals.BLACK_STEEL.getPath()})),
                 new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD), Metal.Tier.TIER_V, GENERAL,
                 SHRINK_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
-        // Remove metal bracing recipe, maybe we'll use it for something later
-//        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"metal_bracing"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.WROUGHT_IRON,INGOT))),
-//                new ItemStack(TFCThingsItems.ITEM_METAL_BRACING, 2), Metal.WROUGHT_IRON.getTier(), GENERAL, BEND_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
-//        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"metal_bracing_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.STEEL,INGOT))),
-//                new ItemStack(TFCThingsItems.ITEM_METAL_BRACING, 4), Metal.STEEL.getTier(), GENERAL, BEND_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
-
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"metal_bracing"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.WROUGHT_IRON,INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_METAL_BRACING, 1), Metal.WROUGHT_IRON.getTier(), GENERAL, BEND_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"metal_bracing_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.STEEL,INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_METAL_BRACING, 2), Metal.STEEL.getTier(), GENERAL, BEND_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_bismuth_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BISMUTH_BRONZE,INGOT))),
                 new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE), Metal.BISMUTH_BRONZE.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_black_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BLACK_BRONZE,INGOT))),

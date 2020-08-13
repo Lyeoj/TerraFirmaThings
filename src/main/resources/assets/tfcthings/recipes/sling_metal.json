@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tfcthings:sling"
+    },
+    {
+      "item": "tfcthings:metal_bracing"
+    }
+  ],
+  "result": {
+    "item": "tfcthings:sling_metal"
+  }
+}
