@@ -34,11 +34,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import static net.dries007.tfc.api.types.Metal.ItemType.INGOT;
-import static net.dries007.tfc.api.types.Metal.ItemType.SHEET;
+import static net.dries007.tfc.api.types.Metal.ItemType.*;
 import static net.dries007.tfc.util.forge.ForgeRule.*;
-import static net.dries007.tfc.util.skills.SmithingSkill.Type.GENERAL;
-import static net.dries007.tfc.util.skills.SmithingSkill.Type.TOOLS;
+import static net.dries007.tfc.util.skills.SmithingSkill.Type.*;
 
 @Mod.EventBusSubscriber(modid = TFCThings.MODID)
 public class RegistryHandlerCommon {
@@ -85,6 +83,7 @@ public class RegistryHandlerCommon {
                 IIngredient.of(OreDictionaryHelper.toString(new Object[]{"sheet", "double", DefaultMetals.PLATINUM.getPath()})),
                 new ItemStack(TFCThingsItems.ITEM_PLATINUM_CROWN_EMPTY), Metal.Tier.TIER_II, SmithingSkill.Type.ARMOR,
                 ForgeRule.HIT_LAST, ForgeRule.UPSET_SECOND_LAST, ForgeRule.SHRINK_THIRD_LAST));
+
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"bear_trap_half"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.STEEL,SHEET))),
                 new ItemStack(TFCThingsItems.ITEM_BEAR_TRAP_HALF), Metal.STEEL.getTier(), GENERAL, HIT_LAST, DRAW_SECOND_LAST, SHRINK_THIRD_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"pig_iron_carrot"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.PIG_IRON,INGOT))),
@@ -94,10 +93,12 @@ public class RegistryHandlerCommon {
                 IIngredient.of(OreDictionaryHelper.toString(new Object[]{"ingot", "double", DefaultMetals.BLACK_STEEL.getPath()})),
                 new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD), Metal.Tier.TIER_V, GENERAL,
                 SHRINK_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
+
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"metal_bracing"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.WROUGHT_IRON,INGOT))),
                 new ItemStack(TFCThingsItems.ITEM_METAL_BRACING, 1), Metal.WROUGHT_IRON.getTier(), GENERAL, BEND_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"metal_bracing_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.STEEL,INGOT))),
                 new ItemStack(TFCThingsItems.ITEM_METAL_BRACING, 2), Metal.STEEL.getTier(), GENERAL, BEND_LAST, HIT_NOT_LAST, DRAW_NOT_LAST));
+
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_bismuth_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BISMUTH_BRONZE,INGOT))),
                 new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE), Metal.BISMUTH_BRONZE.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_black_bronze"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BLACK_BRONZE,INGOT))),
@@ -116,6 +117,15 @@ public class RegistryHandlerCommon {
                 new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_STEEL), Metal.STEEL.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"prospectors_hammer_head_wrought_iron"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.WROUGHT_IRON,INGOT))),
                 new ItemStack(TFCThingsItems.ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON), Metal.WROUGHT_IRON.getTier(), TOOLS, PUNCH_LAST, DRAW_NOT_LAST, SHRINK_NOT_LAST));
+
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"hook_javelin_head_black_steel"), IIngredient.of(new ItemStack(ItemMetal.get(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL),DOUBLE_INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_HOOK_JAVELIN_HEAD_BLACK_STEEL), TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL).getTier(), WEAPONS, DRAW_LAST, UPSET_NOT_LAST, BEND_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"hook_javelin_head_blue_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BLUE_STEEL,DOUBLE_INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_HOOK_JAVELIN_HEAD_BLUE_STEEL), Metal.BLUE_STEEL.getTier(), WEAPONS, DRAW_LAST, UPSET_NOT_LAST, BEND_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"hook_javelin_head_red_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.RED_STEEL,DOUBLE_INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_HOOK_JAVELIN_HEAD_RED_STEEL), Metal.RED_STEEL.getTier(), WEAPONS, DRAW_LAST, UPSET_NOT_LAST, BEND_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"hook_javelin_head_steel"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.STEEL,DOUBLE_INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_HOOK_JAVELIN_HEAD_STEEL), Metal.STEEL.getTier(), WEAPONS, DRAW_LAST, UPSET_NOT_LAST, BEND_NOT_LAST));
 
     }
 

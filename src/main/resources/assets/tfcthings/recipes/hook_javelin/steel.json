@@ -1,0 +1,23 @@
+{
+  "type": "tfc:shaped_skill",
+  "pattern": [
+    "RRR",
+    "RHR",
+    "RSR"
+  ],
+  "key": {
+    "H": {
+      "item": "tfcthings:hook_javelin_head/steel"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "R": {
+      "item": "tfc:crop/product/jute_fiber"
+    }
+  },
+  "result": {
+    "item": "tfcthings:hook_javelin/steel"
+  }
+}

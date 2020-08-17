@@ -1,0 +1,14 @@
+{
+  "parent": "tfc:item/handheld_flipped",
+  "textures": {
+    "layer0": "tfcthings:items/hook_javelin/red_steel"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "thrown": 1
+      },
+      "model": "tfcthings:item/rope"
+    }
+  ]
+}

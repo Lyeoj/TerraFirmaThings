@@ -28,6 +28,7 @@ import javax.annotation.Nonnull;
 public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEntity, IEntityAdditionalSpawnData {
     private ItemStack weapon;
     private int knockbackStrength;
+    protected double effectiveRange = 1024;
 
     public EntityThrownRopeJavelin(World world) {
         super(world);
@@ -80,10 +81,6 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
             if(getThrower() == null) {
                 javelin.retractJavelin(getWeapon(), world);
             }
-            if(this.shouldRetract(getWeapon(), this.world)) {
-                this.onEntityUpdate();
-                return;
-            }
             if(javelin.getCapturedEntity(getWeapon(), getEntityWorld()) != null) {
                 this.setNoGravity(true);
                 Entity caughtEntity = javelin.getCapturedEntity(getWeapon(), getEntityWorld());
@@ -95,10 +92,18 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
                 return;
             } else {
                 this.setNoGravity(false);
+                this.performAdditionalUpdates();
+            }
+            if(this.shouldRetract(getWeapon(), this.world)) {
+                this.onEntityUpdate();
+                return;
             }
         }
 
         super.onUpdate();
+    }
+
+    protected void performAdditionalUpdates() {
     }
 
     protected void onHit(@Nonnull RayTraceResult raytraceResultIn) {
@@ -214,7 +219,7 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
                     flag1 = false;
                 }
 
-                if (!thrower.isDead && thrower.isEntityAlive() && (flag || flag1) && this.getDistanceSq(thrower) <= 1024.0D) {
+                if (thrower.isEntityAlive() && (flag || flag1) && this.getDistanceSq(thrower) <= effectiveRange) {
                     return false;
                 }
                 else

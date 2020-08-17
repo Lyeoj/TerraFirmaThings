@@ -15,7 +15,7 @@ public class TFCThings {
 	
 	public static final String MODID = "tfcthings";
 	public static final String NAME = "TerraFirmaThings";
-	public static final String VERSION = "0.10.2";
+	public static final String VERSION = "0.11.0";
 	public static final String CLIENT_PROXY = "lyeoj.tfcthings.proxy.ClientProxy";
 	public static final String COMMON_PROXY = "lyeoj.tfcthings.proxy.CommonProxy";
 	public static final String DEPENDENCIES = "required-after:" + TerraFirmaCraft.MOD_ID;

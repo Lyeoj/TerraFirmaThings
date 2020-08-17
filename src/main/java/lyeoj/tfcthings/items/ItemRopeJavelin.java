@@ -11,7 +11,6 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.objects.CreativeTabsTFC;
 import net.dries007.tfc.objects.items.ItemTFC;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -24,7 +23,6 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -39,8 +37,9 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
 
     private final Metal metal;
     public final ToolMaterial material;
-    private final double attackDamage;
-    private final float attackSpeed;
+    protected final double attackDamage;
+    protected final float attackSpeed;
+    protected double pullStrength = 0.1;
 
     private static final String THROWN_NBT_KEY = "Thrown";
     private static final String JAVELIN_NBT_KEY = "JavelinID";
@@ -53,8 +52,8 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
         this.setMaxDamage((int)((double)material.getMaxUses() * 0.1D));
         this.attackDamage = (double)(0.7 * this.material.getAttackDamage());
         this.attackSpeed = -1.8F;
-        this.setTranslationKey("rope_javelin_" + name);
-        this.setRegistryName("rope_javelin/" + name);
+        this.setTranslationKey(getNamePrefix() + "_" + name);
+        this.setRegistryName(getNamePrefix() + "/" + name);
         this.setMaxStackSize(1);
         this.addPropertyOverride(new ResourceLocation("thrown"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
@@ -75,6 +74,10 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
                 }
             }
         });
+    }
+
+    protected String getNamePrefix() {
+        return "rope_javelin";
     }
 
     @Nullable
@@ -129,10 +132,9 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
                     double d0 = playerIn.posX - javelin.posX;
                     double d1 = playerIn.posY - javelin.posY;
                     double d2 = playerIn.posZ - javelin.posZ;
-                    double d3 = 0.15D;
-                    entity.motionX += d0 * d3;
-                    entity.motionY += d1 * d3;
-                    entity.motionZ += d2 * d3;
+                    entity.motionX += d0 * pullStrength;
+                    entity.motionY += d1 * pullStrength;
+                    entity.motionZ += d2 * pullStrength;
                 }
             }
             retractJavelin(itemstack, worldIn);
@@ -159,7 +161,7 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
                 float f = ItemBow.getArrowVelocity(charge);
                 if (!worldIn.isRemote) {
                     setThrown(stack, true);
-                    EntityThrownRopeJavelin javelin = new EntityThrownRopeJavelin(worldIn, player);
+                    EntityThrownRopeJavelin javelin = makeNewJavelin(worldIn, player);
                     javelin.setDamage(this.attackDamage);
                     javelin.setWeapon(stack);
                     javelin.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, f * 1.5F, 0.5F);
@@ -171,6 +173,10 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
             }
         }
 
+    }
+
+    protected EntityThrownRopeJavelin makeNewJavelin(World worldIn, EntityPlayer player) {
+        return new EntityThrownRopeJavelin(worldIn, player);
     }
 
     public boolean isThrown(ItemStack stack) {

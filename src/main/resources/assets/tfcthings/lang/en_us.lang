@@ -23,6 +23,16 @@ item.rope_javelin_red_steel.name=Red Steel Rope Javelin
 item.rope_javelin_steel.name=Steel Rope Javelin
 item.rope_javelin_wrought_iron.name=Wrought Iron Rope Javelin
 
+item.hook_javelin_head_black_steel.name=Black Steel Hook Javelin Head
+item.hook_javelin_head_blue_steel.name=Blue Steel Hook Javelin Head
+item.hook_javelin_head_red_steel.name=Red Steel Hook Javelin Head
+item.hook_javelin_head_steel.name=Steel Hook Javelin Head
+
+item.hook_javelin_black_steel.name=Black Steel Hook Javelin
+item.hook_javelin_blue_steel.name=Blue Steel Hook Javelin
+item.hook_javelin_red_steel.name=Red Steel Hook Javelin
+item.hook_javelin_steel.name=Steel Hook Javelin
+
 item.prospectors_hammer_bismuth_bronze.name=Bismuth Bronze Prospectors Hammer
 item.prospectors_hammer_black_bronze.name=Black Bronze Prospectors Hammer
 item.prospectors_hammer_black_steel.name=Black Steel Prospectors Hammer

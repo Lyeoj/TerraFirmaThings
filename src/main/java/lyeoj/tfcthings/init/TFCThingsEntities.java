@@ -2,6 +2,7 @@ package lyeoj.tfcthings.init;
 
 import lyeoj.tfcthings.entity.living.EntityPigvil;
 import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
+import lyeoj.tfcthings.entity.projectile.EntityThrownHookJavelin;
 import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
 import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
 import lyeoj.tfcthings.main.TFCThings;
@@ -22,7 +23,8 @@ public class TFCThingsEntities {
     public static final NonMobEntityInfo[] NON_MOB_ENTITY_INFOS = {
             new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 2, true),
             new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 2, true),
-            new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true)
+            new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true),
+            new NonMobEntityInfo("hookjavelinthrown", EntityThrownHookJavelin.class, 4, 64, 3, true)
     };
 
     public static class MobInfo {
@@ -85,6 +87,7 @@ public class TFCThingsEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntitySlingStone.class, RenderSlingStone::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityUnknownProjectile.class, RenderUnknownProjectile::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThrownRopeJavelin.class, RenderThrownRopeJavelin::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityThrownHookJavelin.class, RenderThrownRopeJavelin::new);
     }
 
 }

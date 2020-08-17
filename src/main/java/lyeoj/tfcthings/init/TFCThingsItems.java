@@ -66,6 +66,16 @@ public class TFCThingsItems {
     public static final Item ITEM_ROPE_JAVELIN_STEEL = new ItemRopeJavelin(Metal.STEEL, "steel");
     public static final Item ITEM_ROPE_JAVELIN_WROUGHT_IRON = new ItemRopeJavelin(Metal.WROUGHT_IRON, "wrought_iron");
 
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_BLACK_STEEL = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "hook_javelin_head", "black_steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_BLUE_STEEL = new ItemTFCThingsToolHead(Metal.BLUE_STEEL, 200, "hook_javelin_head", "blue_steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_RED_STEEL = new ItemTFCThingsToolHead(Metal.RED_STEEL, 200, "hook_javelin_head", "red_steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_STEEL = new ItemTFCThingsToolHead(Metal.STEEL, 200, "hook_javelin_head", "steel");
+
+    public static final Item ITEM_HOOK_JAVELIN_BLACK_STEEL = new ItemHookJavelin(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), "black_steel");
+    public static final Item ITEM_HOOK_JAVELIN_BLUE_STEEL = new ItemHookJavelin(Metal.BLUE_STEEL, "blue_steel");
+    public static final Item ITEM_HOOK_JAVELIN_RED_STEEL = new ItemHookJavelin(Metal.RED_STEEL, "red_steel");
+    public static final Item ITEM_HOOK_JAVELIN_STEEL = new ItemHookJavelin(Metal.STEEL, "steel");
+
     public static final Item ITEM_GOLD_CROWN_EMPTY = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Empty");
     public static final Item ITEM_GOLD_CROWN_AGATE = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Agate");
     public static final Item ITEM_GOLD_CROWN_AMETHYST = new ItemCrown(0, EntityEquipmentSlot.HEAD, "gold", "Amethyst");
@@ -137,6 +147,14 @@ public class TFCThingsItems {
             ITEM_ROPE_JAVELIN_RED_STEEL,
             ITEM_ROPE_JAVELIN_STEEL,
             ITEM_ROPE_JAVELIN_WROUGHT_IRON,
+            ITEM_HOOK_JAVELIN_HEAD_BLACK_STEEL,
+            ITEM_HOOK_JAVELIN_HEAD_BLUE_STEEL,
+            ITEM_HOOK_JAVELIN_HEAD_RED_STEEL,
+            ITEM_HOOK_JAVELIN_HEAD_STEEL,
+            ITEM_HOOK_JAVELIN_BLACK_STEEL,
+            ITEM_HOOK_JAVELIN_BLUE_STEEL,
+            ITEM_HOOK_JAVELIN_RED_STEEL,
+            ITEM_HOOK_JAVELIN_STEEL,
             ITEM_GOLD_CROWN_EMPTY,
             ITEM_GOLD_CROWN_AGATE,
             ITEM_GOLD_CROWN_AMETHYST,
