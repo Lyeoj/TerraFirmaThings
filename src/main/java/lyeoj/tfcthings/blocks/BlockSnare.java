@@ -152,7 +152,7 @@ public class BlockSnare extends Block implements IItemSize {
 
     @Override
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        if(entityIn instanceof EntityRabbitTFC || entityIn instanceof EntityPheasantTFC || entityIn instanceof EntityDuckTFC || entityIn instanceof EntityChickenTFC) {
+        if(isCapturable(entityIn)) {
             TileEntityBearTrap trap = getTileEntity(worldIn, pos);
             EntityLivingBase entityLiving = (EntityLivingBase) entityIn;
             if(trap.isOpen()) {
@@ -173,7 +173,7 @@ public class BlockSnare extends Block implements IItemSize {
         TileEntityBearTrap snare = getTileEntity(worldIn, pos);
         if(snare.isOpen() && worldIn.getEntitiesWithinAABB(EntityPlayer.class, captureBox).isEmpty() && !worldIn.isRemote) {
             for(EntityAnimalTFC animal : worldIn.getEntitiesWithinAABB(EntityAnimalTFC.class, captureBox)) {
-                if((animal instanceof EntityRabbitTFC || animal instanceof EntityPheasantTFC || animal instanceof EntityDuckTFC) && !(worldIn.getBlockState(animal.getPosition()).getBlock() instanceof BlockSnare)) {
+                if((isCapturable(animal)) && !(worldIn.getBlockState(animal.getPosition()).getBlock() instanceof BlockSnare)) {
                     snare.setCapturedEntity(animal);
                     snare.setOpen(false);
                     state = state.withProperty(CLOSED, Boolean.valueOf(true));
@@ -188,9 +188,21 @@ public class BlockSnare extends Block implements IItemSize {
                     double entitySelection = rand.nextDouble();
                     EntityAnimalTFC animal;
                     if(entitySelection < 0.1) {
-                        animal = new EntityDuckTFC(worldIn);
+                        if(entitySelection < 0.03) {
+                            if(entitySelection < 0.01) {
+                                animal = new EntityGrouseTFC(worldIn);
+                            } else {
+                                animal = new EntityQuailTFC(worldIn);
+                            }
+                        } else {
+                            animal = new EntityDuckTFC(worldIn);
+                        }
                     } else if(entitySelection < 0.5) {
-                        animal = new EntityRabbitTFC(worldIn);
+                        if(entitySelection < 0.3) {
+                            animal = new EntityHareTFC(worldIn);
+                        } else {
+                            animal = new EntityRabbitTFC(worldIn);
+                        }
                     } else {
                         animal = new EntityPheasantTFC(worldIn);
                     }
@@ -207,6 +219,10 @@ public class BlockSnare extends Block implements IItemSize {
                 }
             }
         }
+    }
+
+    private boolean isCapturable(Entity entityIn) {
+        return entityIn instanceof EntityRabbitTFC || entityIn instanceof EntityPheasantTFC || entityIn instanceof EntityDuckTFC || entityIn instanceof EntityChickenTFC || entityIn instanceof EntityTurkeyTFC;
     }
 
     @Nonnull
