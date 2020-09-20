@@ -21,10 +21,10 @@ public class TFCThingsEntities {
     };
 
     public static final NonMobEntityInfo[] NON_MOB_ENTITY_INFOS = {
-            new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 2, true),
-            new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 2, true),
+            new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 1, true),
+            new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 1, true),
             new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true),
-            new NonMobEntityInfo("hookjavelinthrown", EntityThrownHookJavelin.class, 4, 64, 3, true)
+            new NonMobEntityInfo("hookjavelinthrown", EntityThrownHookJavelin.class, 4, 64, 2, true)
     };
 
     public static class MobInfo {

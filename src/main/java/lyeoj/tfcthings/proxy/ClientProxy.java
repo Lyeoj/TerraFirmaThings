@@ -1,11 +1,16 @@
 package lyeoj.tfcthings.proxy;
 
+import lyeoj.tfcthings.entity.projectile.EntityThrownHookJavelin;
 import lyeoj.tfcthings.init.TFCThingsEntities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.IThreadListener;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class ClientProxy extends CommonProxy {
 
-	@SuppressWarnings("unchecked")
+	private final Minecraft MINECRAFT = Minecraft.getMinecraft();
+
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
@@ -30,6 +35,19 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void serverStopping(FMLServerStoppingEvent event) {
 		super.serverStopping(event);
+	}
+
+	public IThreadListener getThreadListener(final MessageContext context) {
+		if(context.side.isClient()) {
+			return MINECRAFT;
+		} else {
+			return context.getServerHandler().player.server;
+		}
+	}
+
+	public void syncJavelinGroundState(int javelinID, boolean inGround) {
+		EntityThrownHookJavelin javelin = (EntityThrownHookJavelin)MINECRAFT.world.getEntityByID(javelinID);
+		javelin.setInGroundSynced(inGround);
 	}
 	
 }

@@ -76,7 +76,10 @@ public class RenderThrownRopeJavelin extends Render<EntityThrownRopeJavelin> {
         }
         else {
             Entity entity = javelin.getThrower();
-            return camera.isBoundingBoxInFrustum(entity.getRenderBoundingBox());
+            if(entity != null) {
+                return camera.isBoundingBoxInFrustum(entity.getRenderBoundingBox());
+            }
+            return false;
         }
     }
 

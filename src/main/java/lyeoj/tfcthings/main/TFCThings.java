@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.main;
 
+import lyeoj.tfcthings.network.MessageHookJavelinUpdate;
 import lyeoj.tfcthings.proxy.CommonProxy;
 import net.dries007.tfc.TerraFirmaCraft;
 import net.minecraftforge.fml.common.Mod;
@@ -7,6 +8,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +19,7 @@ public class TFCThings {
 	
 	public static final String MODID = "tfcthings";
 	public static final String NAME = "TerraFirmaThings";
-	public static final String VERSION = "0.11.1";
+	public static final String VERSION = "0.11.2";
 	public static final String CLIENT_PROXY = "lyeoj.tfcthings.proxy.ClientProxy";
 	public static final String COMMON_PROXY = "lyeoj.tfcthings.proxy.CommonProxy";
 	public static final String DEPENDENCIES = "required-after:" + TerraFirmaCraft.MOD_ID;
@@ -27,10 +31,13 @@ public class TFCThings {
 	public static TFCThings instance;
 	
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
+	public static SimpleNetworkWrapper network;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		LOGGER.info("TFC Things: Starting Pre-Init...");
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+		network.registerMessage(MessageHookJavelinUpdate.Handler.class, MessageHookJavelinUpdate.class, 1, Side.CLIENT);
 		proxy.preInit(event);
 	}
 	

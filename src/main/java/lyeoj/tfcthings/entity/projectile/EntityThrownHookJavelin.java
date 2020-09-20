@@ -1,7 +1,10 @@
 package lyeoj.tfcthings.entity.projectile;
 
 import lyeoj.tfcthings.items.ItemHookJavelin;
+import lyeoj.tfcthings.main.TFCThings;
+import lyeoj.tfcthings.network.MessageHookJavelinUpdate;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -16,6 +19,7 @@ public class EntityThrownHookJavelin extends EntityThrownRopeJavelin {
 
     private static final DataParameter<Float> LENGTH = EntityDataManager.<Float>createKey(EntityThrownHookJavelin.class, DataSerializers.FLOAT);
     private static final String LENGTH_NBT_KEY = "length";
+    private boolean inGroundSynced = false;
 
     public EntityThrownHookJavelin(World world) {
         super(world);
@@ -62,11 +66,19 @@ public class EntityThrownHookJavelin extends EntityThrownRopeJavelin {
         super.readEntityFromNBT(compound);
     }
 
+    public void setInGroundSynced(boolean inGroundSynced) {
+        this.inGroundSynced = inGroundSynced;
+    }
+
     protected void performAdditionalUpdates() {
-        if(getWeapon().getItem() instanceof ItemHookJavelin) {
+        if(getWeapon().getItem() instanceof ItemHookJavelin && getThrower() != null) {
             EntityLivingBase thrower = (EntityLivingBase) this.getThrower();
             float length = getLength();
-            if(thrower != null && this.inGround && this.posY > thrower.posY && getDistance(thrower) > length && !thrower.onGround) {
+            if(!world.isRemote && (inGroundSynced != inGround)) {
+                inGroundSynced = inGround;
+                TFCThings.network.sendTo(new MessageHookJavelinUpdate(getEntityId(), inGroundSynced), (EntityPlayerMP)thrower);
+            }
+            if(thrower != null && (inGround || inGroundSynced) && this.posY > thrower.posY && getDistance(thrower) > length && !thrower.onGround) {
                 thrower.fallDistance = 0;
                 Vec3d rope = thrower.getPositionVector().subtract(this.getPositionVector()).normalize();
                 Vec3d velocity = new Vec3d(thrower.motionX, thrower.motionY, thrower.motionZ);
@@ -87,8 +99,10 @@ public class EntityThrownHookJavelin extends EntityThrownRopeJavelin {
                 if(speed < 0.09 && getDistance(thrower) > length + 0.3) {
                     thrower.motionY = 0.1;
                 }
+            } else if(thrower != null && thrower.onGround && getDistance(thrower) > length) {
+                setLength(getDistance(thrower));
             }
-            if(thrower.isSneaking()) {
+            if(thrower != null && thrower.isSneaking()) {
                 setLength(getLength() + 0.2f);
             }
         }
