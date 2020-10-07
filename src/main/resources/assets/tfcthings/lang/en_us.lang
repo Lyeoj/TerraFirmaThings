@@ -12,6 +12,7 @@ item.platinum_crown.name=Platinum Crown
 item.bear_trap_half.name=Bear Trap Half
 item.pig_iron_carrot.name=Pig Iron Carrot
 item.metal_bracing.name=Metal Bracing
+item.rope_bridge_bundle.name=Rope Bridge Bundle
 
 item.rope_javelin_bismuth_bronze.name=Bismuth Bronze Rope Javelin
 item.rope_javelin_black_bronze.name=Black Bronze Rope Javelin
@@ -64,6 +65,8 @@ tile.bear_trap.name=Bear Trap
 tile.pigvil.name=Pigvil
 tile.metal_support.name=Reinforced Support Beam [Unused]
 tile.snare.name=Snare
+tile.rope_bridge.name=Rope Bridge
+tile.rope_ladder.name=Rope Ladder
 
 entity.pigvil.name=Pigvil
 
@@ -79,6 +82,12 @@ tfcthings.tooltip.prohammer_no_rocks=I'm not detecting any rock types in this ar
 tfcthings.tooltip.prohammer_1_rock_found=The rock types in this region seem to include: %s
 tfcthings.tooltip.prohammer_2_rocks_found=The rock types in this region seem to include: %s and %s
 tfcthings.tooltip.prohammer_3_rocks_found=The rock types in this region seem to include: %s, %s and %s
+
+tfcthings.tooltip.rope_bridge_too_long=You don't have enough segments to build a bridge of this length!
+tfcthings.tooltip.rope_bridge_too_steep=This bridge is too steep! Try a longer bridge to cover more height.
+tfcthings.tooltip.rope_bridge_interrupted=The path for the bridge is not clear!
+tfcthings.tooltip.rope_bridge_diagonal=You cannot build a rope bridge on a diagonal!
+tfcthings.tooltip.rope_bridge_bad_connection=This bridge will not connect to terrain!
 
 config.tfcthings.items=Item Settings
 config.tfcthings.items.tooltip=Configure Settings For TFCThings Items

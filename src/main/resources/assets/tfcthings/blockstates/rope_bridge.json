@@ -1,0 +1,65 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "axis=false,offset=0": {
+      "model": "tfcthings:rope_bridge/rope_bridge"
+    },
+    "axis=false,offset=1": {
+      "model": "tfcthings:rope_bridge/rope_bridge_1"
+    },
+    "axis=false,offset=2": {
+      "model": "tfcthings:rope_bridge/rope_bridge_2"
+    },
+    "axis=false,offset=3": {
+      "model": "tfcthings:rope_bridge/rope_bridge_3"
+    },
+    "axis=false,offset=4": {
+      "model": "tfcthings:rope_bridge/rope_bridge_4"
+    },
+    "axis=false,offset=5": {
+      "model": "tfcthings:rope_bridge/rope_bridge_5"
+    },
+    "axis=false,offset=6": {
+      "model": "tfcthings:rope_bridge/rope_bridge_6"
+    },
+    "axis=false,offset=7": {
+      "model": "tfcthings:rope_bridge/rope_bridge_7"
+    },
+    "axis=true,offset=0": {
+      "model": "tfcthings:rope_bridge/rope_bridge",
+      "y": 90
+    },
+    "axis=true,offset=1": {
+      "model": "tfcthings:rope_bridge/rope_bridge_1",
+      "y": 90
+    },
+    "axis=true,offset=2": {
+      "model": "tfcthings:rope_bridge/rope_bridge_2",
+      "y": 90
+    },
+    "axis=true,offset=3": {
+      "model": "tfcthings:rope_bridge/rope_bridge_3",
+      "y": 90
+    },
+    "axis=true,offset=4": {
+      "model": "tfcthings:rope_bridge/rope_bridge_4",
+      "y": 90
+    },
+    "axis=true,offset=5": {
+      "model": "tfcthings:rope_bridge/rope_bridge_5",
+      "y": 90
+    },
+    "axis=true,offset=6": {
+      "model": "tfcthings:rope_bridge/rope_bridge_6",
+      "y": 90
+    },
+    "axis=true,offset=7": {
+      "model": "tfcthings:rope_bridge/rope_bridge_7",
+      "y": 90
+    },
+    "inventory": {
+      "model": "tfcthings:rope_bridge/rope_bridge",
+      "transform": "forge:default-block"
+    }
+  }
+}

@@ -94,8 +94,7 @@ public class BlockBearTrap extends Block implements IItemSize {
         return ((EnumFacing)state.getValue(FACING)).getHorizontalIndex() + ((Boolean)state.getValue(BURIED) ? 4 : 0) + ((Boolean)state.getValue(CLOSED) ? 8 : 0);
     }
 
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
     }
 
@@ -109,13 +108,11 @@ public class BlockBearTrap extends Block implements IItemSize {
         IBlockState iblockstate = worldIn.getBlockState(pos.down());
         Block block = iblockstate.getBlock();
 
-        if (block != Blocks.BARRIER)
-        {
+        if (block != Blocks.BARRIER) {
             BlockFaceShape blockfaceshape = iblockstate.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP);
             return blockfaceshape == BlockFaceShape.SOLID || iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.down());
         }
-        else
-        {
+        else {
             return false;
         }
     }

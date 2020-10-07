@@ -1,15 +1,9 @@
 package lyeoj.tfcthings.init;
 
 import lyeoj.tfcthings.entity.living.EntityPigvil;
-import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
-import lyeoj.tfcthings.entity.projectile.EntityThrownHookJavelin;
-import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
-import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
+import lyeoj.tfcthings.entity.projectile.*;
 import lyeoj.tfcthings.main.TFCThings;
-import lyeoj.tfcthings.renderer.RenderPigvil;
-import lyeoj.tfcthings.renderer.RenderSlingStone;
-import lyeoj.tfcthings.renderer.RenderThrownRopeJavelin;
-import lyeoj.tfcthings.renderer.RenderUnknownProjectile;
+import lyeoj.tfcthings.renderer.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -24,7 +18,8 @@ public class TFCThingsEntities {
             new NonMobEntityInfo("slingstone", EntitySlingStone.class, 0, 64, 1, true),
             new NonMobEntityInfo("unknownprojectile", EntityUnknownProjectile.class, 2, 64, 1, true),
             new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true),
-            new NonMobEntityInfo("hookjavelinthrown", EntityThrownHookJavelin.class, 4, 64, 2, true)
+            new NonMobEntityInfo("hookjavelinthrown", EntityThrownHookJavelin.class, 4, 64, 2, true),
+            new NonMobEntityInfo("ropebridgethrown", EntityRopeBridgeThrown.class, 5, 64, 2, true),
     };
 
     public static class MobInfo {
@@ -88,6 +83,7 @@ public class TFCThingsEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityUnknownProjectile.class, RenderUnknownProjectile::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThrownRopeJavelin.class, RenderThrownRopeJavelin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThrownHookJavelin.class, RenderThrownRopeJavelin::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRopeBridgeThrown.class, RenderThrownRopeBridge::new);
     }
 
 }

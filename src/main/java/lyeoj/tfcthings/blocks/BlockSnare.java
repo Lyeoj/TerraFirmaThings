@@ -10,6 +10,7 @@ import net.dries007.tfc.objects.entity.animal.*;
 import net.dries007.tfc.objects.items.ItemSeedsTFC;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -50,6 +51,7 @@ public class BlockSnare extends Block implements IItemSize {
         this.setTranslationKey("snare");
         this.setRegistryName("snare");
         this.setTickRandomly(true);
+        this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(CreativeTabsTFC.CT_MISC);
         this.setHardness(1.5f);
         this.setHarvestLevel("axe", 0);

@@ -109,7 +109,7 @@ public class ItemSling extends Item implements IItemSize, ItemOreDict {
                 if (!worldIn.isRemote) {
                     shoot(worldIn, entityLiving, power, velocity, inaccuracy, itemStack);
                 }
-                worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
                 itemStack.shrink(1);
                 if(itemStack.isEmpty()) {
@@ -121,7 +121,7 @@ public class ItemSling extends Item implements IItemSize, ItemOreDict {
                 if (!worldIn.isRemote) {
                     shoot(worldIn, entityLiving, power, velocity, inaccuracy, itemStack);
                 }
-                worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+                worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
             }
         }
     }

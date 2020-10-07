@@ -32,6 +32,7 @@ public class TFCThingsItems {
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
     public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot();
     public static final Item ITEM_METAL_BRACING = new ItemMetalBracing();
+    public static final Item ITEM_ROPE_BRIDGE = new ItemRopeBridge();
 
     public static final Item ITEM_PROSPECTORS_HAMMER_MOLD_UNFIRED = new ItemPottery().setRegistryName("mold/unfired/prospectors_hammer_head").setTranslationKey("mold.unfired.prospectors_hammer_head");
     public static final Item ITEM_PROSPECTORS_HAMMER_MOLD_FIRED = new ItemTFCThingsMold("prospectors_hammer_head");
@@ -119,6 +120,7 @@ public class TFCThingsItems {
             ITEM_BEAR_TRAP_HALF,
             ITEM_PIG_IRON_CARROT,
             ITEM_METAL_BRACING,
+            ITEM_ROPE_BRIDGE,
             ITEM_PROSPECTORS_HAMMER_MOLD_UNFIRED,
             ITEM_PROSPECTORS_HAMMER_BISMUTH_BRONZE,
             ITEM_PROSPECTORS_HAMMER_BLACK_BRONZE,
@@ -187,6 +189,8 @@ public class TFCThingsItems {
             TFCThingsBlocks.BEAR_TRAP_ITEM,
             TFCThingsBlocks.PIGVIL_ITEM,
             TFCThingsBlocks.METAL_SUPPORT_ITEM,
-            TFCThingsBlocks.SNARE_ITEM
+            TFCThingsBlocks.SNARE_ITEM,
+            TFCThingsBlocks.ROPE_BRIDGE_ITEM,
+            TFCThingsBlocks.ROPE_LADDER_ITEM
     };
 }

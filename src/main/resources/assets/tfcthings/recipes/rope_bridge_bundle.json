@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "LLL",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "tfc:crop/product/jute_fiber"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    }
+  },
+  "result": {
+    "item": "tfcthings:rope_bridge_bundle",
+    "count": 8
+  }
+}
