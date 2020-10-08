@@ -105,13 +105,13 @@ public class BlockRopeLadder extends Block {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
         BlockPos nextPos = pos;
         for(int i = 0; i < 32; i++) {
+            if(stack.getCount() <= 1) {
+                break;
+            }
             nextPos = nextPos.down();
             if(worldIn.getBlockState(nextPos).getBlock().isReplaceable(worldIn, nextPos)) {
                 worldIn.setBlockState(nextPos, TFCThingsBlocks.ROPE_LADDER_BLOCK.getDefaultState().withProperty(FACING, state.getValue(FACING)));
                 stack.shrink(1);
-                if(stack.getCount() == 0) {
-                    break;
-                }
             }
         }
     }
