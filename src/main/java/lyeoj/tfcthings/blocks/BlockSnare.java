@@ -136,13 +136,12 @@ public class BlockSnare extends Block implements IItemSize {
 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(!state.getValue(BAITED)) {
-            if(playerIn.getHeldItem(hand).getItem() instanceof ItemSeedsTFC && !worldIn.isRemote) {
-                ItemStack heldBait = playerIn.getHeldItem(hand);
-                ItemStack trapBait = new ItemStack(heldBait.getItem(), 1);
+            ItemStack stack = playerIn.getHeldItem(hand);
+            if((stack.getItem() instanceof ItemSeedsTFC || isFood(stack)) && !worldIn.isRemote) {
                 if(!playerIn.isCreative()) {
-                    heldBait.shrink(1);
-                    if(heldBait.isEmpty()) {
-                        playerIn.inventory.deleteStack(heldBait);
+                    stack.shrink(1);
+                    if(stack.isEmpty()) {
+                        playerIn.inventory.deleteStack(stack);
                     }
                 }
                 state = state.withProperty(BAITED, Boolean.valueOf(true));
@@ -150,6 +149,11 @@ public class BlockSnare extends Block implements IItemSize {
             }
         }
         return true;
+    }
+
+    private boolean isFood(ItemStack stack) {
+        AnimalFood food = AnimalFood.get(EntityChickenTFC.class);
+        return food != null && food.isFood(stack);
     }
 
     @Override

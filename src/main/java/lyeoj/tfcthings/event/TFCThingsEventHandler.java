@@ -67,9 +67,17 @@ public class TFCThingsEventHandler {
                 }
                 if(weapon.hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
                     ISharpness capability = getSharpnessCapability(weapon);
-                    if(capability != null && capability.getCharges() > 0 && event.getAmount() > 2.0f) {
-                        event.setAmount(event.getAmount() + ConfigTFCThings.Items.WHETSTONE.damageBoost);
-                        capability.removeCharge();
+                    if(capability != null && event.getAmount() > 2.0f) {
+                        if(capability.getCharges() > 256) {
+                            event.setAmount(event.getAmount() + (ConfigTFCThings.Items.WHETSTONE.damageBoost * 3));
+                            capability.removeCharge();
+                        } else if(capability.getCharges() > 64) {
+                            event.setAmount(event.getAmount() + (ConfigTFCThings.Items.WHETSTONE.damageBoost * 2));
+                            capability.removeCharge();
+                        } else if(capability.getCharges() > 0) {
+                            event.setAmount(event.getAmount() + ConfigTFCThings.Items.WHETSTONE.damageBoost);
+                            capability.removeCharge();
+                        }
                     }
                 }
             }
@@ -81,12 +89,18 @@ public class TFCThingsEventHandler {
         if(event.getEntityPlayer().getHeldItemMainhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
             ISharpness capability = getSharpnessCapability(event.getEntityPlayer().getHeldItemMainhand());
             Item item = event.getEntityPlayer().getHeldItemMainhand().getItem();
-            if(capability != null && capability.getCharges() > 0) {
+            if(capability != null) {
                 if(item.canHarvestBlock(event.getState())) {
                     if(event.getState().getBlock() instanceof BlockLogTFC && !event.getState().getValue(BlockLogTFC.PLACED)) {
                         return;
                     }
-                    event.setNewSpeed(event.getNewSpeed() + ConfigTFCThings.Items.WHETSTONE.bonusSpeed);
+                    if(capability.getCharges() > 256) {
+                        event.setNewSpeed(event.getNewSpeed() + ConfigTFCThings.Items.WHETSTONE.bonusSpeed + 4);
+                    } else if(capability.getCharges() > 64) {
+                        event.setNewSpeed(event.getNewSpeed() + ConfigTFCThings.Items.WHETSTONE.bonusSpeed + 2);
+                    } else if(capability.getCharges() > 0) {
+                        event.setNewSpeed(event.getNewSpeed() + ConfigTFCThings.Items.WHETSTONE.bonusSpeed);
+                    }
                 }
             }
         }

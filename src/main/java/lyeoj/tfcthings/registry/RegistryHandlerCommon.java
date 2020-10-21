@@ -6,6 +6,7 @@ import lyeoj.tfcthings.init.TFCThingsSoundEvents;
 import lyeoj.tfcthings.items.ItemOreDict;
 import lyeoj.tfcthings.main.TFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
+import lyeoj.tfcthings.tileentity.TileEntityGemDisplay;
 import net.dries007.tfc.api.recipes.WeldingRecipe;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
@@ -56,6 +57,7 @@ public class RegistryHandlerCommon {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(TFCThingsBlocks.BLOCKLIST);
         GameRegistry.registerTileEntity(TileEntityBearTrap.class, TFCThingsBlocks.BEAR_TRAP.getRegistryName());
+        GameRegistry.registerTileEntity(TileEntityGemDisplay.class, TFCThingsBlocks.GEM_DISPLAY_ANDESITE.getRegistryName());
     }
 
     @SubscribeEvent

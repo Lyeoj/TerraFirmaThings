@@ -10,18 +10,18 @@
       "scale": [ 0.8, 0.8, 0.8 ]
     },
     "thirdperson_lefthand": {
-      "rotation": [ 0, 0, 0 ],
-      "translation": [ -6, 4, 0 ],
+      "rotation": [ 0, -180, 0 ],
+      "translation": [ 6, 4, 0 ],
       "scale": [ 0.8, 0.8, 0.8 ]
     },
     "firstperson_righthand": {
       "rotation": [ 0, 180, 0 ],
-      "translation": [ -6, 3.2, 0 ],
+      "translation": [ 3, 4, -4 ],
       "scale": [ 0.8, 0.8, 0.8 ]
     },
     "firstperson_lefthand": {
-      "rotation": [ 0, -180, 0 ],
-      "translation": [ 6, 3.2, 0 ],
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ 3, 4, -4 ],
       "scale": [ 0.8, 0.8, 0.8 ]
     }
   }

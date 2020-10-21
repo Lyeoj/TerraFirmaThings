@@ -33,7 +33,7 @@ public class BlockRopeLadder extends Block {
         this.setTranslationKey("rope_ladder");
         this.setRegistryName("rope_ladder");
         this.setSoundType(SoundType.WOOD);
-        this.setHardness(1.0f);
+        this.setHardness(0.5f);
         this.setHarvestLevel("axe", 0);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 

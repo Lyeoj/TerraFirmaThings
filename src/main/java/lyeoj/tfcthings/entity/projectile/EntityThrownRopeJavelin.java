@@ -94,10 +94,10 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
                 this.setNoGravity(false);
                 this.performAdditionalUpdates();
             }
-            if(this.shouldRetract(getWeapon(), this.world)) {
-                this.onEntityUpdate();
-                return;
-            }
+        }
+        if(this.shouldRetract(getWeapon(), this.world)) {
+            this.onEntityUpdate();
+            return;
         }
 
         super.onUpdate();
@@ -206,7 +206,7 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
 
     private boolean shouldRetract(ItemStack stack, World world)
     {
-        if(stack.getItem() instanceof ItemRopeJavelin) {
+        if(stack != null && stack.getItem() instanceof ItemRopeJavelin) {
             ItemRopeJavelin javelin = (ItemRopeJavelin)getWeapon().getItem();
             if(this.getThrower() instanceof EntityLivingBase) {
                 EntityLivingBase thrower = (EntityLivingBase)getThrower();
@@ -231,6 +231,9 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
                 javelin.retractJavelin(stack, world);
                 return true;
             }
+        }
+        if(!world.isRemote) {
+            this.setDead();
         }
         return true;
     }

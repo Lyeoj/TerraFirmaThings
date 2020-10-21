@@ -29,7 +29,7 @@ public class BlockRopeBridge extends Block {
         this.setTranslationKey("rope_bridge");
         this.setRegistryName("rope_bridge");
         this.setSoundType(SoundType.WOOD);
-        this.setHardness(1.0f);
+        this.setHardness(0.5f);
         this.setHarvestLevel("axe", 0);
         this.setDefaultState(this.blockState.getBaseState().withProperty(OFFSET, Integer.valueOf(0)).withProperty(AXIS, Boolean.valueOf(false)));
     }

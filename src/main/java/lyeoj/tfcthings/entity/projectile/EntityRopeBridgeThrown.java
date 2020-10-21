@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 import lyeoj.tfcthings.blocks.BlockRopeBridge;
 import lyeoj.tfcthings.init.TFCThingsBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -75,7 +77,7 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                     int length = axis ? Math.abs(zDif) : Math.abs(xDif);
                     boolean diagonal = false;
                     int yDif = start.getY() - end.getY();
-                    if(length > bridges.getCount()) {
+                    if(length - 1 > bridges.getCount()) {
                         getThrower().sendMessage(new TextComponentTranslation("tfcthings.tooltip.rope_bridge_too_long", new Object[0]));
                     } else if(((length - 2) / 8) < Math.abs(yDif)) {
                         getThrower().sendMessage(new TextComponentTranslation("tfcthings.tooltip.rope_bridge_too_steep", new Object[0]));
@@ -83,9 +85,9 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                         if(axis) {
                             if(Math.abs(xDif) < 3) {
                                 BlockPos tempEnd = new BlockPos(start.getX(), end.getY(), end.getZ());
-                                if(world.getBlockState(tempEnd.down()).getBlock().isReplaceable(world, tempEnd.down())) {
+                                if(shouldReplaceBlock(tempEnd.down(), world)) {
                                     BlockPos tempStart = new BlockPos(end.getX(), start.getY(), start.getZ());
-                                    if(world.getBlockState(tempStart.down()).getBlock().isReplaceable(world, tempStart.down())) {
+                                    if(shouldReplaceBlock(tempStart.down(), world)) {
                                         getThrower().sendMessage(new TextComponentTranslation("tfcthings.tooltip.rope_bridge_bad_connection", new Object[0]));
                                         diagonal = true;
                                     } else {
@@ -102,9 +104,9 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                         } else {
                             if(Math.abs(zDif) < 3) {
                                 BlockPos tempEnd = new BlockPos(end.getX(), end.getY(), start.getZ());
-                                if(world.getBlockState(tempEnd.down()).getBlock().isReplaceable(world, tempEnd.down())) {
+                                if(shouldReplaceBlock(tempEnd.down(), world)) {
                                     BlockPos tempStart = new BlockPos(start.getX(), start.getY(), end.getZ());
-                                    if(world.getBlockState(tempStart.down()).getBlock().isReplaceable(world, tempStart.down())) {
+                                    if(shouldReplaceBlock(tempStart.down(), world)) {
                                         getThrower().sendMessage(new TextComponentTranslation("tfcthings.tooltip.rope_bridge_bad_connection", new Object[0]));
                                         diagonal = true;
                                     } else {
@@ -152,21 +154,31 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
         int startHeight = 0;
         int endHeight = 0;
         int startDif = yDif > 0 ? yDif + 1 : 1;
-        int endDif = yDif < 0 ? (yDif * -1) + 1 : 1;
+        int endDif = yDif < 0 ? Math.abs(yDif) + 1 : 1;
         int remainingPieces = length;
         while(remainingPieces > 1) {
             if(startDif == endDif) {
-                if(world.getBlockState(start).getBlock().isReplaceable(world, start)) {
+                if(shouldReplaceBlock(start, world)) {
                     bridgePath.add(new BridgeInfo(start, startHeight));
                     start = moveInDirection(direction, start, false);
                     if(startHeight == 0) {
-                        if(startDif > 0 && world.getBlockState(start.down()).getBlock().isReplaceable(world, start.down())) {
+                        if(startDif > 0 && shouldReplaceBlock(start.down(), world)) {
                             startHeight = 7;
                             start = start.down();
                             startDif--;
+                        } else if(startHeight < endHeight) {
+                            if(endHeight - startHeight >= remainingPieces / 2) {
+                                startHeight++;
+                            }
                         }
                     } else {
-                        startHeight--;
+                        if(startHeight < endHeight) {
+                            if(endHeight - startHeight >= remainingPieces / 2) {
+                                startHeight++;
+                            }
+                        } else {
+                            startHeight--;
+                        }
                     }
                     remainingPieces--;
                 } else {
@@ -174,20 +186,30 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                     return;
                 }
                 if(remainingPieces > 0) {
-                    if(this.world.getBlockState(end).getBlock().isReplaceable(world, end)) {
+                    if(shouldReplaceBlock(end, world)) {
                         if(remainingPieces == 1 && endHeight < 7) {
                             endHeight++;
                         }
                         bridgePath.add(new BridgeInfo(end, endHeight));
                         end = moveInDirection(direction, end, true);
                         if(endHeight == 0) {
-                            if(endDif > 0 && world.getBlockState(end.down()).getBlock().isReplaceable(world, end.down())) {
+                            if(endDif > 0 && shouldReplaceBlock(end.down(), world)) {
                                 endHeight = 7;
                                 end = end.down();
                                 endDif--;
+                            } else if(endHeight < startHeight) {
+                                if(startHeight - endHeight >= remainingPieces / 2) {
+                                    endHeight++;
+                                }
                             }
                         } else {
-                            endHeight--;
+                            if(endHeight < startHeight) {
+                                if(startHeight - endHeight >= remainingPieces / 2) {
+                                    endHeight++;
+                                }
+                            } else {
+                                endHeight--;
+                            }
                         }
                         remainingPieces--;
                     } else {
@@ -196,14 +218,17 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                     }
                 }
             } else if(startDif > endDif) {
-                if(world.getBlockState(start).getBlock().isReplaceable(world, start)) {
+                if(shouldReplaceBlock(start, world)) {
                     bridgePath.add(new BridgeInfo(start, startHeight));
                     start = moveInDirection(direction, start, false);
                     if(startHeight == 0) {
-                        if(startDif > 0 && world.getBlockState(start.down()).getBlock().isReplaceable(world, start.down())) {
+                        if(startDif > 0 && shouldReplaceBlock(start.down(), world)) {
                             startHeight = 7;
                             start = start.down();
                             startDif--;
+                        } else if(((remainingPieces - 1) / 8) < startDif - 1){
+                            getThrower().sendMessage(new TextComponentTranslation("tfcthings.tooltip.rope_bridge_too_steep", new Object[0]));
+                            return;
                         }
                     } else {
                         startHeight--;
@@ -214,14 +239,17 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                     return;
                 }
             } else {
-                if(this.world.getBlockState(end).getBlock().isReplaceable(world, end)) {
+                if(shouldReplaceBlock(end, world)) {
                     bridgePath.add(new BridgeInfo(end, endHeight));
                     end = moveInDirection(direction, end, true);
                     if(endHeight == 0) {
-                        if(endDif > 0 && world.getBlockState(end.down()).getBlock().isReplaceable(world, end.down())) {
+                        if(endDif > 0 && shouldReplaceBlock(end.down(), world)) {
                             endHeight = 7;
                             end = end.down();
                             endDif--;
+                        } else if(((remainingPieces - 1) / 8) < endDif - 1){
+                            getThrower().sendMessage(new TextComponentTranslation("tfcthings.tooltip.rope_bridge_too_steep", new Object[0]));
+                            return;
                         }
                     } else {
                         endHeight--;
@@ -273,6 +301,15 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
                 }
         }
         return value;
+    }
+
+    private boolean shouldReplaceBlock(BlockPos pos, World world) {
+        IBlockState iblockstate = world.getBlockState(pos);
+        Material material = iblockstate.getMaterial();
+        if(material == Material.LAVA || material == Material.WATER) {
+            return false;
+        }
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos);
     }
 
     private static class BridgeInfo {

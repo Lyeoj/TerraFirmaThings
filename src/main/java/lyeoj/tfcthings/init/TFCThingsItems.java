@@ -188,9 +188,29 @@ public class TFCThingsItems {
 
             TFCThingsBlocks.BEAR_TRAP_ITEM,
             TFCThingsBlocks.PIGVIL_ITEM,
-            TFCThingsBlocks.METAL_SUPPORT_ITEM,
             TFCThingsBlocks.SNARE_ITEM,
             TFCThingsBlocks.ROPE_BRIDGE_ITEM,
-            TFCThingsBlocks.ROPE_LADDER_ITEM
+            TFCThingsBlocks.ROPE_LADDER_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_ANDESITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_BASALT_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_CHALK_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_CHERT_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_CLAYSTONE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_CONGLOMERATE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_DACITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_DIORITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_DOLOMITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_GABBRO_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_GNEISS_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_GRANITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_LIMESTONE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_MARBLE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_PHYLLITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_QUARTZITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_RHYOLITE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_ROCKSALT_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_SCHIST_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_SHALE_ITEM,
+            TFCThingsBlocks.GEM_DISPLAY_SLATE_ITEM
     };
 }

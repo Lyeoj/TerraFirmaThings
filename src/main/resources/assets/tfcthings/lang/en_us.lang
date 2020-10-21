@@ -63,10 +63,31 @@ item.prospectors_hammer_head_wrought_iron.name=Wrought Iron Prospectors Hammer H
 
 tile.bear_trap.name=Bear Trap
 tile.pigvil.name=Pigvil
-tile.metal_support.name=Reinforced Support Beam [Unused]
 tile.snare.name=Snare
 tile.rope_bridge.name=Rope Bridge
 tile.rope_ladder.name=Rope Ladder
+
+tile.gem_display_andesite.name=Andesite Gem Display
+tile.gem_display_basalt.name=Basalt Gem Display
+tile.gem_display_chalk.name=Chalk Gem Display
+tile.gem_display_chert.name=Chert Gem Display
+tile.gem_display_claystone.name=Claystone Gem Display
+tile.gem_display_conglomerate.name=Conglomerate Gem Display
+tile.gem_display_dacite.name=Dacite Gem Display
+tile.gem_display_diorite.name=Diorite Gem Display
+tile.gem_display_dolomite.name=Dolomite Gem Display
+tile.gem_display_gabbro.name=Gabbro Gem Display
+tile.gem_display_gneiss.name=Gneiss Gem Display
+tile.gem_display_granite.name=Granite Gem Display
+tile.gem_display_limestone.name=Limestone Gem Display
+tile.gem_display_marble.name=Marble Gem Display
+tile.gem_display_phyllite.name=Phyllite Gem Display
+tile.gem_display_quartzite.name=Quartzite Gem Display
+tile.gem_display_rhyolite.name=Rhyolite Gem Display
+tile.gem_display_rocksalt.name=Rocksalt Gem Display
+tile.gem_display_schist.name=Schist Gem Display
+tile.gem_display_shale.name=Shale Gem Display
+tile.gem_display_slate.name=Slate Gem Display
 
 entity.pigvil.name=Pigvil
 

@@ -87,7 +87,7 @@ public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOr
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer playerIn = (EntityPlayer)entityLiving;
-            if(timeLeft < 980 && playerIn.getHeldItemOffhand() != null && playerIn.getHeldItemOffhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
+            if(timeLeft < 985 && playerIn.getHeldItemOffhand() != null && playerIn.getHeldItemOffhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
                 ItemStack item = playerIn.getHeldItemOffhand();
                 ISharpness capability = TFCThingsEventHandler.getSharpnessCapability(item);
                 if(capability != null && capability.getCharges() < getMaxCharges()) {
