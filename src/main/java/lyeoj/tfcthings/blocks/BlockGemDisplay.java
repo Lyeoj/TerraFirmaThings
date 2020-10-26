@@ -116,4 +116,15 @@ public class BlockGemDisplay extends Block implements IItemSize {
         super.breakBlock(worldIn, pos, state);
     }
 
+    @Override
+    public boolean hasComparatorInputOverride(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos){
+        TileEntityGemDisplay te = (TileEntityGemDisplay) world.getTileEntity(pos);
+        return (int)Math.floor(15 * ((double)te.getSize() / (double)te.getMaxStackSize()));
+    }
+
 }

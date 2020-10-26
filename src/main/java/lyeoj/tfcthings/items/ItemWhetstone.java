@@ -12,6 +12,7 @@ import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.types.DefaultMetals;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -121,7 +122,7 @@ public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOr
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("Use with a metal tool in your off-hand");
+        tooltip.add(I18n.format("tfcthings.tooltip.whetstone", new Object[0]));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 

@@ -10,6 +10,7 @@ import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.CreativeTabsTFC;
 import net.dries007.tfc.objects.items.metal.ItemIngot;
 import net.dries007.tfc.objects.items.rock.ItemRock;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,7 +33,10 @@ import java.util.List;
 
 public class ItemSling extends Item implements IItemSize, ItemOreDict {
 
+    private int tier;
+
     public ItemSling(int tier) {
+        this.tier = tier;
         if(tier < 1) {
             this.setMaxDamage(64);
         } else {
@@ -181,7 +186,11 @@ public class ItemSling extends Item implements IItemSize, ItemOreDict {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add("The bigger they are...");
+        if(tier < 1) {
+            tooltip.add(I18n.format("tfcthings.tooltip.sling.message1", new Object[0]));
+        } else {
+            tooltip.add(I18n.format("tfcthings.tooltip.sling.message2", new Object[0]));
+        }
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 

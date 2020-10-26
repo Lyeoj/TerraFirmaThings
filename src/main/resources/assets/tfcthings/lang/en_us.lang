@@ -91,7 +91,13 @@ tile.gem_display_slate.name=Slate Gem Display
 
 entity.pigvil.name=Pigvil
 
+tfcthings.tooltip.whetstone=Use with a metal tool in your off-hand
+tfcthings.tooltip.sharpness=%sSharp for %s uses
 tfcthings.tooltip.maximum_sharpness=This item can't get any sharper right now
+
+tfcthings.tooltip.crown.gem=Gem: %s
+tfcthings.tooltip.crown.gem.empty=Gem: Empty
+tfcthings.tooltip.crown.missing=Something seems to be missing from this...
 
 tfcthings.tooltip.prohammer_safe=This block seems safe to mine
 tfcthings.tooltip.prohammer_unsafe=This block seems somewhat unstable...
@@ -109,6 +115,9 @@ tfcthings.tooltip.rope_bridge_too_steep=This bridge is too steep! Try a longer b
 tfcthings.tooltip.rope_bridge_interrupted=The path for the bridge is not clear!
 tfcthings.tooltip.rope_bridge_diagonal=You cannot build a rope bridge on a diagonal!
 tfcthings.tooltip.rope_bridge_bad_connection=This bridge will not connect to terrain!
+
+tfcthings.tooltip.sling.message1=The bigger they are...
+tfcthings.tooltip.sling.message2=...the harder they fall
 
 config.tfcthings.items=Item Settings
 config.tfcthings.items.tooltip=Configure Settings For TFCThings Items

@@ -9,11 +9,13 @@ import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockToolRack;
 import net.dries007.tfc.objects.entity.projectile.EntityThrownWeapon;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -26,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import javax.xml.soap.Text;
 
 @Mod.EventBusSubscriber(modid = TFCThings.MODID)
 public class TFCThingsEventHandler {
@@ -36,7 +39,8 @@ public class TFCThingsEventHandler {
         if(event.getItemStack().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
             ISharpness capability = getSharpnessCapability(event.getItemStack());
             if(capability != null && capability.getCharges() > 0) {
-                event.getToolTip().add("Sharp for " + capability.getCharges() + " uses");
+                TextFormatting color = capability.getCharges() > 64 ? capability.getCharges() > 256 ? TextFormatting.DARK_PURPLE : TextFormatting.BLUE : TextFormatting.DARK_GREEN;
+                event.getToolTip().add(I18n.format("tfcthings.tooltip.sharpness", color, "" + capability.getCharges()));
             }
         }
     }

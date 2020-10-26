@@ -78,7 +78,7 @@ public class TileEntityGemDisplay extends TEBase {
 
     public boolean onRightClick(EntityPlayer player, EnumHand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
-        if(heldItem.isEmpty()) {
+        if(heldItem.isEmpty() && size > 0) {
             ItemHandlerHelper.giveItemToPlayer(player, items.get(size - 1));
             this.items.set(size - 1, ItemStack.EMPTY);
             size--;
@@ -115,10 +115,8 @@ public class TileEntityGemDisplay extends TEBase {
                 return 3;
             case FLAWLESS:
                 return 2;
-            case EXQUISITE:
-                return 1;
             default:
-                return 0;
+                return 1;
         }
     }
 
