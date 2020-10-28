@@ -67,7 +67,12 @@ public class EntityRopeBridgeThrown extends EntityThrowable {
     @Override
     protected void onImpact(RayTraceResult result) {
         if (!this.world.isRemote) {
-            if(world.getBlockState(result.getBlockPos()).getCollisionBoundingBox(world, result.getBlockPos()) != Block.NULL_AABB) {
+            if(result.getBlockPos() == null) {
+                this.world.setEntityState(this, (byte)3);
+                this.setDead();
+                return;
+            }
+            if(result.getBlockPos() != null && world.getBlockState(result.getBlockPos()).getCollisionBoundingBox(world, result.getBlockPos()) != Block.NULL_AABB) {
                 if(getThrower() != null) {
                     BlockPos end = result.getBlockPos().up();
                     BlockPos start = getThrower().getPosition();

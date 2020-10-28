@@ -90,6 +90,12 @@ public class RegistryHandlerCommon {
                 new ItemStack(TFCThingsItems.ITEM_BEAR_TRAP_HALF), Metal.STEEL.getTier(), GENERAL, HIT_LAST, DRAW_SECOND_LAST, SHRINK_THIRD_LAST));
         event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"pig_iron_carrot"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.PIG_IRON,INGOT))),
                 new ItemStack(TFCThingsItems.ITEM_PIG_IRON_CARROT), Metal.PIG_IRON.getTier(), GENERAL, PUNCH_LAST, HIT_NOT_LAST, BEND_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"black_steel_carrot"), IIngredient.of(new ItemStack(ItemMetal.get(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL),INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_BLACK_STEEL_CARROT), TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL).getTier(), GENERAL, PUNCH_LAST, HIT_NOT_LAST, BEND_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"blue_steel_carrot"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.BLUE_STEEL,INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_BLUE_STEEL_CARROT), Metal.BLUE_STEEL.getTier(), GENERAL, PUNCH_LAST, HIT_NOT_LAST, BEND_NOT_LAST));
+        event.getRegistry().register(new AnvilRecipe(new ResourceLocation(TFCThings.MODID,"red_steel_carrot"), IIngredient.of(new ItemStack(ItemMetal.get(Metal.RED_STEEL,INGOT))),
+                new ItemStack(TFCThingsItems.ITEM_RED_STEEL_CARROT), Metal.RED_STEEL.getTier(), GENERAL, PUNCH_LAST, HIT_NOT_LAST, BEND_NOT_LAST));
         event.getRegistry().register(new AnvilRecipe(
                 new ResourceLocation(TFCThings.MODID + ":honing_steel_head"),
                 IIngredient.of(OreDictionaryHelper.toString(new Object[]{"ingot", "double", DefaultMetals.BLACK_STEEL.getPath()})),

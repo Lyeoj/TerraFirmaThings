@@ -77,7 +77,7 @@ public class BlockRopeLadder extends Block {
                     return this.getDefaultState().withProperty(FACING, enumfacing);
                 }
             }
-            return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
+            return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
         }
     }
 

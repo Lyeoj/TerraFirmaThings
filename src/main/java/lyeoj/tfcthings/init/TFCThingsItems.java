@@ -31,7 +31,10 @@ public class TFCThingsItems {
     public static final Item ITEM_SLING = new ItemSling(0).setTranslationKey("sling").setRegistryName("sling");;
     public static final Item ITEM_SLING_METAL = new ItemSling(1).setTranslationKey("sling_metal").setRegistryName("sling_metal");
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
-    public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot();
+    public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.PIG_IRON)).setRegistryName("pig_iron_carrot").setTranslationKey("pig_iron_carrot");
+    public static final Item ITEM_BLACK_STEEL_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL)).setRegistryName("black_steel_carrot").setTranslationKey("black_steel_carrot");
+    public static final Item ITEM_BLUE_STEEL_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.BLUE_STEEL)).setRegistryName("blue_steel_carrot").setTranslationKey("blue_steel_carrot");
+    public static final Item ITEM_RED_STEEL_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.RED_STEEL)).setRegistryName("red_steel_carrot").setTranslationKey("red_steel_carrot");
     public static final Item ITEM_METAL_BRACING = new ItemMetalBracing();
     public static final Item ITEM_ROPE_BRIDGE = new ItemRopeBridge();
 
@@ -120,6 +123,9 @@ public class TFCThingsItems {
             ITEM_SLING_METAL,
             ITEM_BEAR_TRAP_HALF,
             ITEM_PIG_IRON_CARROT,
+            ITEM_BLACK_STEEL_CARROT,
+            ITEM_BLUE_STEEL_CARROT,
+            ITEM_RED_STEEL_CARROT,
             ITEM_METAL_BRACING,
             ITEM_ROPE_BRIDGE,
             ITEM_PROSPECTORS_HAMMER_MOLD_UNFIRED,
@@ -189,6 +195,9 @@ public class TFCThingsItems {
 
             TFCThingsBlocks.BEAR_TRAP_ITEM,
             TFCThingsBlocks.PIGVIL_ITEM,
+            TFCThingsBlocks.PIGVIL_ITEM_BLACK,
+            TFCThingsBlocks.PIGVIL_ITEM_BLUE,
+            TFCThingsBlocks.PIGVIL_ITEM_RED,
             TFCThingsBlocks.SNARE_ITEM,
             TFCThingsBlocks.ROPE_BRIDGE_ITEM,
             TFCThingsBlocks.ROPE_LADDER_ITEM,

@@ -6,12 +6,17 @@ import lyeoj.tfcthings.init.TFCThingsItems;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.blocks.metal.BlockAnvilTFC;
 import net.dries007.tfc.objects.items.metal.ItemIngot;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -21,11 +26,26 @@ import java.util.Set;
 
 public class EntityPigvil extends EntityCreature {
 
-    private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(ItemIngot.get(Metal.PIG_IRON, Metal.ItemType.INGOT), TFCThingsItems.ITEM_PIG_IRON_CARROT);
+    private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(ItemIngot.get(Metal.PIG_IRON, Metal.ItemType.INGOT), TFCThingsItems.ITEM_PIG_IRON_CARROT, TFCThingsItems.ITEM_BLACK_STEEL_CARROT, TFCThingsItems.ITEM_RED_STEEL_CARROT, TFCThingsItems.ITEM_BLUE_STEEL_CARROT);
+
+    private static final DataParameter<String> ANVIL_TYPE = EntityDataManager.<String>createKey(EntityPigvil.class, DataSerializers.STRING);
 
     public EntityPigvil(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 0.9F);
+    }
+
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(ANVIL_TYPE, TFCThingsBlocks.PIGVIL_BLOCK.getRegistryName().toString());
+    }
+
+    public Block getAnvil() {
+        return Block.getBlockFromName(this.dataManager.get(ANVIL_TYPE));
+    }
+
+    public void setAnvil(Block anvil) {
+        this.dataManager.set(ANVIL_TYPE, anvil.getRegistryName().toString());
     }
 
     protected void initEntityAI() {
@@ -64,14 +84,27 @@ public class EntityPigvil extends EntityCreature {
         return SoundEvents.ENTITY_PIG_DEATH;
     }
 
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        compound.setString("anvil", getAnvil().getRegistryName().toString());
+        super.writeEntityToNBT(compound);
+    }
+
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        setAnvil(Block.getBlockFromName(compound.getString("anvil")));
+        super.readEntityFromNBT(compound);
+    }
+
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
+        if(player.isSneaking()) {
+            return super.processInteract(player, hand);
+        }
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.posY);
         int k = MathHelper.floor(this.posZ);
         BlockPos blockpos = new BlockPos(i, j, k);
         if (this.world.getBlockState(blockpos).getBlock().isReplaceable(world, blockpos)) {
             this.world.playSound(player, blockpos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            this.world.setBlockState(blockpos, TFCThingsBlocks.PIGVIL_BLOCK.getDefaultState().withProperty(BlockAnvilTFC.AXIS, this.getAdjustedHorizontalFacing()));
+            this.world.setBlockState(blockpos, getAnvil().getDefaultState().withProperty(BlockAnvilTFC.AXIS, this.getAdjustedHorizontalFacing()));
             this.setDead();
             return true;
         }

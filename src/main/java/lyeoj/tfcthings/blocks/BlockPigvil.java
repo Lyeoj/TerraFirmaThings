@@ -2,8 +2,11 @@ package lyeoj.tfcthings.blocks;
 
 import lyeoj.tfcthings.entity.living.EntityPigvil;
 import lyeoj.tfcthings.init.TFCThingsBlocks;
+import lyeoj.tfcthings.main.TFCThings;
+import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.blocks.metal.BlockAnvilTFC;
+import net.dries007.tfc.types.DefaultMetals;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -11,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -20,15 +24,25 @@ import javax.annotation.Nullable;
 
 public class BlockPigvil extends BlockAnvilTFC {
 
-    public BlockPigvil() {
-        super(Metal.STEEL);
-        this.setTranslationKey("pigvil");
-        this.setRegistryName("pigvil");
+    private final Metal metal;
+
+    public BlockPigvil(Metal metal, Metal fakeMetal) {
+        super(new Metal(new ResourceLocation(TFCThings.MODID + ":pigvil_" + metal), metal.getTier(), false, 10, 100, 0, null, null));
+        if(metal != TFCRegistries.METALS.getValue(DefaultMetals.STEEL)) {
+            System.out.println(metal);
+            this.setTranslationKey("pigvil_" + metal);
+            this.setRegistryName("pigvil_" + metal);
+        } else {
+            this.setTranslationKey("pigvil");
+            this.setRegistryName("pigvil");
+        }
+        this.metal = metal;
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.EAST));
     }
 
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
         EntityPigvil pigvil = new EntityPigvil(worldIn);
+        pigvil.setAnvil(this);
         pigvil.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), state.getValue(AXIS).getHorizontalAngle(), 0);
         worldIn.spawnEntity(pigvil);
     }
@@ -44,7 +58,7 @@ public class BlockPigvil extends BlockAnvilTFC {
     }
 
     public Metal getMetal() {
-        return Metal.STEEL;
+        return metal;
     }
 
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {

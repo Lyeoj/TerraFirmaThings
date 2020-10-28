@@ -1,0 +1,192 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "pigvil_head": "tfcthings:blocks/pigvil/pigvil_head_black",
+        "pigvil_body": "tfcthings:blocks/pigvil/pigvil_body_black",
+        "pigvil_bits": "tfcthings:blocks/pigvil/pigvil_bits_black",
+        "particle": "tfcthings:blocks/pigvil/pigvil_body_black"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Head",
+            "from": [ 4, 5, 2 ], 
+            "to": [ 12, 13, 10 ], 
+            "faces": {
+                "north": { "texture": "#pigvil_head", "uv": [ 0, 8, 8, 16 ] },
+                "east": { "texture": "#pigvil_head", "uv": [ 8, 8, 16, 16 ], "rotation": 180 },
+                "west": { "texture": "#pigvil_head", "uv": [ 8, 8, 16, 16 ] },
+                "up": { "texture": "#pigvil_head", "uv": [ 0, 0, 8, 8 ] },
+                "down": { "texture": "#pigvil_head", "uv": [ 8, 0, 16, 8 ] }
+            }
+        },
+        {
+            "name": "Nose",
+            "from": [ 6, 6, 0 ], 
+            "to": [ 10, 9, 2 ], 
+            "faces": {
+                "north": { "texture": "#pigvil_bits", "uv": [ 3, 13, 7, 16 ] },
+                "east": { "texture": "#pigvil_bits", "uv": [ 0, 13, 2, 16 ] },
+                "west": { "texture": "#pigvil_bits", "uv": [ 7, 13, 9, 16 ] },
+                "up": { "texture": "#pigvil_bits", "uv": [ 3, 11, 7, 13 ] },
+                "down": { "texture": "#pigvil_bits", "uv": [ 3, 11, 7, 13 ] }
+            }
+        },
+        {
+            "name": "Tusk1",
+            "from": [ 5, 9, 2 ], 
+            "to": [ 6, 11, 4 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "x", "angle": -22.5 },
+            "faces": {
+                "north": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] },
+                "east": { "texture": "#pigvil_bits", "uv": [ 1, 0, 3, 2 ] },
+                "south": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] },
+                "west": { "texture": "#pigvil_bits", "uv": [ 1, 0, 3, 2 ] },
+                "up": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] },
+                "down": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] }
+            }
+        },
+        {
+            "name": "Tusk2",
+            "from": [ 10, 9, 2 ], 
+            "to": [ 11, 11, 4 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "x", "angle": -22.5 },
+            "faces": {
+                "north": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] },
+                "east": { "texture": "#pigvil_bits", "uv": [ 1, 0, 3, 2 ] },
+                "south": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] },
+                "west": { "texture": "#pigvil_bits", "uv": [ 1, 0, 3, 2 ] },
+                "up": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] },
+                "down": { "texture": "#pigvil_bits", "uv": [ 1, 0, 2, 2 ] }
+            }
+        },
+        {
+            "name": "End2",
+            "from": [ 5, 7, 13 ], 
+            "to": [ 11, 13, 14 ], 
+            "faces": {
+                "east": { "texture": "#pigvil_body", "uv": [ 13, 0, 14, 6 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 10, 6, 16, 12 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 11, 2, 12, 8 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 9, 5, 15, 6 ] },
+                "down": { "texture": "#pigvil_body", "uv": [ 7, 11, 13, 12 ] }
+            }
+        },
+        {
+            "name": "End3",
+            "from": [ 6, 8, 14 ], 
+            "to": [ 10, 13, 15 ], 
+            "faces": {
+                "east": { "texture": "#pigvil_body", "uv": [ 13, 8, 14, 13 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 8, 7, 12, 12 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 13, 8, 14, 13 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 10, 11, 14, 12 ] },
+                "down": { "texture": "#pigvil_body", "uv": [ 6, 5, 10, 6 ] }
+            }
+        },
+        {
+            "name": "End4",
+            "from": [ 7, 9, 15 ], 
+            "to": [ 9, 13, 16 ], 
+            "faces": {
+                "east": { "texture": "#pigvil_body", "uv": [ 7, 4, 8, 8 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 4, 7, 6, 11 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 5, 6, 6, 10 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 6, 7, 8, 8 ] },
+                "down": { "texture": "#pigvil_body", "uv": [ 4, 7, 6, 8 ] }
+            }
+        },
+        {
+            "name": "End1",
+            "from": [ 4, 5, 10 ], 
+            "to": [ 12, 13, 13 ], 
+            "faces": {
+                "east": { "texture": "#pigvil_body", "uv": [ 11, 8, 14, 16 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 0, 0, 8, 8 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 13, 8, 16, 16 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 8, 7, 16, 10 ] },
+                "down": { "texture": "#pigvil_body", "uv": [ 8, 12, 16, 15 ] }
+            }
+        },
+        {
+            "name": "Base3",
+            "from": [ 7, 2, 4 ], 
+            "to": [ 9, 5, 11 ], 
+            "faces": {
+                "north": { "texture": "#pigvil_body", "uv": [ 0, 0, 2, 3 ] },
+                "east": { "texture": "#pigvil_body", "uv": [ 0, 0, 7, 3 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 0, 0, 2, 3 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 0, 0, 7, 3 ] }
+            }
+        },
+        {
+            "name": "Base4",
+            "from": [ 6, 4, 3 ], 
+            "to": [ 10, 5, 12 ], 
+            "faces": {
+                "north": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 1 ] },
+                "east": { "texture": "#pigvil_body", "uv": [ 0, 0, 9, 1 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 1 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 0, 0, 9, 1 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 9 ] },
+                "down": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 9 ] }
+            }
+        },
+        {
+            "name": "Base2",
+            "from": [ 6, 1, 3 ], 
+            "to": [ 10, 2, 12 ], 
+            "faces": {
+                "north": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 1 ] },
+                "east": { "texture": "#pigvil_body", "uv": [ 0, 0, 9, 1 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 1 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 0, 0, 9, 1 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 0, 0, 4, 9 ] }
+            }
+        },
+        {
+            "name": "Base1",
+            "from": [ 5, 0, 2 ], 
+            "to": [ 11, 1, 13 ], 
+            "faces": {
+                "north": { "texture": "#pigvil_body", "uv": [ 0, 0, 6, 1 ] },
+                "east": { "texture": "#pigvil_body", "uv": [ 0, 0, 11, 1 ] },
+                "south": { "texture": "#pigvil_body", "uv": [ 0, 0, 6, 1 ] },
+                "west": { "texture": "#pigvil_body", "uv": [ 0, 0, 11, 1 ] },
+                "up": { "texture": "#pigvil_body", "uv": [ 0, 0, 6, 11 ] },
+                "down": { "texture": "#pigvil_body", "uv": [ 0, 0, 6, 11 ] }
+            }
+        }
+    ]
+}
