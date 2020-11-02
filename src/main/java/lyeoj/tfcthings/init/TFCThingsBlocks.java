@@ -26,7 +26,7 @@ public class TFCThingsBlocks {
     public static final Block ROPE_LADDER_BLOCK = new BlockRopeLadder();
     public static final Item ROPE_LADDER_ITEM = new ItemBlock(ROPE_LADDER_BLOCK).setRegistryName(ROPE_LADDER_BLOCK.getRegistryName());
     public static final Block GRINDSTONE_BLOCK = new BlockGrindstone();
-    public static final Item GRINDSTONE_ITEM = new ItemBlock(GRINDSTONE_BLOCK).setRegistryName(GRINDSTONE_BLOCK.getRegistryName());
+    public static final Item GRINDSTONE_ITEM = new ItemBlock(GRINDSTONE_BLOCK).setRegistryName(GRINDSTONE_BLOCK.getRegistryName()).setMaxStackSize(4);
 
     public static final Block GEM_DISPLAY_ANDESITE = new BlockGemDisplay("andesite");
     public static final Item GEM_DISPLAY_ANDESITE_ITEM = new ItemBlock(GEM_DISPLAY_ANDESITE).setRegistryName(GEM_DISPLAY_ANDESITE.getRegistryName());

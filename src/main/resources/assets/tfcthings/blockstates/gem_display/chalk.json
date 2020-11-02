@@ -8,21 +8,35 @@
     }
       },
   "variants": {
-    "normal": [
-      {}
-    ],
-    "facing": {
-      "north": {
-      },
-      "east": {
-        "y": 90
-      },
-      "south": {
-        "y": 180
-      },
-      "west": {
-        "y": 270
-      }
+    "facing=north,top=true": {
+      "model": "tfcthings:gem_display"
+    },
+    "facing=north,top=false": {
+      "model": "tfcthings:gem_display_alt"
+    },
+    "facing=south,top=true": {
+      "model": "tfcthings:gem_display",
+      "y": 180
+    },
+    "facing=south,top=false": {
+      "model": "tfcthings:gem_display_alt",
+      "y": 180
+    },
+    "facing=east,top=true": {
+      "model": "tfcthings:gem_display",
+      "y": 90
+    },
+    "facing=east,top=false": {
+      "model": "tfcthings:gem_display_alt",
+      "y": 90
+    },
+    "facing=west,top=true": {
+      "model": "tfcthings:gem_display",
+      "y": 270
+    },
+    "facing=west,top=false": {
+      "model": "tfcthings:gem_display_alt",
+      "y": 270
     },
     "inventory": {
       "model": "tfcthings:gem_display",

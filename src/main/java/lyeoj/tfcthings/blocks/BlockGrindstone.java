@@ -134,8 +134,14 @@ public class BlockGrindstone extends Block implements IItemSize {
         if (grindstone != null) {
             grindstone.onBreakBlock(world, pos, state);
         }
-
         super.breakBlock(world, pos, state);
+    }
+
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP)) {
+            this.dropBlockAsItem(worldIn, pos, state, 0);
+            worldIn.setBlockToAir(pos);
+        }
     }
 
     @Nonnull

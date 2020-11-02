@@ -6,10 +6,12 @@ import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -31,6 +33,7 @@ import javax.annotation.Nullable;
 public class BlockGemDisplay extends Block implements IItemSize {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    public static final PropertyBool TOP = PropertyBool.create("top");
 
     public BlockGemDisplay(String rock) {
         super(Material.ROCK);
@@ -39,7 +42,7 @@ public class BlockGemDisplay extends Block implements IItemSize {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 0);
         this.setHardness(1.0F);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.EAST));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.EAST).withProperty(TOP, Boolean.valueOf(true)));
     }
 
     @Nonnull
@@ -64,15 +67,15 @@ public class BlockGemDisplay extends Block implements IItemSize {
     }
 
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, new IProperty[] {FACING, TOP});
     }
 
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(TOP, meta / 4 % 2 != 0);
     }
 
     public int getMetaFromState(IBlockState state) {
-        return ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
+        return ((EnumFacing)state.getValue(FACING)).getHorizontalIndex() + ((Boolean)state.getValue(TOP) ? 4 : 0);
     }
 
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
@@ -114,6 +117,17 @@ public class BlockGemDisplay extends Block implements IItemSize {
             te.onBreakBlock();
         }
         super.breakBlock(worldIn, pos, state);
+    }
+
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if(fromPos.equals(pos.up())) {
+            if(worldIn.getBlockState(fromPos).getBlock() instanceof BlockAir) {
+                state = state.withProperty(TOP, Boolean.valueOf(true));
+            } else {
+                state = state.withProperty(TOP, Boolean.valueOf(false));
+            }
+            worldIn.setBlockState(pos, state, 2);
+        }
     }
 
     @Override

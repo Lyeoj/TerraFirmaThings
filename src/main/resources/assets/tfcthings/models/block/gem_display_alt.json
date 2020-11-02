@@ -1,0 +1,86 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Base",
+            "from": [ 0, 0, 0 ], 
+            "to": [ 16, 1, 16 ], 
+            "faces": {
+                "north": { "texture": "#rock", "uv": [ 0, 15, 16, 16 ] },
+                "east": { "texture": "#rock", "uv": [ 0, 7, 16, 8 ] },
+                "south": { "texture": "#rock", "uv": [ 0, 7, 16, 8 ] },
+                "west": { "texture": "#rock", "uv": [ 0, 10, 16, 11 ] },
+                "up": { "texture": "#rock", "uv": [ 0, 0, 16, 16 ] },
+                "down": { "texture": "#rock", "uv": [ 0, 0, 16, 16 ] }
+            }
+        },
+        {
+            "name": "Top",
+            "from": [ 0, 15, 0 ], 
+            "to": [ 16, 16, 16 ], 
+            "faces": {
+                "north": { "texture": "#rock", "uv": [ 0, 0, 16, 1 ] },
+                "east": { "texture": "#rock", "uv": [ 0, 11, 16, 12 ] },
+                "south": { "texture": "#rock", "uv": [ 0, 9, 16, 10 ] },
+                "west": { "texture": "#rock", "uv": [ 0, 10, 16, 11 ] },
+                "up": { "texture": "#rock", "uv": [ 0, 0, 16, 16 ] },
+                "down": { "texture": "#rock", "uv": [ 0, 0, 16, 16 ] }
+            }
+        },
+        {
+            "name": "Middle",
+            "from": [ 2, 1, 2 ], 
+            "to": [ 14, 15, 14 ], 
+            "faces": {
+                "north": { "texture": "#rock", "uv": [ 2, 1, 14, 15 ] },
+                "east": { "texture": "#rock", "uv": [ 2, 1, 14, 15 ] },
+                "south": { "texture": "#rock", "uv": [ 2, 1, 14, 15 ] },
+                "west": { "texture": "#rock", "uv": [ 2, 1, 14, 15 ] }
+            }
+        },
+        {
+            "name": "Riser",
+            "from": [ 1, 16, 1 ], 
+            "to": [ 15, 18, 5 ], 
+            "faces": {
+                "north": { "texture": "#rock", "uv": [ 0, 0, 14, 2 ] },
+                "east": { "texture": "#rock", "uv": [ 0, 0, 4, 2 ] },
+                "south": { "texture": "#rock", "uv": [ 0, 2, 14, 4 ] },
+                "west": { "texture": "#rock", "uv": [ 0, 0, 4, 2 ] },
+                "up": { "texture": "#rock", "uv": [ 0, 0, 14, 4 ] }
+            }
+        }
+    ]
+}

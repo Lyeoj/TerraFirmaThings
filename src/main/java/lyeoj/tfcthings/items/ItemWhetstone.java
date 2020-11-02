@@ -159,8 +159,6 @@ public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOr
 
     @Override
     public void initOreDict() {
-        if(tier > 1) {
-            OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
-        }
+        OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
     }
 }

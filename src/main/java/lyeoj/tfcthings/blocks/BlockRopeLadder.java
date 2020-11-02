@@ -1,6 +1,7 @@
 package lyeoj.tfcthings.blocks;
 
 import lyeoj.tfcthings.init.TFCThingsBlocks;
+import lyeoj.tfcthings.init.TFCThingsItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -11,8 +12,11 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -116,6 +120,32 @@ public class BlockRopeLadder extends Block {
                 break;
             }
         }
+    }
+
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if(playerIn.isSneaking()) {
+            if(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockRopeLadder && worldIn.getBlockState(pos.down()).getBlock() instanceof BlockRopeLadder) {
+                return false;
+            }
+            ItemStack ladderStack = new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 0);
+            BlockPos next = pos;
+            if(!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockRopeLadder)) {
+                do {
+                    ladderStack.grow(1);
+                    worldIn.setBlockToAir(next);
+                    next = next.down();
+                } while(worldIn.getBlockState(next).getBlock() instanceof BlockRopeLadder);
+            } else {
+                do {
+                    ladderStack.grow(1);
+                    worldIn.setBlockToAir(next);
+                    next = next.up();
+                } while(worldIn.getBlockState(next).getBlock() instanceof BlockRopeLadder);
+            }
+            playerIn.inventory.addItemStackToInventory(ladderStack);
+            return true;
+        }
+        return false;
     }
 
 }

@@ -183,6 +183,22 @@ public class BlockBearTrap extends Block implements IItemSize {
         }
     }
 
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (!worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP)) {
+            TileEntityBearTrap trap = getTileEntity(worldIn, pos);
+            if (!trap.isOpen()) {
+                if (Math.random() < ConfigTFCThings.Items.BEAR_TRAP.breakChance) {
+                    worldIn.playSound(null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0f, 0.8f);
+                } else {
+                    this.dropBlockAsItem(worldIn, pos, state, 0);
+                }
+            } else {
+                this.dropBlockAsItem(worldIn, pos, state, 0);
+            }
+            worldIn.setBlockToAir(pos);
+        }
+    }
+
     @Nonnull
     @Override
     public Size getSize(@Nonnull ItemStack itemStack) {
