@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DGD",
+    "DDD"
+  ],
+  "key": {
+    "G": {
+      "item": "tfcthings:grindstone_steel"
+    },
+    "D": {
+      "item": "tfcthings:diamond_grit"
+    }
+  },
+  "result": {
+    "item": "tfcthings:grindstone_diamond"
+  }
+}

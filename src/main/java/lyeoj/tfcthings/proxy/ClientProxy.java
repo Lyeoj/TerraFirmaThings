@@ -3,7 +3,9 @@ package lyeoj.tfcthings.proxy;
 import lyeoj.tfcthings.entity.projectile.EntityThrownHookJavelin;
 import lyeoj.tfcthings.init.TFCThingsEntities;
 import lyeoj.tfcthings.renderer.TESRGemDisplay;
+import lyeoj.tfcthings.renderer.TESRGrindstone;
 import lyeoj.tfcthings.tileentity.TileEntityGemDisplay;
+import lyeoj.tfcthings.tileentity.TileEntityGrindstone;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IThreadListener;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -24,6 +26,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(FMLInitializationEvent event) {		
 		super.init(event);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGemDisplay.class, new TESRGemDisplay());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrindstone.class, new TESRGrindstone());
 	}
 	
 	@Override

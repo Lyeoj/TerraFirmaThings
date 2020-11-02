@@ -20,23 +20,30 @@ public class TFCThingsItems {
 
     public static final Map<String, Map<Metal, Item>> TOOLS_HEADS_BY_METAL = new HashMap<>();
 
+    public static final IArmorMaterialTFC SNOW_SHOES_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("snow_shoes", "tfcthings:snow_shoes", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
+    public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
+    public static final Item ITEM_SLING = new ItemSling(0).setTranslationKey("sling").setRegistryName("sling");;
+    public static final Item ITEM_SLING_METAL = new ItemSling(1).setTranslationKey("sling_metal").setRegistryName("sling_metal");
+    public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
+
+    public static final Item ITEM_METAL_BRACING = new ItemMetalBracing();
+    public static final Item ITEM_ROPE_BRIDGE = new ItemRopeBridge();
+
     public static final Item ITEM_WHETSTONE = new ItemWhetstone(1, 64).setRegistryName("whetstone").setTranslationKey("whetstone");
     public static final Item ITEM_HONING_STEEL = new ItemWhetstone(2, 4200).setRegistryName("honing_steel").setTranslationKey("honing_steel");
     public static final Item ITEM_HONING_STEEL_DIAMOND = new ItemWhetstone(3, 4500).setRegistryName("honing_steel_diamond").setTranslationKey("honing_steel_diamond");
     public static final Item ITEM_HONING_STEEL_HEAD = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "honing_steel_head");
     public static final Item ITEM_HONING_STEEL_HEAD_DIAMOND = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "honing_steel_head_diamond");
     public static final Item ITEM_DIAMOND_GRIT = new ItemDiamondGrit();
-    public static final IArmorMaterialTFC SNOW_SHOES_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("snow_shoes", "tfcthings:snow_shoes", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
-    public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
-    public static final Item ITEM_SLING = new ItemSling(0).setTranslationKey("sling").setRegistryName("sling");;
-    public static final Item ITEM_SLING_METAL = new ItemSling(1).setTranslationKey("sling_metal").setRegistryName("sling_metal");
-    public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
+
+    public static final Item ITEM_GRINDSTONE_QUARTZ = new ItemGrindstone(1, 640, "grindstone_quartz");
+    public static final Item ITEM_GRINDSTONE_STEEL = new ItemGrindstone(2, 6400, "grindstone_steel");
+    public static final Item ITEM_GRINDSTONE_DIAMOND = new ItemGrindstone(3, 7000, "grindstone_diamond");
+
     public static final Item ITEM_PIG_IRON_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.PIG_IRON)).setRegistryName("pig_iron_carrot").setTranslationKey("pig_iron_carrot");
     public static final Item ITEM_BLACK_STEEL_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL)).setRegistryName("black_steel_carrot").setTranslationKey("black_steel_carrot");
     public static final Item ITEM_BLUE_STEEL_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.BLUE_STEEL)).setRegistryName("blue_steel_carrot").setTranslationKey("blue_steel_carrot");
     public static final Item ITEM_RED_STEEL_CARROT = new ItemPigIronCarrot(TFCRegistries.METALS.getValue(DefaultMetals.RED_STEEL)).setRegistryName("red_steel_carrot").setTranslationKey("red_steel_carrot");
-    public static final Item ITEM_METAL_BRACING = new ItemMetalBracing();
-    public static final Item ITEM_ROPE_BRIDGE = new ItemRopeBridge();
 
     public static final Item ITEM_PROSPECTORS_HAMMER_MOLD_UNFIRED = new ItemPottery().setRegistryName("mold/unfired/prospectors_hammer_head").setTranslationKey("mold.unfired.prospectors_hammer_head");
     public static final Item ITEM_PROSPECTORS_HAMMER_MOLD_FIRED = new ItemTFCThingsMold("prospectors_hammer_head");
@@ -118,6 +125,9 @@ public class TFCThingsItems {
             ITEM_HONING_STEEL_HEAD,
             ITEM_HONING_STEEL_HEAD_DIAMOND,
             ITEM_DIAMOND_GRIT,
+            ITEM_GRINDSTONE_QUARTZ,
+            ITEM_GRINDSTONE_STEEL,
+            ITEM_GRINDSTONE_DIAMOND,
             ITEM_SNOWSHOES,
             ITEM_SLING,
             ITEM_SLING_METAL,
@@ -201,6 +211,7 @@ public class TFCThingsItems {
             TFCThingsBlocks.SNARE_ITEM,
             TFCThingsBlocks.ROPE_BRIDGE_ITEM,
             TFCThingsBlocks.ROPE_LADDER_ITEM,
+            TFCThingsBlocks.GRINDSTONE_ITEM,
             TFCThingsBlocks.GEM_DISPLAY_ANDESITE_ITEM,
             TFCThingsBlocks.GEM_DISPLAY_BASALT_ITEM,
             TFCThingsBlocks.GEM_DISPLAY_CHALK_ITEM,

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "RRR",
+    "L L"
+  ],
+  "key": {
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "rodWroughtIron"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    }
+  },
+  "result": {
+    "item": "tfcthings:grindstone_base"
+  }
+}

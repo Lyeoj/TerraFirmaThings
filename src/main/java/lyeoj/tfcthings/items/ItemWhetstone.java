@@ -97,7 +97,9 @@ public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOr
                             break;
                         capability.addCharge();
                     }
-                    item.damageItem(1, entityLiving);
+                    if(Math.random() < 0.8) {
+                        item.damageItem(1, entityLiving);
+                    }
                     stack.damageItem(1, entityLiving);
                     playerIn.playSound(TFCThingsSoundEvents.WHETSTONE_SHARPEN, 1.0f, 1.0f);
                 } else {

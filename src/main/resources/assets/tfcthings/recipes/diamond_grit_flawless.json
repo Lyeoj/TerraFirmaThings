@@ -1,0 +1,17 @@
+{
+  "type": "tfc:damage_item_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "hammer"
+    },
+    {
+      "item": "tfc:gem/diamond",
+      "data": 3
+    }
+  ],
+  "result": {
+    "item": "tfcthings:diamond_grit",
+    "count": 2
+  }
+}

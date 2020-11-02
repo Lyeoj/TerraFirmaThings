@@ -8,14 +8,10 @@
     {
       "item": "tfc:gem/diamond",
       "data": 2
-    },
-    {
-      "item": "tfc:gem/diamond",
-      "data": 2
     }
   ],
   "result": {
     "item": "tfcthings:diamond_grit",
-    "count": 2
+    "count": 1
   }
 }

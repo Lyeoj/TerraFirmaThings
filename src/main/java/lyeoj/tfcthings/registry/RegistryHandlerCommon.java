@@ -7,6 +7,7 @@ import lyeoj.tfcthings.items.ItemOreDict;
 import lyeoj.tfcthings.main.TFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
 import lyeoj.tfcthings.tileentity.TileEntityGemDisplay;
+import lyeoj.tfcthings.tileentity.TileEntityGrindstone;
 import net.dries007.tfc.api.recipes.WeldingRecipe;
 import net.dries007.tfc.api.recipes.anvil.AnvilRecipe;
 import net.dries007.tfc.api.recipes.heat.HeatRecipe;
@@ -58,6 +59,7 @@ public class RegistryHandlerCommon {
         event.getRegistry().registerAll(TFCThingsBlocks.BLOCKLIST);
         GameRegistry.registerTileEntity(TileEntityBearTrap.class, TFCThingsBlocks.BEAR_TRAP.getRegistryName());
         GameRegistry.registerTileEntity(TileEntityGemDisplay.class, TFCThingsBlocks.GEM_DISPLAY_ANDESITE.getRegistryName());
+        GameRegistry.registerTileEntity(TileEntityGrindstone.class, TFCThingsBlocks.GRINDSTONE_BLOCK.getRegistryName());
     }
 
     @SubscribeEvent
@@ -142,6 +144,7 @@ public class RegistryHandlerCommon {
         event.getRegistry().register(new WeldingRecipe(new ResourceLocation(TFCThings.MODID, "bear_trap"), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_BEAR_TRAP_HALF)), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_BEAR_TRAP_HALF)), new ItemStack(TFCThingsBlocks.BEAR_TRAP), Metal.STEEL.getTier()));
         event.getRegistry().register(new WeldingRecipe(new ResourceLocation(TFCThings.MODID, "honing_steel_head_diamond"), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD)), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_DIAMOND_GRIT)), new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_HEAD_DIAMOND), Metal.Tier.TIER_V));
         event.getRegistry().register(new WeldingRecipe(new ResourceLocation(TFCThings.MODID, "honing_steel_diamond"), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_HONING_STEEL)), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_DIAMOND_GRIT)), new ItemStack(TFCThingsItems.ITEM_HONING_STEEL_DIAMOND), Metal.Tier.TIER_V));
+        event.getRegistry().register(new WeldingRecipe(new ResourceLocation(TFCThings.MODID, "grindstone_steel"), IIngredient.of(new ItemStack(TFCThingsItems.ITEM_GRINDSTONE_QUARTZ)), IIngredient.of(new ItemStack(ItemMetal.get(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL),DOUBLE_SHEET))), new ItemStack(TFCThingsItems.ITEM_GRINDSTONE_STEEL), Metal.Tier.TIER_V));
     }
 
     @SubscribeEvent
