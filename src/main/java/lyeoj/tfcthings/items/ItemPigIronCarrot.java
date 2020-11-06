@@ -20,7 +20,7 @@ import net.minecraft.util.SoundCategory;
 
 import javax.annotation.Nonnull;
 
-public class ItemPigIronCarrot extends ItemTFC {
+public class ItemPigIronCarrot extends ItemTFC implements TFCThingsConfigurableItem {
 
     private final Metal metal;
 
@@ -90,5 +90,10 @@ public class ItemPigIronCarrot extends ItemTFC {
             }
         }
         return super.itemInteractionForEntity(itemstack, player, entity, hand);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enablePigvil;
     }
 }

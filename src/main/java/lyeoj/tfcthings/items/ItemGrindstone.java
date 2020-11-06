@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.items;
 
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.forge.ForgeableHandler;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
@@ -12,7 +13,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ItemGrindstone extends ItemTFC {
+public class ItemGrindstone extends ItemTFC implements TFCThingsConfigurableItem {
 
     private final int tier;
 
@@ -65,5 +66,10 @@ public class ItemGrindstone extends ItemTFC {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableGrindstones;
     }
 }

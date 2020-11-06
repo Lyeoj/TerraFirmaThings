@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import lyeoj.tfcthings.entity.projectile.EntityThrownHookJavelin;
 import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.types.Metal;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class ItemHookJavelin extends ItemRopeJavelin {
+public class ItemHookJavelin extends ItemRopeJavelin implements TFCThingsConfigurableItem {
 
     public ItemHookJavelin(Metal metal, String name) {
         super(metal, name);
@@ -131,4 +132,8 @@ public class ItemHookJavelin extends ItemRopeJavelin {
         return multimap;
     }
 
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableHookJavelins;
+    }
 }

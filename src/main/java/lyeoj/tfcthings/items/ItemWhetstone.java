@@ -4,6 +4,7 @@ import lyeoj.tfcthings.capability.CapabilitySharpness;
 import lyeoj.tfcthings.capability.ISharpness;
 import lyeoj.tfcthings.event.TFCThingsEventHandler;
 import lyeoj.tfcthings.init.TFCThingsSoundEvents;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.IItemSize;
@@ -36,7 +37,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOreDict {
+public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOreDict, TFCThingsConfigurableItem {
 
 
     private int tier;
@@ -160,5 +161,10 @@ public class ItemWhetstone extends Item implements IItemSize, IMetalItem, ItemOr
     @Override
     public void initOreDict() {
         OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableWhetstones;
     }
 }

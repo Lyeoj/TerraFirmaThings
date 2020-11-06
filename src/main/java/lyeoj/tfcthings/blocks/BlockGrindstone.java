@@ -1,5 +1,7 @@
 package lyeoj.tfcthings.blocks;
 
+import lyeoj.tfcthings.items.TFCThingsConfigurableItem;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityGrindstone;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -23,6 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -31,7 +34,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BlockGrindstone extends Block implements IItemSize {
+public class BlockGrindstone extends Block implements IItemSize, TFCThingsConfigurableItem {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
@@ -144,6 +147,10 @@ public class BlockGrindstone extends Block implements IItemSize {
         }
     }
 
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
+    }
+
     @Nonnull
     @Override
     public Size getSize(@Nonnull ItemStack itemStack) {
@@ -154,5 +161,10 @@ public class BlockGrindstone extends Block implements IItemSize {
     @Override
     public Weight getWeight(@Nonnull ItemStack itemStack) {
         return Weight.MEDIUM;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableGrindstones;
     }
 }

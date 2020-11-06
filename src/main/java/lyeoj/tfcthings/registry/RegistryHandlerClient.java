@@ -37,7 +37,6 @@ public class RegistryHandlerClient {
         }
 
         ItemTFCThingsMold item = ItemTFCThingsMold.get("prospectors_hammer_head");
-        System.out.println(item);
         ModelBakery.registerItemVariants(item, new ModelResourceLocation(item.getRegistryName().toString() + "/empty"));
         ModelBakery.registerItemVariants(item, TFCRegistries.METALS.getValuesCollection()
                 .stream()

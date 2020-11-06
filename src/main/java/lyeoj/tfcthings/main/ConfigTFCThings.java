@@ -45,6 +45,9 @@ public class ConfigTFCThings {
         @Config.Comment({"Snow Shoes Settings"})
         @Config.LangKey("config.tfcthings.items.snow_shoes")
         public static final SnowShoesCFG SNOW_SHOES = new SnowShoesCFG();
+        @Config.Comment({"Enable/Disable All Items"})
+        @Config.LangKey("config.tfcthings.items.masterlist")
+        public static final MasterItemCFG MASTER_ITEM_LIST = new MasterItemCFG();
 
         public static final class SlingCFG {
             @Config.Comment({"Damage multiplier against predator animals and skeletons.", "New damage = sling damage * multiplier"})
@@ -165,6 +168,51 @@ public class ConfigTFCThings {
             @Config.LangKey("config.tfcthings.items.shoePower")
             public double shoePower = 1;
 
+        }
+
+        public static final class MasterItemCFG {
+            @Config.LangKey("config.tfcthings.enable.snowShoes")
+            @Config.RequiresMcRestart
+            public boolean enableSnowShoes = true;
+            @Config.LangKey("config.tfcthings.enable.sling")
+            @Config.RequiresMcRestart
+            public boolean enableSling = true;
+            @Config.LangKey("config.tfcthings.enable.crown")
+            @Config.RequiresMcRestart
+            public boolean enableCrowns = true;
+            @Config.LangKey("config.tfcthings.enable.bearTrap")
+            @Config.RequiresMcRestart
+            public boolean enableBearTrap = true;
+            @Config.LangKey("config.tfcthings.enable.pigvil")
+            @Config.RequiresMcRestart
+            public boolean enablePigvil = true;
+            @Config.LangKey("config.tfcthings.enable.whetstone")
+            @Config.RequiresMcRestart
+            public boolean enableWhetstones = true;
+            @Config.LangKey("config.tfcthings.enable.grindstone")
+            @Config.RequiresMcRestart
+            public boolean enableGrindstones = true;
+            @Config.LangKey("config.tfcthings.enable.ropeJavelin")
+            @Config.RequiresMcRestart
+            public boolean enableRopeJavelins = true;
+            @Config.LangKey("config.tfcthings.enable.hookJavelin")
+            @Config.RequiresMcRestart
+            public boolean enableHookJavelins = true;
+            @Config.LangKey("config.tfcthings.enable.prohammer")
+            @Config.RequiresMcRestart
+            public boolean enableProspectorsHammer = true;
+            @Config.LangKey("config.tfcthings.enable.snare")
+            @Config.RequiresMcRestart
+            public boolean enableSnare = true;
+            @Config.LangKey("config.tfcthings.enable.ropeBridge")
+            @Config.RequiresMcRestart
+            public boolean enableRopeBridge = true;
+            @Config.LangKey("config.tfcthings.enable.ropeLadder")
+            @Config.RequiresMcRestart
+            public boolean enableRopeLadder = true;
+            @Config.LangKey("config.tfcthings.enable.gemDisplay")
+            @Config.RequiresMcRestart
+            public boolean enableGemDisplays = true;
         }
 
     }

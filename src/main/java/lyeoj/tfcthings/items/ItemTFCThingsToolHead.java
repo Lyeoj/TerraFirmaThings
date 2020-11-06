@@ -18,14 +18,16 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemTFCThingsToolHead extends ItemTFC implements IMetalItem {
+public class ItemTFCThingsToolHead extends ItemTFC implements IMetalItem, TFCThingsConfigurableItem {
 
     private final Metal metal;
     private final int smeltAmount;
+    private boolean isEnabled;
 
-    public ItemTFCThingsToolHead(Metal metal, int smeltAmount, String...name) {
+    public ItemTFCThingsToolHead(Metal metal, int smeltAmount, boolean enabled, String...name) {
         this.metal = metal;
         this.smeltAmount = smeltAmount;
+        this.isEnabled = enabled;
         String registryName = "";
         String translationKey = "";
         if(TFCThingsItems.TOOLS_HEADS_BY_METAL.containsKey(name[0])) {
@@ -80,5 +82,10 @@ public class ItemTFCThingsToolHead extends ItemTFC implements IMetalItem {
     @Nullable
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
         return new ForgeableHeatableHandler(nbt, metal.getSpecificHeat(), metal.getMeltTemp());
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return isEnabled;
     }
 }

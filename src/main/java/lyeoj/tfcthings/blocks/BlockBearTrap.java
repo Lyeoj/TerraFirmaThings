@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.blocks;
 
+import lyeoj.tfcthings.items.TFCThingsConfigurableItem;
 import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
 import net.dries007.tfc.api.capability.size.IItemSize;
@@ -40,7 +41,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BlockBearTrap extends Block implements IItemSize {
+public class BlockBearTrap extends Block implements IItemSize, TFCThingsConfigurableItem {
 
     protected static final AxisAlignedBB TRAP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D);
     public static final PropertyBool CLOSED = PropertyBool.create("closed");
@@ -83,6 +84,10 @@ public class BlockBearTrap extends Block implements IItemSize {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {FACING, BURIED, CLOSED});
+    }
+
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
     }
 
     @Nonnull
@@ -209,5 +214,10 @@ public class BlockBearTrap extends Block implements IItemSize {
     @Override
     public Weight getWeight(@Nonnull ItemStack itemStack) {
         return Weight.HEAVY;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableBearTrap;
     }
 }

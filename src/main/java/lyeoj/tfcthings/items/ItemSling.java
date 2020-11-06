@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemSling extends Item implements IItemSize, ItemOreDict {
+public class ItemSling extends Item implements IItemSize, ItemOreDict, TFCThingsConfigurableItem {
 
     private int tier;
 
@@ -199,4 +199,8 @@ public class ItemSling extends Item implements IItemSize, ItemOreDict {
         OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));;
     }
 
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableSling;
+    }
 }

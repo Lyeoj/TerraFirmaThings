@@ -23,7 +23,7 @@ import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
 
-public class ItemSnowShoes extends ItemArmor implements IItemSize, IDamageResistance {
+public class ItemSnowShoes extends ItemArmor implements IItemSize, IDamageResistance, TFCThingsConfigurableItem {
 
     private IArmorMaterialTFC materialTFC;
     private static final String STEPS_NBT_KEY = "Steps";
@@ -121,5 +121,10 @@ public class ItemSnowShoes extends ItemArmor implements IItemSize, IDamageResist
             }
         }
 
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableSnowShoes;
     }
 }

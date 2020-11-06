@@ -3,6 +3,7 @@ package lyeoj.tfcthings.items;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import lyeoj.tfcthings.entity.projectile.EntityThrownRopeJavelin;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.metal.IMetalItem;
 import net.dries007.tfc.api.capability.size.Size;
@@ -33,7 +34,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict {
+public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict, TFCThingsConfigurableItem {
 
     private final Metal metal;
     public final ToolMaterial material;
@@ -256,5 +257,10 @@ public class ItemRopeJavelin extends ItemTFC implements IMetalItem, ItemOreDict 
     @Override
     public void initOreDict() {
         OreDictionary.registerOre("tool", new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE));
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableRopeJavelins;
     }
 }

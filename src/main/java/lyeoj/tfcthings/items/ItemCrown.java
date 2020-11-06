@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.items;
 
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.damage.IDamageResistance;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -22,7 +23,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemCrown extends ItemArmor implements IItemSize, IDamageResistance {
+public class ItemCrown extends ItemArmor implements IItemSize, IDamageResistance, TFCThingsConfigurableItem {
 
     private final Gem gem;
 
@@ -88,5 +89,10 @@ public class ItemCrown extends ItemArmor implements IItemSize, IDamageResistance
             tooltip.add(I18n.format("tfcthings.tooltip.crown.gem", gemName));
         }
         super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableCrowns;
     }
 }

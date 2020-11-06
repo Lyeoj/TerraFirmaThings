@@ -1,6 +1,7 @@
 package lyeoj.tfcthings.items;
 
 import lyeoj.tfcthings.entity.projectile.EntityRopeBridgeThrown;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.size.Size;
 import net.dries007.tfc.api.capability.size.Weight;
 import net.dries007.tfc.objects.CreativeTabsTFC;
@@ -19,7 +20,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class ItemRopeBridge extends ItemTFC {
+public class ItemRopeBridge extends ItemTFC implements TFCThingsConfigurableItem {
 
     public ItemRopeBridge() {
         this.setRegistryName("rope_bridge_bundle");
@@ -66,4 +67,8 @@ public class ItemRopeBridge extends ItemTFC {
         }
     }
 
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableRopeBridge;
+    }
 }

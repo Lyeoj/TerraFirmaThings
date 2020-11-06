@@ -1,5 +1,6 @@
 package lyeoj.tfcthings.blocks;
 
+import lyeoj.tfcthings.items.TFCThingsConfigurableItem;
 import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityBearTrap;
 import net.dries007.tfc.api.capability.size.IItemSize;
@@ -38,7 +39,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 
-public class BlockSnare extends Block implements IItemSize {
+public class BlockSnare extends Block implements IItemSize, TFCThingsConfigurableItem {
 
     protected static final AxisAlignedBB TRAP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0D, 1.0D);
     public static final PropertyBool CLOSED = PropertyBool.create("closed");
@@ -267,4 +268,12 @@ public class BlockSnare extends Block implements IItemSize {
         return true;
     }
 
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableSnare;
+    }
 }

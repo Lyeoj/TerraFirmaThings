@@ -1,6 +1,7 @@
 package lyeoj.tfcthings.init;
 
 import lyeoj.tfcthings.items.*;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.registries.TFCRegistries;
 import net.dries007.tfc.api.types.IArmorMaterialTFC;
 import net.dries007.tfc.api.types.Metal;
@@ -32,8 +33,8 @@ public class TFCThingsItems {
     public static final Item ITEM_WHETSTONE = new ItemWhetstone(1, 64).setRegistryName("whetstone").setTranslationKey("whetstone");
     public static final Item ITEM_HONING_STEEL = new ItemWhetstone(2, 4200).setRegistryName("honing_steel").setTranslationKey("honing_steel");
     public static final Item ITEM_HONING_STEEL_DIAMOND = new ItemWhetstone(3, 4500).setRegistryName("honing_steel_diamond").setTranslationKey("honing_steel_diamond");
-    public static final Item ITEM_HONING_STEEL_HEAD = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "honing_steel_head");
-    public static final Item ITEM_HONING_STEEL_HEAD_DIAMOND = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "honing_steel_head_diamond");
+    public static final Item ITEM_HONING_STEEL_HEAD = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableWhetstones,"honing_steel_head");
+    public static final Item ITEM_HONING_STEEL_HEAD_DIAMOND = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableWhetstones, "honing_steel_head_diamond");
     public static final Item ITEM_DIAMOND_GRIT = new ItemDiamondGrit();
 
     public static final Item ITEM_GRINDSTONE_QUARTZ = new ItemGrindstone(1, 640, "grindstone_quartz");
@@ -58,15 +59,15 @@ public class TFCThingsItems {
     public static final Item ITEM_PROSPECTORS_HAMMER_STEEL = new ItemProspectorsHammer(Metal.STEEL, "steel");
     public static final Item ITEM_PROSPECTORS_HAMMER_WROUGHT_IRON = new ItemProspectorsHammer(Metal.WROUGHT_IRON, "wrought_iron");
 
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE = new ItemTFCThingsToolHead(Metal.BISMUTH_BRONZE, 100, "prospectors_hammer_head", "bismuth_bronze");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_BRONZE = new ItemTFCThingsToolHead(Metal.BLACK_BRONZE, 100, "prospectors_hammer_head", "black_bronze");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_STEEL = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 100, "prospectors_hammer_head", "black_steel");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLUE_STEEL = new ItemTFCThingsToolHead(Metal.BLUE_STEEL, 100, "prospectors_hammer_head", "blue_steel");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BRONZE = new ItemTFCThingsToolHead(Metal.BRONZE, 100, "prospectors_hammer_head", "bronze");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_COPPER = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.COPPER), 100, "prospectors_hammer_head", "copper");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_RED_STEEL = new ItemTFCThingsToolHead(Metal.RED_STEEL, 100, "prospectors_hammer_head", "red_steel");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_STEEL = new ItemTFCThingsToolHead(Metal.STEEL, 100, "prospectors_hammer_head", "steel");
-    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON = new ItemTFCThingsToolHead(Metal.WROUGHT_IRON, 100, "prospectors_hammer_head", "wrought_iron");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BISMUTH_BRONZE = new ItemTFCThingsToolHead(Metal.BISMUTH_BRONZE, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "bismuth_bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_BRONZE = new ItemTFCThingsToolHead(Metal.BLACK_BRONZE, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "black_bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLACK_STEEL = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "black_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BLUE_STEEL = new ItemTFCThingsToolHead(Metal.BLUE_STEEL, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "blue_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_BRONZE = new ItemTFCThingsToolHead(Metal.BRONZE, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "bronze");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_COPPER = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.COPPER), 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "copper");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_RED_STEEL = new ItemTFCThingsToolHead(Metal.RED_STEEL, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "red_steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_STEEL = new ItemTFCThingsToolHead(Metal.STEEL, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "steel");
+    public static final Item ITEM_PROSPECTORS_HAMMER_HEAD_WROUGHT_IRON = new ItemTFCThingsToolHead(Metal.WROUGHT_IRON, 100, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer, "prospectors_hammer_head", "wrought_iron");
 
     public static final Item ITEM_ROPE_JAVELIN_BISMUTH_BRONZE = new ItemRopeJavelin(Metal.BISMUTH_BRONZE, "bismuth_bronze");
     public static final Item ITEM_ROPE_JAVELIN_BLACK_BRONZE = new ItemRopeJavelin(Metal.BLACK_BRONZE, "black_bronze");
@@ -78,10 +79,10 @@ public class TFCThingsItems {
     public static final Item ITEM_ROPE_JAVELIN_STEEL = new ItemRopeJavelin(Metal.STEEL, "steel");
     public static final Item ITEM_ROPE_JAVELIN_WROUGHT_IRON = new ItemRopeJavelin(Metal.WROUGHT_IRON, "wrought_iron");
 
-    public static final Item ITEM_HOOK_JAVELIN_HEAD_BLACK_STEEL = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, "hook_javelin_head", "black_steel");
-    public static final Item ITEM_HOOK_JAVELIN_HEAD_BLUE_STEEL = new ItemTFCThingsToolHead(Metal.BLUE_STEEL, 200, "hook_javelin_head", "blue_steel");
-    public static final Item ITEM_HOOK_JAVELIN_HEAD_RED_STEEL = new ItemTFCThingsToolHead(Metal.RED_STEEL, 200, "hook_javelin_head", "red_steel");
-    public static final Item ITEM_HOOK_JAVELIN_HEAD_STEEL = new ItemTFCThingsToolHead(Metal.STEEL, 200, "hook_javelin_head", "steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_BLACK_STEEL = new ItemTFCThingsToolHead(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), 200, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableHookJavelins, "hook_javelin_head", "black_steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_BLUE_STEEL = new ItemTFCThingsToolHead(Metal.BLUE_STEEL, 200, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableHookJavelins, "hook_javelin_head", "blue_steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_RED_STEEL = new ItemTFCThingsToolHead(Metal.RED_STEEL, 200, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableHookJavelins, "hook_javelin_head", "red_steel");
+    public static final Item ITEM_HOOK_JAVELIN_HEAD_STEEL = new ItemTFCThingsToolHead(Metal.STEEL, 200, ConfigTFCThings.Items.MASTER_ITEM_LIST.enableHookJavelins, "hook_javelin_head", "steel");
 
     public static final Item ITEM_HOOK_JAVELIN_BLACK_STEEL = new ItemHookJavelin(TFCRegistries.METALS.getValue(DefaultMetals.BLACK_STEEL), "black_steel");
     public static final Item ITEM_HOOK_JAVELIN_BLUE_STEEL = new ItemHookJavelin(Metal.BLUE_STEEL, "blue_steel");

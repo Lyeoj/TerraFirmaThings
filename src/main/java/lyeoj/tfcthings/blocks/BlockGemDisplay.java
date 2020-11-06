@@ -1,5 +1,7 @@
 package lyeoj.tfcthings.blocks;
 
+import lyeoj.tfcthings.items.TFCThingsConfigurableItem;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.tileentity.TileEntityGemDisplay;
 import net.dries007.tfc.api.capability.size.IItemSize;
 import net.dries007.tfc.api.capability.size.Size;
@@ -30,7 +32,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BlockGemDisplay extends Block implements IItemSize {
+public class BlockGemDisplay extends Block implements IItemSize, TFCThingsConfigurableItem {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyBool TOP = PropertyBool.create("top");
@@ -141,4 +143,8 @@ public class BlockGemDisplay extends Block implements IItemSize {
         return (int)Math.floor(15 * ((double)te.getSize() / (double)te.getMaxStackSize()));
     }
 
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableGemDisplays;
+    }
 }

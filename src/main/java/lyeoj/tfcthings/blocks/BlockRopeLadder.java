@@ -2,6 +2,8 @@ package lyeoj.tfcthings.blocks;
 
 import lyeoj.tfcthings.init.TFCThingsBlocks;
 import lyeoj.tfcthings.init.TFCThingsItems;
+import lyeoj.tfcthings.items.TFCThingsConfigurableItem;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -24,7 +26,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class BlockRopeLadder extends Block {
+public class BlockRopeLadder extends Block implements TFCThingsConfigurableItem {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     protected static final AxisAlignedBB LADDER_EAST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.25D, 1.0D, 1.0D);
@@ -148,4 +150,8 @@ public class BlockRopeLadder extends Block {
         return false;
     }
 
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableRopeLadder;
+    }
 }

@@ -2,6 +2,7 @@ package lyeoj.tfcthings.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.ConfigTFC;
 import net.dries007.tfc.Constants;
 import net.dries007.tfc.api.capability.forge.ForgeableHeatableHandler;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOreDict {
+public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOreDict, TFCThingsConfigurableItem {
 
     private final Metal metal;
     public final ToolMaterial material;
@@ -270,4 +271,8 @@ public class ItemProspectorsHammer extends ItemTFC implements IMetalItem, ItemOr
         }
     }
 
+    @Override
+    public boolean isEnabled() {
+        return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableProspectorsHammer;
+    }
 }
