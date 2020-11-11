@@ -45,7 +45,7 @@ public class TESRGemDisplay extends TileEntitySpecialRenderer<TileEntityGemDispl
                 GlStateManager.pushMatrix();
                 GlStateManager.disableCull();
                 Vec3d pos = location.get(i);
-                if(dir == 1 || dir == 2) {
+                if(dir == 1 || dir == 2 || dir == 5 || dir == 6) {
                     pos = new Vec3d(1 - pos.x, pos.y, 1 - pos.z);
                 }
                 GlStateManager.translate(x + (dir % 2 == 0 ? pos.x : pos.z), y + pos.y, z + (dir % 2 == 0 ? pos.z : pos.x));

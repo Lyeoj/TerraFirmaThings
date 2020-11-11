@@ -236,7 +236,7 @@ public class ConfigTFCThings {
             @Config.Comment({"Add special days to the TFC calendar!", "Format: MONTH<dayNumber> <name of your day>.", "An invalid day string won't be read by the calendar. See defaults for examples."})
             @Config.LangKey("config.tfcthings.misc.daylist")
             @Config.RequiresMcRestart
-            public String[] dayList = new String[]{"APRIL2 MeteorFreak's Birthday", "APRIL10 Pakratt0013's Birthday"};
+            public String[] dayList = new String[]{"APRIL2 MeteorFreak's Birthday", "APRIL10 Pakratt0013's Birthday", "NOVEMBER11 HonneyPlay's Birthday"};
         }
 
         public static final class PigvilCFG {
