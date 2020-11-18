@@ -54,10 +54,10 @@ public class TFCThingsEventHandler {
                 capability.removeCharge();
                 ItemStack stack = event.getPlayer().getHeldItemMainhand();
                 if(capability.getCharges() > 256) {
-                    if(Math.random() < 0.2) {
+                    if(Math.random() < 0.2 && stack.getItemDamage() > 0) {
                         stack.setItemDamage(stack.getItemDamage() - 1);
                     }
-                } else if(capability.getCharges() > 64) {
+                } else if(capability.getCharges() > 64 && stack.getItemDamage() > 0) {
                     if(Math.random() < 0.1) {
                         stack.setItemDamage(stack.getItemDamage() - 1);
                     }
@@ -94,11 +94,11 @@ public class TFCThingsEventHandler {
                             capability.removeCharge();
                         }
                         if(capability.getCharges() > 256) {
-                            if(Math.random() < 0.2) {
+                            if(Math.random() < 0.2 && weapon.getItemDamage() > 0) {
                                 weapon.setItemDamage(weapon.getItemDamage() - 1);
                             }
                         } else if(capability.getCharges() > 64) {
-                            if(Math.random() < 0.1) {
+                            if(Math.random() < 0.1 && weapon.getItemDamage() > 0) {
                                 weapon.setItemDamage(weapon.getItemDamage() - 1);
                             }
                         }
