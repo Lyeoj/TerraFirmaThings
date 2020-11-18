@@ -9,6 +9,7 @@ import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockToolRack;
 import net.dries007.tfc.objects.entity.projectile.EntityThrownWeapon;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -51,6 +52,16 @@ public class TFCThingsEventHandler {
             ISharpness capability = getSharpnessCapability(event.getPlayer().getHeldItemMainhand());
             if(capability != null && capability.getCharges() > 0) {
                 capability.removeCharge();
+                ItemStack stack = event.getPlayer().getHeldItemMainhand();
+                if(capability.getCharges() > 256) {
+                    if(Math.random() < 0.2) {
+                        stack.setItemDamage(stack.getItemDamage() - 1);
+                    }
+                } else if(capability.getCharges() > 64) {
+                    if(Math.random() < 0.1) {
+                        stack.setItemDamage(stack.getItemDamage() - 1);
+                    }
+                }
             }
         }
     }
@@ -82,6 +93,15 @@ public class TFCThingsEventHandler {
                             event.setAmount(event.getAmount() + ConfigTFCThings.Items.WHETSTONE.damageBoost);
                             capability.removeCharge();
                         }
+                        if(capability.getCharges() > 256) {
+                            if(Math.random() < 0.2) {
+                                weapon.setItemDamage(weapon.getItemDamage() - 1);
+                            }
+                        } else if(capability.getCharges() > 64) {
+                            if(Math.random() < 0.1) {
+                                weapon.setItemDamage(weapon.getItemDamage() - 1);
+                            }
+                        }
                     }
                 }
             }
@@ -92,9 +112,8 @@ public class TFCThingsEventHandler {
     public static void modifyBreakSpeed(PlayerEvent.BreakSpeed event) {
         if(event.getEntityPlayer().getHeldItemMainhand().hasCapability(CapabilitySharpness.SHARPNESS_CAPABILITY, null)) {
             ISharpness capability = getSharpnessCapability(event.getEntityPlayer().getHeldItemMainhand());
-            Item item = event.getEntityPlayer().getHeldItemMainhand().getItem();
             if(capability != null) {
-                if(item.canHarvestBlock(event.getState())) {
+                if(shouldBoostSpeed(event.getEntityPlayer().getHeldItemMainhand(), event.getState())) {
                     if(event.getState().getBlock() instanceof BlockLogTFC && !event.getState().getValue(BlockLogTFC.PLACED)) {
                         return;
                     }
@@ -108,6 +127,14 @@ public class TFCThingsEventHandler {
                 }
             }
         }
+    }
+
+    private static boolean shouldBoostSpeed(ItemStack stack, IBlockState state) {
+        if(stack.getItem().canHarvestBlock(state)) return true;
+        for (String type : stack.getItem().getToolClasses(stack)) {
+            if(state.getBlock().isToolEffective(type, state)) return true;
+        }
+        return false;
     }
 
     @Nullable
