@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RBR",
+    "LLL"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:leather_boots"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "R": {
+      "item": "tfc:crop/product/jute_fiber"
+    }
+  },
+  "result": {
+    "item": "tfcthings:hiking_boots"
+  }
+}

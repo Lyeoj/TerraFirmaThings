@@ -94,6 +94,10 @@ public class EntityPigvil extends EntityCreature {
         super.readEntityFromNBT(compound);
     }
 
+    public boolean canDespawn() {
+        return false;
+    }
+
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         if(player.isSneaking()) {
             return super.processInteract(player, hand);

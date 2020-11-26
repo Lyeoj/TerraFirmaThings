@@ -1,0 +1,15 @@
+{
+  "type": "tfc:damage_item_shapeless",
+  "ingredients": [
+    {
+      "item": "tfcthings:sling_ammo"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "hammer"
+    }
+  ],
+  "result": {
+    "item": "tfcthings:sling_ammo_spread"
+  }
+}

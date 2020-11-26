@@ -1,0 +1,18 @@
+{
+  "type": "tfc:damage_item_shapeless",
+  "ingredients": [
+    {
+      "item": "tfcthings:sling_ammo"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "fireStarter"
+    }
+  ],
+  "result": {
+    "item": "tfcthings:sling_ammo_fire"
+  }
+}

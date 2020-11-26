@@ -1,6 +1,8 @@
 package lyeoj.tfcthings.items;
 
 import lyeoj.tfcthings.entity.projectile.EntitySlingStone;
+import lyeoj.tfcthings.entity.projectile.EntitySlingStoneMetal;
+import lyeoj.tfcthings.entity.projectile.EntitySlingStoneMetalLight;
 import lyeoj.tfcthings.entity.projectile.EntityUnknownProjectile;
 import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.dries007.tfc.api.capability.size.IItemSize;
@@ -21,7 +23,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -134,13 +135,36 @@ public class ItemSling extends Item implements IItemSize, ItemOreDict, TFCThings
     private void shoot(World worldIn, EntityLivingBase entityLiving, int power, float velocity, float inaccuracy, ItemStack itemStack) {
 
         EntitySlingStone entitySlingStone;
+        float adjustedVelocity = velocity;
 
         if(itemStack.getItem() instanceof ItemIngot) {
             entitySlingStone = new EntityUnknownProjectile(worldIn, entityLiving, power);
+        } else if(itemStack.getItem() instanceof ItemMetalSlingAmmo) {
+            ItemMetalSlingAmmo ammo = (ItemMetalSlingAmmo)itemStack.getItem();
+            switch(ammo.getType()) {
+                case 0:
+                    entitySlingStone = new EntitySlingStoneMetal(worldIn, entityLiving, power + 5);
+                    break;
+                case 1:
+                    entitySlingStone = new EntitySlingStoneMetal(worldIn, entityLiving, power + 2);
+                    for(int i = 0; i < 4; i++) {
+                        EntitySlingStoneMetal bonusStone = new EntitySlingStoneMetal(worldIn, entityLiving, power);
+                        bonusStone.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0f, velocity * 0.75f, inaccuracy + 2.5f);
+                        worldIn.spawnEntity(bonusStone);
+                    }
+                    break;
+                case 2:
+                    entitySlingStone = new EntitySlingStoneMetalLight(worldIn, entityLiving, power + 3);
+                    adjustedVelocity *= 1.2;
+                    break;
+                default:
+                    entitySlingStone = new EntitySlingStoneMetal(worldIn, entityLiving, power + 2);
+                    entitySlingStone.setFire(10);
+            }
         } else {
             entitySlingStone = new EntitySlingStone(worldIn, entityLiving, power);
         }
-        entitySlingStone.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0F, velocity, inaccuracy);
+        entitySlingStone.shoot(entityLiving, entityLiving.rotationPitch, entityLiving.rotationYaw, 0.0F, adjustedVelocity, inaccuracy);
         worldIn.spawnEntity(entitySlingStone);
     }
 
@@ -172,6 +196,8 @@ public class ItemSling extends Item implements IItemSize, ItemOreDict, TFCThings
             if(ingot.getMetal(stack) == Metal.UNKNOWN) {
                 return true;
             }
+        } else if(tier > 0 && stack.getItem() instanceof ItemMetalSlingAmmo) {
+            return true;
         }
         return false;
     }

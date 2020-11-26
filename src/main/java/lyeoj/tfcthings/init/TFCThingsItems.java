@@ -23,8 +23,14 @@ public class TFCThingsItems {
 
     public static final IArmorMaterialTFC SNOW_SHOES_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("snow_shoes", "tfcthings:snow_shoes", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
     public static final Item ITEM_SNOWSHOES = new ItemSnowShoes(SNOW_SHOES_MATERIAL, 0, EntityEquipmentSlot.FEET);
+    public static final IArmorMaterialTFC HIKING_BOOTS_MATERIAL = new ArmorMaterialTFC(EnumHelper.addArmorMaterial("hiking_boots", "tfcthings:hiking_boots", 14, new int[]{1, 0, 0, 0}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F), 5.0F, 5.0F, 10.0F);
+    public static final Item ITEM_HIKING_BOOTS = new ItemHikingBoots(HIKING_BOOTS_MATERIAL, 0, EntityEquipmentSlot.FEET);
     public static final Item ITEM_SLING = new ItemSling(0).setTranslationKey("sling").setRegistryName("sling");;
     public static final Item ITEM_SLING_METAL = new ItemSling(1).setTranslationKey("sling_metal").setRegistryName("sling_metal");
+    public static final Item ITEM_SLING_AMMO = new ItemMetalSlingAmmo(0).setTranslationKey("sling_ammo").setRegistryName("sling_ammo");
+    public static final Item ITEM_SLING_AMMO_SPREAD = new ItemMetalSlingAmmo(1).setTranslationKey("sling_ammo_spread").setRegistryName("sling_ammo_spread");
+    public static final Item ITEM_SLING_AMMO_LIGHT = new ItemMetalSlingAmmo(2).setTranslationKey("sling_ammo_light").setRegistryName("sling_ammo_light");
+    public static final Item ITEM_SLING_AMMO_FIRE = new ItemMetalSlingAmmo(3).setTranslationKey("sling_ammo_fire").setRegistryName("sling_ammo_fire");
     public static final Item ITEM_BEAR_TRAP_HALF = new ItemBearTrapHalf();
 
     public static final Item ITEM_METAL_BRACING = new ItemMetalBracing();
@@ -130,8 +136,13 @@ public class TFCThingsItems {
             ITEM_GRINDSTONE_STEEL,
             ITEM_GRINDSTONE_DIAMOND,
             ITEM_SNOWSHOES,
+            ITEM_HIKING_BOOTS,
             ITEM_SLING,
             ITEM_SLING_METAL,
+            ITEM_SLING_AMMO,
+            ITEM_SLING_AMMO_SPREAD,
+            ITEM_SLING_AMMO_LIGHT,
+            ITEM_SLING_AMMO_FIRE,
             ITEM_BEAR_TRAP_HALF,
             ITEM_PIG_IRON_CARROT,
             ITEM_BLACK_STEEL_CARROT,

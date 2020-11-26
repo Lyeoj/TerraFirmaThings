@@ -20,6 +20,8 @@ public class TFCThingsEntities {
             new NonMobEntityInfo("ropejavelinthrown", EntityThrownRopeJavelin.class, 3, 64, 2, true),
             new NonMobEntityInfo("hookjavelinthrown", EntityThrownHookJavelin.class, 4, 64, 2, true),
             new NonMobEntityInfo("ropebridgethrown", EntityRopeBridgeThrown.class, 5, 64, 2, true),
+            new NonMobEntityInfo("slingstonemetal", EntitySlingStoneMetal.class, 6, 64, 1, true),
+            new NonMobEntityInfo("slingstonemetallight", EntitySlingStoneMetalLight.class, 7, 64, 1, true)
     };
 
     public static class MobInfo {
@@ -84,6 +86,8 @@ public class TFCThingsEntities {
         RenderingRegistry.registerEntityRenderingHandler(EntityThrownRopeJavelin.class, RenderThrownRopeJavelin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThrownHookJavelin.class, RenderThrownRopeJavelin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRopeBridgeThrown.class, RenderThrownRopeBridge::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySlingStoneMetal.class, RenderSlingStoneMetal::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySlingStoneMetalLight.class, RenderSlingStoneMetal::new);
     }
 
 }

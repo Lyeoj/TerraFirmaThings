@@ -49,7 +49,9 @@ public class EntitySlingStone extends EntityThrowable {
                 double predatorMultiplier = ConfigTFCThings.Items.SLING.predatorMultiplier;
                 i *= predatorMultiplier;
             }
-
+            if(this.isBurning()) {
+                result.entityHit.setFire(5);
+            }
             result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), i);
         }
 

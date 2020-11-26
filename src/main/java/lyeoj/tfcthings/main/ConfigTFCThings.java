@@ -45,6 +45,9 @@ public class ConfigTFCThings {
         @Config.Comment({"Snow Shoes Settings"})
         @Config.LangKey("config.tfcthings.items.snow_shoes")
         public static final SnowShoesCFG SNOW_SHOES = new SnowShoesCFG();
+        @Config.Comment({"Hiking Boots Settings"})
+        @Config.LangKey("config.tfcthings.items.hiking_boots")
+        public static final HikingBootsCFG HIKING_BOOTS = new HikingBootsCFG();
         @Config.Comment({"Enable/Disable All Items"})
         @Config.LangKey("config.tfcthings.items.masterlist")
         public static final MasterItemCFG MASTER_ITEM_LIST = new MasterItemCFG();
@@ -170,6 +173,24 @@ public class ConfigTFCThings {
 
         }
 
+        public static final class HikingBootsCFG {
+            @Config.Comment({"The number of ticks of walking through plants required to apply one damage to the shoes", "0 = hiking boots won't get damaged by walking through plants"})
+            @Config.RangeInt (
+                    min = 0
+            )
+            @Config.LangKey("config.tfcthings.items.damageTicks")
+            public int damageTicks = 500;
+
+            @Config.Comment({"The percentage of the TFC slowdown effect that the hiking boots will negate", "1 = no slowdown when walking through plants", "0 = the boots are useless D:"})
+            @Config.RangeDouble (
+                    min = 0,
+                    max = 1
+            )
+            @Config.LangKey("config.tfcthings.items.shoePower")
+            public double shoePower = 1;
+
+        }
+
         public static final class MasterItemCFG {
             @Config.LangKey("config.tfcthings.enable.snowShoes")
             @Config.RequiresMcRestart
@@ -213,6 +234,9 @@ public class ConfigTFCThings {
             @Config.LangKey("config.tfcthings.enable.gemDisplay")
             @Config.RequiresMcRestart
             public boolean enableGemDisplays = true;
+            @Config.LangKey("config.tfcthings.enable.hikingBoots")
+            @Config.RequiresMcRestart
+            public boolean enableHikingBoots = true;
         }
 
     }
@@ -236,7 +260,7 @@ public class ConfigTFCThings {
             @Config.Comment({"Add special days to the TFC calendar!", "Format: MONTH<dayNumber> <name of your day>.", "An invalid day string won't be read by the calendar. See defaults for examples."})
             @Config.LangKey("config.tfcthings.misc.daylist")
             @Config.RequiresMcRestart
-            public String[] dayList = new String[]{"APRIL2 MeteorFreak's Birthday", "APRIL10 Pakratt0013's Birthday", "NOVEMBER11 HonneyPlay's Birthday"};
+            public String[] dayList = new String[]{"APRIL2 MeteorFreak's Birthday", "APRIL10 Pakratt0013's Birthday", "NOVEMBER11 HonneyPlay's Birthday", "MARCH2 Firedale's Birthday"};
         }
 
         public static final class PigvilCFG {
