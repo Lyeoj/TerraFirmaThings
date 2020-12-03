@@ -134,6 +134,8 @@ tfcthings.tooltip.rope_bridge_bad_connection=This bridge will not connect to ter
 tfcthings.tooltip.sling.message1=The bigger they are...
 tfcthings.tooltip.sling.message2=...the harder they fall
 
+death.attack.bear_trap=%1$s didn't watch their step
+
 config.tfcthings.items=Item Settings
 config.tfcthings.items.tooltip=Configure Settings For TFCThings Items
 config.tfcthings.misc=Misc Settings
@@ -149,6 +151,8 @@ config.tfcthings.items.breakChance=Trap Break Chance
 config.tfcthings.items.breakoutChance=Predator Escape Chance
 config.tfcthings.items.debuffDuration=Trap Debuff Duration
 config.tfcthings.items.healthCut=Health Cut Factor
+config.tfcthings.items.enableFixedDamage=Enable Fixed Damage
+config.tfcthings.items.fixedDamage=Fixed Damage Amount
 
 config.tfcthings.items.snare=Snare
 config.tfcthings.items.baitCaptureChance=Bait Capture Chance

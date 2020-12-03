@@ -81,7 +81,7 @@ public class EntityThrownRopeJavelin extends EntityArrow implements IThrowableEn
             if(getThrower() == null) {
                 javelin.retractJavelin(getWeapon(), world);
             }
-            if(javelin.getCapturedEntity(getWeapon(), getEntityWorld()) != null) {
+            if(javelin.getCapturedEntity(getWeapon(), getEntityWorld()) != null && this.getDistanceSq(getThrower()) <= effectiveRange) {
                 this.setNoGravity(true);
                 Entity caughtEntity = javelin.getCapturedEntity(getWeapon(), getEntityWorld());
                 this.posX = caughtEntity.posX;
