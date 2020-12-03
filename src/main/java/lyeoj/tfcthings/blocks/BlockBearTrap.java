@@ -166,7 +166,7 @@ public class BlockBearTrap extends Block implements IItemSize, TFCThingsConfigur
                 entityLiving.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, debuffDuration));
                 entityLiving.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, debuffDuration));
                 entityLiving.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, debuffDuration));
-                if(ConfigTFCThings.Items.BEAR_TRAP.enableFixedDamage) {
+                if(ConfigTFCThings.Items.BEAR_TRAP.fixedDamage > 0) {
                     entityLiving.attackEntityFrom(TFCThingsDamageSources.BEAR_TRAP, (float)ConfigTFCThings.Items.BEAR_TRAP.fixedDamage);
                 } else if(healthCut > 0) {
                     entityLiving.attackEntityFrom(TFCThingsDamageSources.BEAR_TRAP, entityLiving.getHealth() / (float)healthCut);

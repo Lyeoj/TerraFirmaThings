@@ -151,7 +151,6 @@ config.tfcthings.items.breakChance=Trap Break Chance
 config.tfcthings.items.breakoutChance=Predator Escape Chance
 config.tfcthings.items.debuffDuration=Trap Debuff Duration
 config.tfcthings.items.healthCut=Health Cut Factor
-config.tfcthings.items.enableFixedDamage=Enable Fixed Damage
 config.tfcthings.items.fixedDamage=Fixed Damage Amount
 
 config.tfcthings.items.snare=Snare
