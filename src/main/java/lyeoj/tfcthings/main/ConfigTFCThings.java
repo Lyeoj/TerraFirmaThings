@@ -108,7 +108,7 @@ public class ConfigTFCThings {
             @Config.LangKey("config.tfcthings.items.healthCut")
             public double healthCut = 3.0D;
             @Config.LangKey("config.tfcthings.items.fixedDamage")
-            @Config.Comment({"The amount of damage points dealt by a bear trap, if the \"Enable Fixed Damage\" is true"})
+            @Config.Comment({"The amount of damage points dealt by a bear trap.", "This will override the fractional health cut setting if set to a value greater than 0"})
             @Config.RangeDouble (
                     min = 0.0D
             )
