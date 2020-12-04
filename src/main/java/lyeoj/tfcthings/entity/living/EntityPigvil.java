@@ -2,6 +2,7 @@ package lyeoj.tfcthings.entity.living;
 
 import com.google.common.collect.Sets;
 import lyeoj.tfcthings.init.TFCThingsBlocks;
+import lyeoj.tfcthings.init.TFCThingsDamageSources;
 import lyeoj.tfcthings.init.TFCThingsItems;
 import net.dries007.tfc.api.types.Metal;
 import net.dries007.tfc.objects.blocks.metal.BlockAnvilTFC;
@@ -84,6 +85,10 @@ public class EntityPigvil extends EntityCreature {
         return SoundEvents.ENTITY_PIG_DEATH;
     }
 
+    protected SoundEvent getFallSound(int heightIn) {
+        return SoundEvents.BLOCK_ANVIL_LAND;
+    }
+
     public void writeEntityToNBT(NBTTagCompound compound) {
         compound.setString("anvil", getAnvil().getRegistryName().toString());
         super.writeEntityToNBT(compound);
@@ -128,4 +133,12 @@ public class EntityPigvil extends EntityCreature {
                 return EnumFacing.EAST;
         }
     }
+
+    public void onCollideWithPlayer(EntityPlayer playerIn) {
+        if(this.fallDistance > 3 && this.posY > playerIn.posY) {
+            playerIn.attackEntityFrom(TFCThingsDamageSources.PIGVIL, fallDistance * 3.0f);
+        }
+    }
+
+
 }

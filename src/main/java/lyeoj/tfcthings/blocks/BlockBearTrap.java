@@ -186,6 +186,9 @@ public class BlockBearTrap extends Block implements IItemSize, TFCThingsConfigur
                     }
                     worldIn.setBlockState(pos, net.minecraft.init.Blocks.AIR.getDefaultState(), worldIn.isRemote ? 11 : 3);
                 }
+                if(entityLiving.isDead) {
+                    trap.setCapturedEntity(null);
+                }
             }
         }
     }

@@ -3,7 +3,7 @@
   "pattern": [
     "RRR",
     "RBR",
-    "LLL"
+    "LML"
   ],
   "key": {
     "B": {
@@ -14,6 +14,9 @@
     },
     "R": {
       "item": "tfc:crop/product/jute_fiber"
+    },
+    "M": {
+      "item": "tfcthings:metal_bracing"
     }
   },
   "result": {

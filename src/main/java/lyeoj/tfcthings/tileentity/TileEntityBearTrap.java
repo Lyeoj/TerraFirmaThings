@@ -90,8 +90,13 @@ public class TileEntityBearTrap extends TileEntity {
     }
 
     public void setCapturedEntity(EntityLivingBase entity) {
+
         this.capturedEntity = entity;
-        this.capturedId = entity.getUniqueID();
+        if(entity != null) {
+            this.capturedId = entity.getUniqueID();
+        } else {
+            this.capturedId = UUID.randomUUID();
+        }
         sendUpdates();
     }
 }

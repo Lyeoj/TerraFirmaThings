@@ -135,6 +135,7 @@ tfcthings.tooltip.sling.message1=The bigger they are...
 tfcthings.tooltip.sling.message2=...the harder they fall
 
 death.attack.bear_trap=%1$s didn't watch their step
+death.attack.pigvil=%1$s was squashed by a falling...Pigvil?
 
 config.tfcthings.items=Item Settings
 config.tfcthings.items.tooltip=Configure Settings For TFCThings Items
