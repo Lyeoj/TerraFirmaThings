@@ -8,14 +8,18 @@ import lyeoj.tfcthings.main.ConfigTFCThings;
 import lyeoj.tfcthings.main.TFCThings;
 import net.dries007.tfc.objects.blocks.wood.BlockLogTFC;
 import net.dries007.tfc.objects.blocks.wood.BlockToolRack;
+import net.dries007.tfc.objects.entity.animal.EntitySheepTFC;
 import net.dries007.tfc.objects.entity.projectile.EntityThrownWeapon;
+import net.dries007.tfc.objects.items.ItemsTFC;
+import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.OreDictionaryHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -29,7 +33,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import javax.xml.soap.Text;
 
 @Mod.EventBusSubscriber(modid = TFCThings.MODID)
 public class TFCThingsEventHandler {
@@ -156,12 +159,41 @@ public class TFCThingsEventHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerInteract(PlayerInteractEvent event) {
+    public static void onPlayerInteractBlock(PlayerInteractEvent.RightClickBlock event) {
         if(event.getItemStack().getItem() instanceof ItemRopeJavelin) {
             if(event.getWorld().getBlockState(event.getPos()).getBlock() instanceof BlockToolRack) {
                 ((ItemRopeJavelin)event.getItemStack().getItem()).retractJavelin(event.getItemStack(), event.getWorld());
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onPlayerInteractEntity(PlayerInteractEvent.EntityInteract event) {
+        if(event.getTarget() instanceof EntitySheepTFC) {
+            EntitySheepTFC sheep = (EntitySheepTFC)event.getTarget();
+            if((OreDictionaryHelper.doesStackMatchOre(event.getItemStack(), "shears") || OreDictionaryHelper.doesStackMatchOre(event.getItemStack(), "knife"))
+                    && sheep.hasWool() && sheep.getFamiliarity() == 1.0F ) {
+                if(!sheep.world.isRemote) {
+                    ItemStack woolStack = new ItemStack(ItemsTFC.WOOL, 1);
+                    Helpers.spawnItemStack(sheep.world, new BlockPos(sheep.posX, sheep.posY, sheep.posZ), woolStack);
+                }
+            }
+        }
+//        if(event.getTarget() instanceof EntityCowTFC) {
+//            EntityCowTFC cow = (EntityCowTFC) event.getTarget();
+//            if(cow.getFamiliarity() == 1.0F && cow.isReadyForAnimalProduct()) {
+//                event.setCanceled(true);
+//                ItemStack itemstack = event.getEntityPlayer().getHeldItem(event.getHand());
+//                FluidActionResult fillResult = FluidUtil.tryFillContainer(itemstack, FluidUtil.getFluidHandler(new ItemStack(Items.MILK_BUCKET)), 1000, event.getEntityPlayer(), false);
+//                if (!fillResult.isSuccess()) {
+//                    return;
+//                }
+//                event.getEntityPlayer().playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+//                event.getEntityPlayer().setHeldItem(event.getHand(), FluidUtil.tryFillContainerAndStow(itemstack, FluidUtil.getFluidHandler(new ItemStack(Items.MILK_BUCKET)), new PlayerInvWrapper(event.getEntityPlayer().inventory), 1000, (EntityPlayer)null, true).getResult());
+//            }
+//        }
+    }
+
+
 
 }

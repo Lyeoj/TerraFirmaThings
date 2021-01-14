@@ -26,10 +26,9 @@ public class BlockPigvil extends BlockAnvilTFC {
 
     private final Metal metal;
 
-    public BlockPigvil(Metal metal, Metal fakeMetal) {
+    public BlockPigvil(Metal metal) {
         super(new Metal(new ResourceLocation(TFCThings.MODID + ":pigvil_" + metal), metal.getTier(), false, 10, 100, 0, null, null));
         if(metal != TFCRegistries.METALS.getValue(DefaultMetals.STEEL)) {
-            System.out.println(metal);
             this.setTranslationKey("pigvil_" + metal);
             this.setRegistryName("pigvil_" + metal);
         } else {
@@ -40,6 +39,15 @@ public class BlockPigvil extends BlockAnvilTFC {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.EAST));
     }
 
+    public BlockPigvil() {
+        super(new Metal(new ResourceLocation(TFCThings.MODID + ":pigvil_purple_steel"), Metal.Tier.TIER_VI, false, 10, 100, 0, null, null));
+        this.setTranslationKey("pigvil_purple_steel");
+        this.setRegistryName("pigvil_purple_steel");
+        this.metal = Metal.RED_STEEL;
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.EAST));
+    }
+
+
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
         EntityPigvil pigvil = new EntityPigvil(worldIn);
         pigvil.setAnvil(this);
@@ -49,7 +57,6 @@ public class BlockPigvil extends BlockAnvilTFC {
 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         worldIn.playSound(playerIn, pos, SoundEvents.ENTITY_PIG_AMBIENT, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        IBlockState tempState = worldIn.getBlockState(pos);
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 
@@ -62,7 +69,17 @@ public class BlockPigvil extends BlockAnvilTFC {
     }
 
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(TFCThingsBlocks.PIGVIL_BLOCK);
+        if(this.getTranslationKey().equals("tile.pigvil_black_steel")) {
+            return new ItemStack(TFCThingsBlocks.PIGVIL_BLOCK_BLACK);
+        } else if(this.getTranslationKey().equals("tile.pigvil_blue_steel")) {
+            return new ItemStack(TFCThingsBlocks.PIGVIL_BLOCK_BLUE);
+        } else if(this.getTranslationKey().equals("tile.pigvil_red_steel")) {
+            return new ItemStack(TFCThingsBlocks.PIGVIL_BLOCK_RED);
+        } else if(this.getTranslationKey().equals("tile.pigvil_purple_steel")) {
+            return new ItemStack(TFCThingsBlocks.PIGVIL_BLOCK_PURPLE);
+        } else {
+            return new ItemStack(TFCThingsBlocks.PIGVIL_BLOCK);
+        }
     }
 
 }

@@ -17,6 +17,7 @@ public class RenderPigvil extends RenderLiving<EntityPigvil> {
     private static final ResourceLocation PIGVIL_BLACK = new ResourceLocation(TFCThings.MODID, "textures/entity/pigvil_black.png");
     private static final ResourceLocation PIGVIL_RED = new ResourceLocation(TFCThings.MODID, "textures/entity/pigvil_red.png");
     private static final ResourceLocation PIGVIL_BLUE = new ResourceLocation(TFCThings.MODID, "textures/entity/pigvil_blue.png");
+    private static final ResourceLocation PIGVIL_PURPLE = new ResourceLocation(TFCThings.MODID, "textures/entity/pigvil_purple.png");
 
     public RenderPigvil(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelPigvil(), 0.7F);
@@ -32,8 +33,10 @@ public class RenderPigvil extends RenderLiving<EntityPigvil> {
             return PIGVIL_BLACK;
         } else if(anvil.getRegistryName() == TFCThingsBlocks.PIGVIL_BLOCK_BLUE.getRegistryName()) {
             return PIGVIL_BLUE;
-        } else {
+        } else if(anvil.getRegistryName() == TFCThingsBlocks.PIGVIL_BLOCK_RED.getRegistryName()) {
             return PIGVIL_RED;
+        } else {
+            return PIGVIL_PURPLE;
         }
     }
 

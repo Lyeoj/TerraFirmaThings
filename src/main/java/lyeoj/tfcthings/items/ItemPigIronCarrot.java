@@ -40,6 +40,11 @@ public class ItemPigIronCarrot extends ItemTFC implements TFCThingsConfigurableI
     }
 
     public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity, EnumHand hand) {
+        //Debug utility to raise an animal's familiarity
+//        if(entity instanceof EntityAnimalTFC) {
+//            EntityAnimalTFC animal = (EntityAnimalTFC)entity;
+//            animal.setFamiliarity(animal.getFamiliarity() + 0.1f);
+//        }
         if(metal == TFCRegistries.METALS.getValue(DefaultMetals.PIG_IRON) && entity instanceof EntityPigTFC) {
             EntityPigTFC piggy = (EntityPigTFC)entity;
             float requiredFamiliarity = (float)ConfigTFCThings.Misc.PIGVIL.familiarityLevel;
@@ -71,7 +76,7 @@ public class ItemPigIronCarrot extends ItemTFC implements TFCThingsConfigurableI
                         pigvil.spawnExplosionParticle();
                     }
                 }
-            } else if(pigvil.getAnvil() == TFCThingsBlocks.PIGVIL_BLOCK_BLACK && metal == TFCRegistries.METALS.getValue(DefaultMetals.BLUE_STEEL) || metal == TFCRegistries.METALS.getValue(DefaultMetals.RED_STEEL)) {
+            } else if(pigvil.getAnvil() == TFCThingsBlocks.PIGVIL_BLOCK_BLACK && (metal == TFCRegistries.METALS.getValue(DefaultMetals.BLUE_STEEL) || metal == TFCRegistries.METALS.getValue(DefaultMetals.RED_STEEL))) {
                 player.world.playSound(player, pigvil.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.NEUTRAL, 1.0f, 1.0f);
                 if(!player.world.isRemote) {
                     if (!player.isCreative()) {
@@ -80,11 +85,22 @@ public class ItemPigIronCarrot extends ItemTFC implements TFCThingsConfigurableI
                     if(Math.random() < ConfigTFCThings.Misc.PIGVIL.convertChance) {
                         if(metal == TFCRegistries.METALS.getValue(DefaultMetals.BLUE_STEEL)) {
                             pigvil.setAnvil(TFCThingsBlocks.PIGVIL_BLOCK_BLUE);
-                            pigvil.spawnExplosionParticle();
                         } else {
                             pigvil.setAnvil(TFCThingsBlocks.PIGVIL_BLOCK_RED);
-                            pigvil.spawnExplosionParticle();
                         }
+                        pigvil.spawnExplosionParticle();
+                    }
+                }
+            } else if((pigvil.getAnvil() == TFCThingsBlocks.PIGVIL_BLOCK_RED && metal == TFCRegistries.METALS.getValue(DefaultMetals.BLUE_STEEL)) ||
+                    (pigvil.getAnvil() == TFCThingsBlocks.PIGVIL_BLOCK_BLUE && metal == TFCRegistries.METALS.getValue(DefaultMetals.RED_STEEL))) {
+                player.world.playSound(player, pigvil.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                if(!player.world.isRemote) {
+                    if (!player.isCreative()) {
+                        itemstack.shrink(1);
+                    }
+                    if(Math.random() < ConfigTFCThings.Misc.PIGVIL.convertChance) {
+                        pigvil.setAnvil(TFCThingsBlocks.PIGVIL_BLOCK_PURPLE);
+                        pigvil.spawnExplosionParticle();
                     }
                 }
             }

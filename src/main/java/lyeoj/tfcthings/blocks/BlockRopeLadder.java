@@ -1,7 +1,6 @@
 package lyeoj.tfcthings.blocks;
 
 import lyeoj.tfcthings.init.TFCThingsBlocks;
-import lyeoj.tfcthings.init.TFCThingsItems;
 import lyeoj.tfcthings.items.TFCThingsConfigurableItem;
 import lyeoj.tfcthings.main.ConfigTFCThings;
 import net.minecraft.block.Block;
@@ -15,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -74,6 +72,9 @@ public class BlockRopeLadder extends Block implements TFCThingsConfigurableItem 
     }
 
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        if(worldIn.getBlockState(pos.down()).getBlock() instanceof BlockRopeLadder) {
+            return this.getDefaultState().withProperty(FACING, worldIn.getBlockState(pos.down()).getValue(FACING));
+        }
         if (facing.getAxis().isHorizontal() && this.canAttachTo(worldIn, pos.offset(facing.getOpposite()), facing)) {
             return this.getDefaultState().withProperty(FACING, facing);
         }
