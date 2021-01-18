@@ -148,7 +148,7 @@ config.tfcthings.items.maxPower=最大充能量
 config.tfcthings.items.chargeSpeed=充能速度
 
 config.tfcthings.items.beartrap=捕熊陷阱
-config.tfcthings.items.breakChance=陷阱被破坏的几率
+config.tfcthings.items.breakChance=装置使用后损坏几率
 config.tfcthings.items.breakoutChance=动物逃脱几率
 config.tfcthings.items.debuffDuration=陷阱给予负面效果的时间
 config.tfcthings.items.healthCut=陷阱伤害系数
@@ -164,7 +164,7 @@ config.tfcthings.items.bonusSpeed=打磨后工具速度提升值
 config.tfcthings.items.damageBoost=打磨后武器伤害提升值
 
 config.tfcthings.items.snow_shoes=雪地靴
-config.tfcthings.items.damageTicks=每刻耐久消耗
+config.tfcthings.items.damageTicks=耐久消耗速度
 config.tfcthings.items.shoePower=增益控制
 config.tfcthings.items.hiking_boots=登山靴
 
@@ -173,7 +173,7 @@ config.tfcthings.misc.daylist=设置生日以及特别纪念日列表
 
 config.tfcthings.misc.pigvil=猪砧
 config.tfcthings.misc.convertChance=砧猪转化几率
-config.tfcthings.misc.familiarityLevel=需要熟悉等级达标
+config.tfcthings.misc.familiarityLevel=需要的熟悉度
 
 config.tfcthings.items.masterlist=物品列表管理
 config.tfcthings.enable.snowShoes=启用雪地靴
