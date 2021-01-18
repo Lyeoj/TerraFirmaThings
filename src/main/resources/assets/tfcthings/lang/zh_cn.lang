@@ -189,5 +189,5 @@ config.tfcthings.enable.prohammer=启用勘矿锤
 config.tfcthings.enable.snare=启用诱捕器
 config.tfcthings.enable.ropeBridge=启用索桥
 config.tfcthings.enable.ropeLadder=启用绳梯
-config.tfcthings.enable.gemDisplay=启用宝石展示
+config.tfcthings.enable.gemDisplay=启用宝石展示台
 config.tfcthings.enable.hikingBoots=启用登山靴
