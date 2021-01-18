@@ -122,8 +122,8 @@ tfcthings.tooltip.prohammer_unsafe_fall=这个方块看起来不太稳定，挖�
 tfcthings.tooltip.prohammer_na_fall=挖掘这个方块不会造成塌方, 但它的头顶支撑着受重力的方块
 tfcthings.tooltip.prohammer_no_rocks=无法检测到此区域包含的岩层种类，或许你可以换个地方试试...
 tfcthings.tooltip.prohammer_1_rock_found=看起来此区域的岩层种类包含: %s
-tfcthings.tooltip.prohammer_2_rocks_found=看起来此区域的岩层种类包含: %s and %s
-tfcthings.tooltip.prohammer_3_rocks_found=看起来此区域的岩层种类包含: %s, %s and %s
+tfcthings.tooltip.prohammer_2_rocks_found=看起来此区域的岩层种类包含: %s 和 %s
+tfcthings.tooltip.prohammer_3_rocks_found=看起来此区域的岩层种类包含: %s, %s 和 %s
 
 tfcthings.tooltip.rope_bridge_too_long=Y你没有足够的材料来建造这么长的索桥!
 tfcthings.tooltip.rope_bridge_too_steep=这个索桥过于陡峭! 尝试建造一个更长的索桥来放缓它的坡度.
@@ -148,46 +148,46 @@ config.tfcthings.items.maxPower=最大充能量
 config.tfcthings.items.chargeSpeed=充能速度
 
 config.tfcthings.items.beartrap=捕熊陷阱
-config.tfcthings.items.breakChance=Trap Break Chance
-config.tfcthings.items.breakoutChance=Predator Escape Chance
-config.tfcthings.items.debuffDuration=Trap Debuff Duration
-config.tfcthings.items.healthCut=Health Cut Factor
-config.tfcthings.items.fixedDamage=Fixed Damage Amount
+config.tfcthings.items.breakChance=陷阱被破坏的几率
+config.tfcthings.items.breakoutChance=动物逃脱几率
+config.tfcthings.items.debuffDuration=陷阱给予负面效果的时间
+config.tfcthings.items.healthCut=陷阱伤害系数
+config.tfcthings.items.fixedDamage=陷阱伤害值修正
 
 config.tfcthings.items.snare=诱捕器
-config.tfcthings.items.baitCaptureChance=Bait Capture Chance
-config.tfcthings.items.baitExpireChance=Bait Expiration Chance
+config.tfcthings.items.baitCaptureChance=诱饵捕获猎物几率
+config.tfcthings.items.baitExpireChance=诱饵消失几率
 
 config.tfcthings.items.whetstone=磨刀石
-config.tfcthings.items.canSharpen=Additional Sharpen-able Items
-config.tfcthings.items.bonusSpeed=Sharpened Harvest Speed Boost
-config.tfcthings.items.damageBoost=Sharpened Attack Boost
+config.tfcthings.items.canSharpen=额外的可打磨物品
+config.tfcthings.items.bonusSpeed=打磨后工具速度提升值
+config.tfcthings.items.damageBoost=打磨后武器伤害提升值
 
 config.tfcthings.items.snow_shoes=雪地靴
-config.tfcthings.items.damageTicks=Damage Ticks
-config.tfcthings.items.shoePower=Shoe Effectiveness
-config.tfcthings.items.hiking_boots=Hiking Boots
+config.tfcthings.items.damageTicks=每刻耐久消耗
+config.tfcthings.items.shoePower=增益控制
+config.tfcthings.items.hiking_boots=登山靴
 
 config.tfcthings.misc.birthdays=生日
-config.tfcthings.misc.daylist=Custom Birthday/Special Day List
+config.tfcthings.misc.daylist=设置生日以及特别纪念日列表
 
 config.tfcthings.misc.pigvil=猪砧
 config.tfcthings.misc.convertChance=砧猪转化几率
 config.tfcthings.misc.familiarityLevel=需要熟悉等级达标
 
-config.tfcthings.items.masterlist=Master Item List
-config.tfcthings.enable.snowShoes=Enable Snow Shoes
-config.tfcthings.enable.sling=Enable Slings
-config.tfcthings.enable.crown=Enable Crowns
-config.tfcthings.enable.bearTrap=Enable Bear Traps
-config.tfcthings.enable.pigvil=Enable Pigvil
-config.tfcthings.enable.whetstone=Enable Whetstones
-config.tfcthings.enable.grindstone=Enable Grindstones
-config.tfcthings.enable.ropeJavelin=Enable Rope Javelins
-config.tfcthings.enable.hookJavelin=Enable Hook Javelins
-config.tfcthings.enable.prohammer=Enable Prospector's Hammers
-config.tfcthings.enable.snare=Enable Snares
-config.tfcthings.enable.ropeBridge=Enable Rope Bridges
-config.tfcthings.enable.ropeLadder=Enable Rope Ladders
-config.tfcthings.enable.gemDisplay=Enable Gem Displays
-config.tfcthings.enable.hikingBoots=Enable Hiking Boots
+config.tfcthings.items.masterlist=物品列表管理
+config.tfcthings.enable.snowShoes=启用雪地靴
+config.tfcthings.enable.sling=启用投石器
+config.tfcthings.enable.crown=启用皇冠
+config.tfcthings.enable.bearTrap=启用捕熊陷阱
+config.tfcthings.enable.pigvil=启用猪砧
+config.tfcthings.enable.whetstone=启用磨刀石
+config.tfcthings.enable.grindstone=启用砂轮
+config.tfcthings.enable.ropeJavelin=启用牵索标枪
+config.tfcthings.enable.hookJavelin=启用绳钩
+config.tfcthings.enable.prohammer=启用勘矿锤
+config.tfcthings.enable.snare=启用诱捕器
+config.tfcthings.enable.ropeBridge=启用索桥
+config.tfcthings.enable.ropeLadder=启用绳梯
+config.tfcthings.enable.gemDisplay=启用宝石展示
+config.tfcthings.enable.hikingBoots=启用登山靴
