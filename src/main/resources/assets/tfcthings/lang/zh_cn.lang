@@ -79,7 +79,7 @@ tile.pigvil_blue_steel.name=蓝钢猪砧
 tile.pigvil_red_steel.name=红钢猪砧
 tile.pigvil_purple_steel.name=皇家紫钢猪砧
 tile.grindstone_base.name=砂轮底座
-tile.snare.name=陷阱
+tile.snare.name=诱捕器
 tile.rope_bridge.name=索桥
 tile.rope_ladder.name=绳梯
 
@@ -143,9 +143,9 @@ config.tfcthings.misc=杂项设置
 config.tfcthings.misc.tooltip=进入杂项设置
 
 config.tfcthings.items.sling=投石器
-config.tfcthings.items.predatorMultiplier=Predator/Skeleton Damage Multiplier
-config.tfcthings.items.maxPower=Maximum Charge Power
-config.tfcthings.items.chargeSpeed=Charge Speed
+config.tfcthings.items.predatorMultiplier=对敌对生物/骷髅的伤害倍数
+config.tfcthings.items.maxPower=最大充能量
+config.tfcthings.items.chargeSpeed=充能速度
 
 config.tfcthings.items.beartrap=捕熊陷阱
 config.tfcthings.items.breakChance=Trap Break Chance
@@ -154,7 +154,7 @@ config.tfcthings.items.debuffDuration=Trap Debuff Duration
 config.tfcthings.items.healthCut=Health Cut Factor
 config.tfcthings.items.fixedDamage=Fixed Damage Amount
 
-config.tfcthings.items.snare=Snare
+config.tfcthings.items.snare=诱捕器
 config.tfcthings.items.baitCaptureChance=Bait Capture Chance
 config.tfcthings.items.baitExpireChance=Bait Expiration Chance
 
@@ -172,8 +172,8 @@ config.tfcthings.misc.birthdays=生日
 config.tfcthings.misc.daylist=Custom Birthday/Special Day List
 
 config.tfcthings.misc.pigvil=猪砧
-config.tfcthings.misc.convertChance=Pigvil Conversion Chance
-config.tfcthings.misc.familiarityLevel=Required Familiarity Level
+config.tfcthings.misc.convertChance=砧猪转化几率
+config.tfcthings.misc.familiarityLevel=需要熟悉等级达标
 
 config.tfcthings.items.masterlist=Master Item List
 config.tfcthings.enable.snowShoes=Enable Snow Shoes
