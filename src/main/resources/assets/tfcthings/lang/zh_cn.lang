@@ -113,7 +113,7 @@ tfcthings.tooltip.maximum_sharpness=此物品已经足够锋利，无法获得�
 
 tfcthings.tooltip.crown.gem=已镶嵌宝石：%s
 tfcthings.tooltip.crown.gem.empty=已镶嵌宝石：无
-tfcthings.tooltip.crown.missing=好像少了点什么……
+tfcthings.tooltip.crown.missing=好像少了点什么...
 tfcthings.tooltip.prohammer_safe=这个方块看起来可以安全挖掘
 tfcthings.tooltip.prohammer_unsafe=这个方块看起来不太稳定，挖掘它可能造成塌方...
 tfcthings.tooltip.prohammer_na=挖掘这个方块不会造成塌方
@@ -126,7 +126,7 @@ tfcthings.tooltip.prohammer_2_rocks_found=看起来此区域的岩层种类包�
 tfcthings.tooltip.prohammer_3_rocks_found=看起来此区域的岩层种类包含: %s, %s 和 %s
 
 tfcthings.tooltip.rope_bridge_too_long=你没有足够的材料来建造这么长的索桥!
-tfcthings.tooltip.rope_bridge_too_steep=这个索桥过于陡峭! 尝试建造一个更长的索桥来放缓它的坡度.
+tfcthings.tooltip.rope_bridge_too_steep=这个索桥过于陡峭! 尝试建造一个更长的索桥来放缓它的坡度。
 tfcthings.tooltip.rope_bridge_interrupted=索桥的路径上有其他方块阻挡!
 tfcthings.tooltip.rope_bridge_diagonal=你不能在对角线上建造索桥!
 tfcthings.tooltip.rope_bridge_bad_connection=这座索桥没有与地面连通!
