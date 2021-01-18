@@ -125,7 +125,7 @@ tfcthings.tooltip.prohammer_1_rock_found=看起来此区域的岩层种类包含
 tfcthings.tooltip.prohammer_2_rocks_found=看起来此区域的岩层种类包含: %s 和 %s
 tfcthings.tooltip.prohammer_3_rocks_found=看起来此区域的岩层种类包含: %s, %s 和 %s
 
-tfcthings.tooltip.rope_bridge_too_long=Y你没有足够的材料来建造这么长的索桥!
+tfcthings.tooltip.rope_bridge_too_long=你没有足够的材料来建造这么长的索桥!
 tfcthings.tooltip.rope_bridge_too_steep=这个索桥过于陡峭! 尝试建造一个更长的索桥来放缓它的坡度.
 tfcthings.tooltip.rope_bridge_interrupted=索桥的路径上有其他方块阻挡!
 tfcthings.tooltip.rope_bridge_diagonal=你不能在对角线上建造索桥!
