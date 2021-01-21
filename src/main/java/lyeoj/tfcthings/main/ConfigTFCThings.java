@@ -48,6 +48,8 @@ public class ConfigTFCThings {
         @Config.Comment({"Hiking Boots Settings"})
         @Config.LangKey("config.tfcthings.items.hiking_boots")
         public static final HikingBootsCFG HIKING_BOOTS = new HikingBootsCFG();
+        @Config.LangKey("config.tfcthings.items.rope_bridge")
+        public static final RopeBridgeCFG ROPE_BRIDGE = new RopeBridgeCFG();
         @Config.Comment({"Enable/Disable All Items"})
         @Config.LangKey("config.tfcthings.items.masterlist")
         public static final MasterItemCFG MASTER_ITEM_LIST = new MasterItemCFG();
@@ -195,6 +197,16 @@ public class ConfigTFCThings {
             @Config.LangKey("config.tfcthings.items.shoePower")
             public double shoePower = 1;
 
+        }
+
+        public static final class RopeBridgeCFG {
+            @Config.RangeInt (
+                    min = 1,
+                    max = 64
+            )
+            @Config.Comment({"The max stack size for rope bridge bundles which also determines the maximum length of a thrown bridge"})
+            @Config.LangKey("config.tfcthings.items.maxStackSize")
+            public int maxStackSize = 64;
         }
 
         public static final class MasterItemCFG {

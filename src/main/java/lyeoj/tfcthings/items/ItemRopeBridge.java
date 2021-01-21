@@ -71,4 +71,9 @@ public class ItemRopeBridge extends ItemTFC implements TFCThingsConfigurableItem
     public boolean isEnabled() {
         return ConfigTFCThings.Items.MASTER_ITEM_LIST.enableRopeBridge;
     }
+
+    @Override
+    public int getStackSize(@Nonnull ItemStack stack) {
+        return ConfigTFCThings.Items.ROPE_BRIDGE.maxStackSize;
+    }
 }

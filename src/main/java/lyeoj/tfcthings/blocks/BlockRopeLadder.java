@@ -14,6 +14,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -116,13 +117,46 @@ public class BlockRopeLadder extends Block implements TFCThingsConfigurableItem 
                 break;
             }
             nextPos = nextPos.down();
-            if(worldIn.getBlockState(nextPos).getBlock().isReplaceable(worldIn, nextPos)) {
+            if(worldIn.getBlockState(nextPos).getBlock().isReplaceable(worldIn, nextPos) && nextPos.getY() >= 0) {
                 worldIn.setBlockState(nextPos, TFCThingsBlocks.ROPE_LADDER_BLOCK.getDefaultState().withProperty(FACING, state.getValue(FACING)));
-                stack.shrink(1);
+                if(!((EntityPlayer)placer).isCreative()) {
+                    stack.shrink(1);
+                }
             } else {
-                break;
+                return;
+            }
+
+        }
+        if(!((EntityPlayer)placer).isCreative()) {
+            stack.setCount(0);
+        }
+        ItemStack ladderStack = findMoreLadders((EntityPlayer)placer);
+        nextPos = nextPos.down();
+        while(!ladderStack.isEmpty()) {
+            if(worldIn.getBlockState(nextPos).getBlock().isReplaceable(worldIn, nextPos) && nextPos.getY() >= 0) {
+                worldIn.setBlockState(nextPos, TFCThingsBlocks.ROPE_LADDER_BLOCK.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+                if(!((EntityPlayer)placer).isCreative()) {
+                    ladderStack.shrink(1);
+                }
+            } else {
+                return;
+            }
+            nextPos = nextPos.down();
+            if(ladderStack.isEmpty()) {
+                ladderStack = findMoreLadders((EntityPlayer)placer);
             }
         }
+
+    }
+
+    private ItemStack findMoreLadders(EntityPlayer player) {
+        for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+            ItemStack itemstack = player.inventory.getStackInSlot(i);
+            if (!itemstack.isEmpty() && itemstack.getItem() instanceof ItemBlock && ((ItemBlock)itemstack.getItem()).getBlock() instanceof BlockRopeLadder) {
+                return itemstack;
+            }
+        }
+        return ItemStack.EMPTY;
     }
 
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -130,25 +164,29 @@ public class BlockRopeLadder extends Block implements TFCThingsConfigurableItem 
             if(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockRopeLadder && worldIn.getBlockState(pos.down()).getBlock() instanceof BlockRopeLadder) {
                 return false;
             }
-            ItemStack ladderStack = new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 0);
+            //ItemStack ladderStack = new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1);
             BlockPos next = pos;
             if(!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockRopeLadder)) {
                 do {
-                    ladderStack.grow(1);
+                    playerIn.inventory.addItemStackToInventory(new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1));
                     worldIn.setBlockToAir(next);
                     next = next.down();
                 } while(worldIn.getBlockState(next).getBlock() instanceof BlockRopeLadder);
             } else {
                 do {
-                    ladderStack.grow(1);
+                    playerIn.inventory.addItemStackToInventory(new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1));
                     worldIn.setBlockToAir(next);
                     next = next.up();
                 } while(worldIn.getBlockState(next).getBlock() instanceof BlockRopeLadder);
             }
-            playerIn.inventory.addItemStackToInventory(ladderStack);
+            //playerIn.inventory.addItemStackToInventory(ladderStack);
             return true;
         }
         return false;
+    }
+
+    private void giveLadderToPlayer(EntityPlayer player) {
+
     }
 
     @Override
