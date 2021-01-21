@@ -14,6 +14,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -164,29 +165,30 @@ public class BlockRopeLadder extends Block implements TFCThingsConfigurableItem 
             if(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockRopeLadder && worldIn.getBlockState(pos.down()).getBlock() instanceof BlockRopeLadder) {
                 return false;
             }
-            //ItemStack ladderStack = new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1);
             BlockPos next = pos;
             if(!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockRopeLadder)) {
                 do {
-                    playerIn.inventory.addItemStackToInventory(new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1));
+                    giveLadderToPlayer(playerIn, next);
                     worldIn.setBlockToAir(next);
                     next = next.down();
                 } while(worldIn.getBlockState(next).getBlock() instanceof BlockRopeLadder);
             } else {
                 do {
-                    playerIn.inventory.addItemStackToInventory(new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1));
+                    giveLadderToPlayer(playerIn, next);
                     worldIn.setBlockToAir(next);
                     next = next.up();
                 } while(worldIn.getBlockState(next).getBlock() instanceof BlockRopeLadder);
             }
-            //playerIn.inventory.addItemStackToInventory(ladderStack);
             return true;
         }
         return false;
     }
 
-    private void giveLadderToPlayer(EntityPlayer player) {
-
+    private void giveLadderToPlayer(EntityPlayer player, BlockPos pos) {
+        ItemStack ladderStack = new ItemStack(TFCThingsBlocks.ROPE_LADDER_ITEM, 1);
+        if(!player.inventory.addItemStackToInventory(ladderStack) && !player.world.isRemote) {
+            InventoryHelper.spawnItemStack(player.world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), ladderStack);
+        }
     }
 
     @Override
